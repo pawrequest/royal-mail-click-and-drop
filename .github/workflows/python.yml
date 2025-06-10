@@ -3,7 +3,7 @@
 #
 # ref: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
 
-name: royal_mail_click_and_drop Python package
+name: royal-mail-click-and-drop Python package
 
 on: [push, pull_request]
 

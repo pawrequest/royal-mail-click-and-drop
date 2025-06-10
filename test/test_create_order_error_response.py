@@ -38,7 +38,7 @@ class TestCreateOrderErrorResponse(unittest.TestCase):
                 error_code = 56,
                 error_message = '',
                 fields = [
-                    royal_mail_click_and_drop.models.order_field_response.OrderFieldResponse(
+                    royal-mail-click-and-drop.models.order_field_response.OrderFieldResponse(
                         field_name = '', 
                         value = '', )
                     ]

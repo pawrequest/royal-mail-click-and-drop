@@ -45,5 +45,5 @@ setup(
     long_description="""\
     Import your orders, retrieve your orders and generate labels.
     """,  # noqa: E501
-    package_data={"royal_mail_click_and_drop": ["py.typed"]},
+    package_data={"royal-mail-click-and-drop": ["py.typed"]},
 )

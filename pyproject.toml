@@ -1,11 +1,11 @@
 [project]
-name = "royal_mail_click_and_drop"
-version = "0.0.2"
+name = "royal-mail-click-and-drop"
+license = "MIT"
+version = "0.0.3"
 description = "Royal Mail Click and Drop Client"
 authors = [
     { name = "pawrequest", email = "royal_mail+pawrequest@users.noreply.github.com" }
 ]
-license = "NoLicense"
 readme = "README.md"
 requires-python = ">= 3.12"
 dependencies = [

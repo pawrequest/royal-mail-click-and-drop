@@ -177,7 +177,7 @@ class Configuration:
 
     You can programmatically set the cookie:
 
-conf = royal_mail_click_and_drop.Configuration(
+conf = royal-mail-click-and-drop.Configuration(
     api_key={'cookieAuth': 'abc123'}
     api_key_prefix={'cookieAuth': 'JSESSIONID'}
 )
@@ -252,7 +252,7 @@ conf = royal_mail_click_and_drop.Configuration(
         self.logger = {}
         """Logging Settings
         """
-        self.logger["package_logger"] = logging.getLogger("royal_mail_click_and_drop")
+        self.logger["package_logger"] = logging.getLogger("royal-mail-click-and-drop")
         self.logger["urllib3_logger"] = logging.getLogger("urllib3")
         self.logger_format = '%(asctime)s %(levelname)s %(message)s'
         """Log format

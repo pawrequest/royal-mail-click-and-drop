@@ -36,7 +36,7 @@ class TestManifestErrorsResponse(unittest.TestCase):
         if include_optional:
             return ManifestErrorsResponse(
                 errors = [
-                    royal_mail_click_and_drop.models.manifest_errors_error_details_response.ManifestErrorsErrorDetailsResponse(
+                    royal-mail-click-and-drop.models.manifest_errors_error_details_response.ManifestErrorsErrorDetailsResponse(
                         code = '', 
                         description = '', )
                     ]

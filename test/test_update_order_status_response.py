@@ -36,13 +36,13 @@ class TestUpdateOrderStatusResponse(unittest.TestCase):
         if include_optional:
             return UpdateOrderStatusResponse(
                 updated_orders = [
-                    royal_mail_click_and_drop.models.updated_order_info.UpdatedOrderInfo(
+                    royal-mail-click-and-drop.models.updated_order_info.UpdatedOrderInfo(
                         order_identifier = 56, 
                         order_reference = '', 
                         status = '', )
                     ],
                 errors = [
-                    royal_mail_click_and_drop.models.order_update_error.OrderUpdateError(
+                    royal-mail-click-and-drop.models.order_update_error.OrderUpdateError(
                         order_identifier = 56, 
                         order_reference = '', 
                         status = '', 

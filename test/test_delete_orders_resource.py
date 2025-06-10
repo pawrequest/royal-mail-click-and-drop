@@ -36,13 +36,13 @@ class TestDeleteOrdersResource(unittest.TestCase):
         if include_optional:
             return DeleteOrdersResource(
                 deleted_orders = [
-                    royal_mail_click_and_drop.models.deleted_order_info.DeletedOrderInfo(
+                    royal-mail-click-and-drop.models.deleted_order_info.DeletedOrderInfo(
                         order_identifier = 56, 
                         order_reference = '', 
                         order_info = '', )
                     ],
                 errors = [
-                    royal_mail_click_and_drop.models.order_error_info.OrderErrorInfo(
+                    royal-mail-click-and-drop.models.order_error_info.OrderErrorInfo(
                         order_identifier = 56, 
                         order_reference = '', 
                         code = '', 

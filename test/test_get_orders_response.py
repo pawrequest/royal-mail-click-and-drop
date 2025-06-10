@@ -36,7 +36,7 @@ class TestGetOrdersResponse(unittest.TestCase):
         if include_optional:
             return GetOrdersResponse(
                 orders = [
-                    royal_mail_click_and_drop.models.get_order_info_resource.GetOrderInfoResource(
+                    royal-mail-click-and-drop.models.get_order_info_resource.GetOrderInfoResource(
                         order_identifier = 56, 
                         order_reference = '', 
                         created_on = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 

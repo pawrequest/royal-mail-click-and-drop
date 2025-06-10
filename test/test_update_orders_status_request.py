@@ -36,7 +36,7 @@ class TestUpdateOrdersStatusRequest(unittest.TestCase):
         if include_optional:
             return UpdateOrdersStatusRequest(
                 items = [
-                    royal_mail_click_and_drop.models.update_order_status_request.UpdateOrderStatusRequest(
+                    royal-mail-click-and-drop.models.update_order_status_request.UpdateOrderStatusRequest(
                         order_identifier = 56, 
                         order_reference = '', 
                         status = 'new', 

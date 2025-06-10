@@ -45,7 +45,7 @@ class TestCreateOrderResponse(unittest.TestCase):
                 tracking_number = '',
                 label = '',
                 label_errors = [
-                    royal_mail_click_and_drop.models.create_order_label_error_response.CreateOrderLabelErrorResponse(
+                    royal-mail-click-and-drop.models.create_order_label_error_response.CreateOrderLabelErrorResponse(
                         message = '', )
                     ],
                 generated_documents = [

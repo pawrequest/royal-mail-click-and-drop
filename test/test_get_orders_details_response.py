@@ -36,7 +36,7 @@ class TestGetOrdersDetailsResponse(unittest.TestCase):
         if include_optional:
             return GetOrdersDetailsResponse(
                 orders = [
-                    royal_mail_click_and_drop.models.get_order_details_resource.GetOrderDetailsResource(
+                    royal-mail-click-and-drop.models.get_order_details_resource.GetOrderDetailsResource(
                         order_identifier = 56, 
                         order_status = '', 
                         created_on = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
@@ -66,7 +66,7 @@ class TestGetOrdersDetailsResponse(unittest.TestCase):
                         package_size = '', 
                         account_batch_number = '', 
                         currency_code = '', 
-                        shipping_details = royal_mail_click_and_drop.models.get_shipping_details_result.GetShippingDetailsResult(
+                        shipping_details = royal-mail-click-and-drop.models.get_shipping_details_result.GetShippingDetailsResult(
                             shipping_cost = 1.337, 
                             tracking_number = '', 
                             shipping_tracking_status = '', 
@@ -79,7 +79,7 @@ class TestGetOrdersDetailsResponse(unittest.TestCase):
                             request_signature_upon_delivery = True, 
                             is_local_collect = True, 
                             shipping_update_success_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), 
-                        shipping_info = royal_mail_click_and_drop.models.get_postal_details_result.GetPostalDetailsResult(
+                        shipping_info = royal-mail-click-and-drop.models.get_postal_details_result.GetPostalDetailsResult(
                             title = '', 
                             first_name = '', 
                             last_name = '', 
@@ -93,7 +93,7 @@ class TestGetOrdersDetailsResponse(unittest.TestCase):
                             country_code = '', 
                             phone_number = '', 
                             email_address = '', ), 
-                        billing_info = royal_mail_click_and_drop.models.get_postal_details_result.GetPostalDetailsResult(
+                        billing_info = royal-mail-click-and-drop.models.get_postal_details_result.GetPostalDetailsResult(
                             title = '', 
                             first_name = '', 
                             last_name = '', 
@@ -108,7 +108,7 @@ class TestGetOrdersDetailsResponse(unittest.TestCase):
                             phone_number = '', 
                             email_address = '', ), 
                         order_lines = [
-                            royal_mail_click_and_drop.models.get_order_line_result.GetOrderLineResult(
+                            royal-mail-click-and-drop.models.get_order_line_result.GetOrderLineResult(
                                 sku = '', 
                                 name = '', 
                                 quantity = 56, 
@@ -117,7 +117,7 @@ class TestGetOrdersDetailsResponse(unittest.TestCase):
                                 customs_code = '', )
                             ], 
                         tags = [
-                            royal_mail_click_and_drop.models.get_tag_details_result.GetTagDetailsResult(
+                            royal-mail-click-and-drop.models.get_tag_details_result.GetTagDetailsResult(
                                 key = '', 
                                 value = '', )
                             ], )

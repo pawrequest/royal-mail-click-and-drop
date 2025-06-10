@@ -35,7 +35,7 @@ class TestRecipientDetailsRequest(unittest.TestCase):
         model = RecipientDetailsRequest()
         if include_optional:
             return RecipientDetailsRequest(
-                address = royal_mail_click_and_drop.models.address_request.AddressRequest(
+                address = royal-mail-click-and-drop.models.address_request.AddressRequest(
                     full_name = '', 
                     company_name = '', 
                     address_line1 = '', 

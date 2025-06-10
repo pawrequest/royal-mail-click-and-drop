@@ -38,12 +38,12 @@ class TestShipmentPackageRequest(unittest.TestCase):
                 weight_in_grams = 1,
                 package_format_identifier = '',
                 custom_package_format_identifier = '',
-                dimensions = royal_mail_click_and_drop.models.dimensions_request.DimensionsRequest(
+                dimensions = royal-mail-click-and-drop.models.dimensions_request.DimensionsRequest(
                     height_in_mms = 56, 
                     width_in_mms = 56, 
                     depth_in_mms = 56, ),
                 contents = [
-                    royal_mail_click_and_drop.models.product_item_request.ProductItemRequest(
+                    royal-mail-click-and-drop.models.product_item_request.ProductItemRequest(
                         name = '', 
                         sku = '', 
                         quantity = 1, 
