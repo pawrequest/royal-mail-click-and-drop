@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.order_field_response import OrderFieldResponse
+from royal_mail_click_and_drop import OrderFieldResponse
 
 class TestOrderFieldResponse(unittest.TestCase):
     """OrderFieldResponse unit test stubs"""

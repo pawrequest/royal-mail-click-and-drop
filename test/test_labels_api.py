@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.api.labels_api import LabelsApi
+from royal_mail_click_and_drop import LabelsApi
 
 
 class TestLabelsApi(unittest.TestCase):

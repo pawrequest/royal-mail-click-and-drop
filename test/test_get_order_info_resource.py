@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.get_order_info_resource import GetOrderInfoResource
+from royal_mail_click_and_drop import GetOrderInfoResource
 
 class TestGetOrderInfoResource(unittest.TestCase):
     """GetOrderInfoResource unit test stubs"""

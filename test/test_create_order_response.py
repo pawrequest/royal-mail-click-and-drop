@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.create_order_response import CreateOrderResponse
+from royal_mail_click_and_drop import CreateOrderResponse
 
 class TestCreateOrderResponse(unittest.TestCase):
     """CreateOrderResponse unit test stubs"""
@@ -45,7 +45,7 @@ class TestCreateOrderResponse(unittest.TestCase):
                 tracking_number = '',
                 label = '',
                 label_errors = [
-                    openapi_client.models.create_order_label_error_response.CreateOrderLabelErrorResponse(
+                    royal_mail_click_and_drop.models.create_order_label_error_response.CreateOrderLabelErrorResponse(
                         message = '', )
                     ],
                 generated_documents = [

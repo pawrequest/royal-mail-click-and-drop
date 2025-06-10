@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.failed_order_response import FailedOrderResponse
+from royal_mail_click_and_drop import FailedOrderResponse
 
 class TestFailedOrderResponse(unittest.TestCase):
     """FailedOrderResponse unit test stubs"""
@@ -35,11 +35,11 @@ class TestFailedOrderResponse(unittest.TestCase):
         model = FailedOrderResponse()
         if include_optional:
             return FailedOrderResponse(
-                order = openapi_client.models.create_order_request.CreateOrderRequest(
+                order = royal_mail_click_and_drop.models.create_order_request.CreateOrderRequest(
                     order_reference = '', 
                     is_recipient_a_business = True, 
-                    recipient = openapi_client.models.recipient_details_request.RecipientDetailsRequest(
-                        address = openapi_client.models.address_request.AddressRequest(
+                    recipient = royal_mail_click_and_drop.models.recipient_details_request.RecipientDetailsRequest(
+                        address = royal_mail_click_and_drop.models.address_request.AddressRequest(
                             full_name = '', 
                             company_name = '', 
                             address_line1 = '', 
@@ -52,24 +52,24 @@ class TestFailedOrderResponse(unittest.TestCase):
                         phone_number = '', 
                         email_address = '', 
                         address_book_reference = '', ), 
-                    sender = openapi_client.models.sender_details_request.SenderDetailsRequest(
+                    sender = royal_mail_click_and_drop.models.sender_details_request.SenderDetailsRequest(
                         trading_name = '', 
                         phone_number = '', 
                         email_address = '', ), 
-                    billing = openapi_client.models.billing_details_request.BillingDetailsRequest(
+                    billing = royal_mail_click_and_drop.models.billing_details_request.BillingDetailsRequest(
                         phone_number = '', 
                         email_address = '', ), 
                     packages = [
-                        openapi_client.models.shipment_package_request.ShipmentPackageRequest(
+                        royal_mail_click_and_drop.models.shipment_package_request.ShipmentPackageRequest(
                             weight_in_grams = 1, 
                             package_format_identifier = '', 
                             custom_package_format_identifier = '', 
-                            dimensions = openapi_client.models.dimensions_request.DimensionsRequest(
+                            dimensions = royal_mail_click_and_drop.models.dimensions_request.DimensionsRequest(
                                 height_in_mms = 56, 
                                 width_in_mms = 56, 
                                 depth_in_mms = 56, ), 
                             contents = [
-                                openapi_client.models.product_item_request.ProductItemRequest(
+                                royal_mail_click_and_drop.models.product_item_request.ProductItemRequest(
                                     name = '', 
                                     sku = '', 
                                     quantity = 1, 
@@ -99,11 +99,11 @@ class TestFailedOrderResponse(unittest.TestCase):
                     currency_code = '', 
                     postage_details = {"sendNotificationsTo":"sender","serviceCode":"string","serviceRegisterCode":"st","consequentialLoss":0,"receiveEmailNotification":true,"receiveSmsNotification":true,"guaranteedSaturdayDelivery":false,"requestSignatureUponDelivery":true,"isLocalCollect":true,"safePlace":"string","department":"string","AIRNumber":"string","IOSSNumber":"string","requiresExportLicense":true,"commercialInvoiceNumber":"string","commercialInvoiceDate":"2019-08-24T14:15:22Z"}, 
                     tags = [
-                        openapi_client.models.tag_request.TagRequest(
+                        royal_mail_click_and_drop.models.tag_request.TagRequest(
                             key = '', 
                             value = '', )
                         ], 
-                    label = openapi_client.models.label_generation_request.LabelGenerationRequest(
+                    label = royal_mail_click_and_drop.models.label_generation_request.LabelGenerationRequest(
                         include_label_in_response = True, 
                         include_cn = True, 
                         include_returns_label = True, ), 
@@ -112,7 +112,7 @@ class TestFailedOrderResponse(unittest.TestCase):
                     dangerous_goods_un_code = '', 
                     dangerous_goods_description = 1.337, 
                     dangerous_goods_quantity = 1.337, 
-                    importer = openapi_client.models.importer.Importer(
+                    importer = royal_mail_click_and_drop.models.importer.Importer(
                         company_name = '', 
                         address_line1 = '', 
                         address_line2 = '', 
@@ -128,11 +128,11 @@ class TestFailedOrderResponse(unittest.TestCase):
                         tax_code = '', 
                         eori_number = '', ), ),
                 errors = [
-                    openapi_client.models.create_order_error_response.CreateOrderErrorResponse(
+                    royal_mail_click_and_drop.models.create_order_error_response.CreateOrderErrorResponse(
                         error_code = 56, 
                         error_message = '', 
                         fields = [
-                            openapi_client.models.order_field_response.OrderFieldResponse(
+                            royal_mail_click_and_drop.models.order_field_response.OrderFieldResponse(
                                 field_name = '', 
                                 value = '', )
                             ], )

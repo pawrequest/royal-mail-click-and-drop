@@ -21,10 +21,10 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing_extensions import Annotated
-from openapi_client.models.get_order_line_result import GetOrderLineResult
-from openapi_client.models.get_postal_details_result import GetPostalDetailsResult
-from openapi_client.models.get_shipping_details_result import GetShippingDetailsResult
-from openapi_client.models.get_tag_details_result import GetTagDetailsResult
+from royal_mail_click_and_drop.models.get_order_line_result import GetOrderLineResult
+from royal_mail_click_and_drop.models.get_postal_details_result import GetPostalDetailsResult
+from royal_mail_click_and_drop.models.get_shipping_details_result import GetShippingDetailsResult
+from royal_mail_click_and_drop.models.get_tag_details_result import GetTagDetailsResult
 from typing import Optional, Set
 from typing_extensions import Self
 

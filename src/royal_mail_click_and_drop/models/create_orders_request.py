@@ -17,19 +17,18 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
-from openapi_client.models.get_order_info_resource import GetOrderInfoResource
+from pydantic import BaseModel, ConfigDict
+from typing import Any, ClassVar, Dict, List
+from royal_mail_click_and_drop.models.create_order_request import CreateOrderRequest
 from typing import Optional, Set
 from typing_extensions import Self
 
-class GetOrdersResponse(BaseModel):
+class CreateOrdersRequest(BaseModel):
     """
-    GetOrdersResponse
+    CreateOrdersRequest
     """ # noqa: E501
-    orders: Optional[List[GetOrderInfoResource]] = None
-    continuation_token: Optional[StrictStr] = Field(default=None, alias="continuationToken")
-    __properties: ClassVar[List[str]] = ["orders", "continuationToken"]
+    items: List[CreateOrderRequest]
+    __properties: ClassVar[List[str]] = ["items"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -49,7 +48,7 @@ class GetOrdersResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of GetOrdersResponse from a JSON string"""
+        """Create an instance of CreateOrdersRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -70,18 +69,18 @@ class GetOrdersResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in orders (list)
+        # override the default output from pydantic by calling `to_dict()` of each item in items (list)
         _items = []
-        if self.orders:
-            for _item_orders in self.orders:
-                if _item_orders:
-                    _items.append(_item_orders.to_dict())
-            _dict['orders'] = _items
+        if self.items:
+            for _item_items in self.items:
+                if _item_items:
+                    _items.append(_item_items.to_dict())
+            _dict['items'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of GetOrdersResponse from a dict"""
+        """Create an instance of CreateOrdersRequest from a dict"""
         if obj is None:
             return None
 
@@ -89,8 +88,7 @@ class GetOrdersResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "orders": [GetOrderInfoResource.from_dict(_item) for _item in obj["orders"]] if obj.get("orders") is not None else None,
-            "continuationToken": obj.get("continuationToken")
+            "items": [CreateOrderRequest.from_dict(_item) for _item in obj["items"]] if obj.get("items") is not None else None
         })
         return _obj
 

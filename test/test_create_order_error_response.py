@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.create_order_error_response import CreateOrderErrorResponse
+from royal_mail_click_and_drop import CreateOrderErrorResponse
 
 class TestCreateOrderErrorResponse(unittest.TestCase):
     """CreateOrderErrorResponse unit test stubs"""
@@ -38,7 +38,7 @@ class TestCreateOrderErrorResponse(unittest.TestCase):
                 error_code = 56,
                 error_message = '',
                 fields = [
-                    openapi_client.models.order_field_response.OrderFieldResponse(
+                    royal_mail_click_and_drop.models.order_field_response.OrderFieldResponse(
                         field_name = '', 
                         value = '', )
                     ]

@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.billing_details_request import BillingDetailsRequest
+from royal_mail_click_and_drop import BillingDetailsRequest
 
 class TestBillingDetailsRequest(unittest.TestCase):
     """BillingDetailsRequest unit test stubs"""
@@ -35,7 +35,7 @@ class TestBillingDetailsRequest(unittest.TestCase):
         model = BillingDetailsRequest()
         if include_optional:
             return BillingDetailsRequest(
-                address = openapi_client.models.address_request.AddressRequest(
+                address = royal_mail_click_and_drop.models.address_request.AddressRequest(
                     full_name = '', 
                     company_name = '', 
                     address_line1 = '', 

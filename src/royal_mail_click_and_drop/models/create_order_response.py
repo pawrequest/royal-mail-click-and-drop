@@ -20,7 +20,7 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from openapi_client.models.create_order_label_error_response import CreateOrderLabelErrorResponse
+from royal_mail_click_and_drop.models.create_order_label_error_response import CreateOrderLabelErrorResponse
 from typing import Optional, Set
 from typing_extensions import Self
 

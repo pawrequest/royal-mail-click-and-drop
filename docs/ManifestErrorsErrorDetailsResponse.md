@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.manifest_errors_error_details_response import ManifestErrorsErrorDetailsResponse
+from royal_mail_click_and_drop import ManifestErrorsErrorDetailsResponse
 
 # TODO update the JSON string below
 json = "{}"
@@ -23,7 +23,9 @@ print(ManifestErrorsErrorDetailsResponse.to_json())
 # convert the object into a dict
 manifest_errors_error_details_response_dict = manifest_errors_error_details_response_instance.to_dict()
 # create an instance of ManifestErrorsErrorDetailsResponse from a dict
-manifest_errors_error_details_response_from_dict = ManifestErrorsErrorDetailsResponse.from_dict(manifest_errors_error_details_response_dict)
+manifest_errors_error_details_response_from_dict = ManifestErrorsErrorDetailsResponse.from_dict(
+    manifest_errors_error_details_response_dict
+)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

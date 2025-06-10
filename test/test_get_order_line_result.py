@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.get_order_line_result import GetOrderLineResult
+from royal_mail_click_and_drop import GetOrderLineResult
 
 class TestGetOrderLineResult(unittest.TestCase):
     """GetOrderLineResult unit test stubs"""

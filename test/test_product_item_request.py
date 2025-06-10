@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.product_item_request import ProductItemRequest
+from royal_mail_click_and_drop import ProductItemRequest
 
 class TestProductItemRequest(unittest.TestCase):
     """ProductItemRequest unit test stubs"""

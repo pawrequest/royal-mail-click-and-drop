@@ -20,8 +20,8 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
-from openapi_client.models.dimensions_request import DimensionsRequest
-from openapi_client.models.product_item_request import ProductItemRequest
+from royal_mail_click_and_drop.models.dimensions_request import DimensionsRequest
+from royal_mail_click_and_drop.models.product_item_request import ProductItemRequest
 from typing import Optional, Set
 from typing_extensions import Self
 

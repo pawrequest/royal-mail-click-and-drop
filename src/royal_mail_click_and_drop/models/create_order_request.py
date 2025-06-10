@@ -21,14 +21,14 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing_extensions import Annotated
-from openapi_client.models.billing_details_request import BillingDetailsRequest
-from openapi_client.models.importer import Importer
-from openapi_client.models.label_generation_request import LabelGenerationRequest
-from openapi_client.models.postage_details_request import PostageDetailsRequest
-from openapi_client.models.recipient_details_request import RecipientDetailsRequest
-from openapi_client.models.sender_details_request import SenderDetailsRequest
-from openapi_client.models.shipment_package_request import ShipmentPackageRequest
-from openapi_client.models.tag_request import TagRequest
+from royal_mail_click_and_drop.models.billing_details_request import BillingDetailsRequest
+from royal_mail_click_and_drop.models.importer import Importer
+from royal_mail_click_and_drop.models.label_generation_request import LabelGenerationRequest
+from royal_mail_click_and_drop.models.postage_details_request import PostageDetailsRequest
+from royal_mail_click_and_drop.models.recipient_details_request import RecipientDetailsRequest
+from royal_mail_click_and_drop.models.sender_details_request import SenderDetailsRequest
+from royal_mail_click_and_drop.models.shipment_package_request import ShipmentPackageRequest
+from royal_mail_click_and_drop.models.tag_request import TagRequest
 from typing import Optional, Set
 from typing_extensions import Self
 

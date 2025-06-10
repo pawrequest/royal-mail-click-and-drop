@@ -25,14 +25,14 @@ used in a separate call to print missing documents.
 * Api Key Authentication (Bearer):
 
 ```python
-import openapi_client
-from openapi_client.rest import ApiException
+import royal_mail_click_and_drop
+from royal_mail_click_and_drop import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
-    host = "/api/v1"
+configuration = royal_mail_click_and_drop.Configuration(
+    host="/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -47,17 +47,22 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with royal_mail_click_and_drop.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.LabelsApi(api_client)
-    order_identifiers = '/orders/\"ref\";1001;\"Reference%3BWith%3BSpecial%3BSymbols!\";2345/' # str | One or several Order Identifiers or Order References separated by semicolon. Order Identifiers are integer numbers. Order References are strings - each must be percent-encoded and surrounded by double quotation marks. The maximum number of identifiers is 100.
-    document_type = 'document_type_example' # str | Document generation mode. When documentType is set to \"postageLabel\" the additional parameters below must be used. These additional parameters will be ignored when documentType is not set to \"postageLabel\"
-    include_returns_label = True # bool | Include returns label. Required when documentType is set to 'postageLabel' (optional)
-    include_cn = True # bool | Include CN22/CN23 with label. Optional parameter. If this parameter is used the setting will override the default account behaviour specified in the \"Label format\" setting \"Generate customs declarations with orders\" (optional)
+    api_instance = royal_mail_click_and_drop.LabelsApi(api_client)
+    order_identifiers = '/orders/\"ref\";1001;\"Reference%3BWith%3BSpecial%3BSymbols!\";2345/'  # str | One or several Order Identifiers or Order References separated by semicolon. Order Identifiers are integer numbers. Order References are strings - each must be percent-encoded and surrounded by double quotation marks. The maximum number of identifiers is 100.
+    document_type = 'document_type_example'  # str | Document generation mode. When documentType is set to \"postageLabel\" the additional parameters below must be used. These additional parameters will be ignored when documentType is not set to \"postageLabel\"
+    include_returns_label = True  # bool | Include returns label. Required when documentType is set to 'postageLabel' (optional)
+    include_cn = True  # bool | Include CN22/CN23 with label. Optional parameter. If this parameter is used the setting will override the default account behaviour specified in the \"Label format\" setting \"Generate customs declarations with orders\" (optional)
 
     try:
         # Return a single PDF file with generated label and/or associated document(s)
-        api_response = api_instance.get_orders_label_async(order_identifiers, document_type, include_returns_label=include_returns_label, include_cn=include_cn)
+        api_response = api_instance.get_orders_label_async(
+            order_identifiers,
+            document_type,
+            include_returns_label=include_returns_label,
+            include_cn=include_cn
+        )
         print("The response of LabelsApi->get_orders_label_async:\n")
         pprint(api_response)
     except Exception as e:

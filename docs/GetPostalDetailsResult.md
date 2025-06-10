@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.get_postal_details_result import GetPostalDetailsResult
+from royal_mail_click_and_drop import GetPostalDetailsResult
 
 # TODO update the JSON string below
 json = "{}"

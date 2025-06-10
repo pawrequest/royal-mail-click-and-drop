@@ -20,9 +20,9 @@ from pydantic import Field, StrictBool, StrictBytes, StrictStr, field_validator
 from typing import Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from openapi_client.api_client import ApiClient, RequestSerialized
-from openapi_client.api_response import ApiResponse
-from openapi_client.rest import RESTResponseType
+from royal_mail_click_and_drop.api_client import ApiClient, RequestSerialized
+from royal_mail_click_and_drop.api_response import ApiResponse
+from royal_mail_click_and_drop.rest import RESTResponseType
 
 
 class LabelsApi:

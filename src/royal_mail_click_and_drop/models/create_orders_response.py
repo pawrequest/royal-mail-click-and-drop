@@ -17,18 +17,22 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
-from openapi_client.models.manifest_errors_error_details_response import ManifestErrorsErrorDetailsResponse
+from royal_mail_click_and_drop.models.create_order_response import CreateOrderResponse
+from royal_mail_click_and_drop.models.failed_order_response import FailedOrderResponse
 from typing import Optional, Set
 from typing_extensions import Self
 
-class ManifestErrorsResponse(BaseModel):
+class CreateOrdersResponse(BaseModel):
     """
-    ManifestErrorsResponse
+    CreateOrdersResponse
     """ # noqa: E501
-    errors: Optional[List[ManifestErrorsErrorDetailsResponse]] = None
-    __properties: ClassVar[List[str]] = ["errors"]
+    success_count: Optional[StrictInt] = Field(default=None, alias="successCount")
+    errors_count: Optional[StrictInt] = Field(default=None, alias="errorsCount")
+    created_orders: Optional[List[CreateOrderResponse]] = Field(default=None, alias="createdOrders")
+    failed_orders: Optional[List[FailedOrderResponse]] = Field(default=None, alias="failedOrders")
+    __properties: ClassVar[List[str]] = ["successCount", "errorsCount", "createdOrders", "failedOrders"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -48,7 +52,7 @@ class ManifestErrorsResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ManifestErrorsResponse from a JSON string"""
+        """Create an instance of CreateOrdersResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -69,18 +73,25 @@ class ManifestErrorsResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in errors (list)
+        # override the default output from pydantic by calling `to_dict()` of each item in created_orders (list)
         _items = []
-        if self.errors:
-            for _item_errors in self.errors:
-                if _item_errors:
-                    _items.append(_item_errors.to_dict())
-            _dict['errors'] = _items
+        if self.created_orders:
+            for _item_created_orders in self.created_orders:
+                if _item_created_orders:
+                    _items.append(_item_created_orders.to_dict())
+            _dict['createdOrders'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in failed_orders (list)
+        _items = []
+        if self.failed_orders:
+            for _item_failed_orders in self.failed_orders:
+                if _item_failed_orders:
+                    _items.append(_item_failed_orders.to_dict())
+            _dict['failedOrders'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ManifestErrorsResponse from a dict"""
+        """Create an instance of CreateOrdersResponse from a dict"""
         if obj is None:
             return None
 
@@ -88,7 +99,10 @@ class ManifestErrorsResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "errors": [ManifestErrorsErrorDetailsResponse.from_dict(_item) for _item in obj["errors"]] if obj.get("errors") is not None else None
+            "successCount": obj.get("successCount"),
+            "errorsCount": obj.get("errorsCount"),
+            "createdOrders": [CreateOrderResponse.from_dict(_item) for _item in obj["createdOrders"]] if obj.get("createdOrders") is not None else None,
+            "failedOrders": [FailedOrderResponse.from_dict(_item) for _item in obj["failedOrders"]] if obj.get("failedOrders") is not None else None
         })
         return _obj
 

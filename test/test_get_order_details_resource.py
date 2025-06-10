@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.get_order_details_resource import GetOrderDetailsResource
+from royal_mail_click_and_drop import GetOrderDetailsResource
 
 class TestGetOrderDetailsResource(unittest.TestCase):
     """GetOrderDetailsResource unit test stubs"""
@@ -64,7 +64,7 @@ class TestGetOrderDetailsResource(unittest.TestCase):
                 package_size = '',
                 account_batch_number = '',
                 currency_code = '',
-                shipping_details = openapi_client.models.get_shipping_details_result.GetShippingDetailsResult(
+                shipping_details = royal_mail_click_and_drop.models.get_shipping_details_result.GetShippingDetailsResult(
                     shipping_cost = 1.337, 
                     tracking_number = '', 
                     shipping_tracking_status = '', 
@@ -77,7 +77,7 @@ class TestGetOrderDetailsResource(unittest.TestCase):
                     request_signature_upon_delivery = True, 
                     is_local_collect = True, 
                     shipping_update_success_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ),
-                shipping_info = openapi_client.models.get_postal_details_result.GetPostalDetailsResult(
+                shipping_info = royal_mail_click_and_drop.models.get_postal_details_result.GetPostalDetailsResult(
                     title = '', 
                     first_name = '', 
                     last_name = '', 
@@ -91,7 +91,7 @@ class TestGetOrderDetailsResource(unittest.TestCase):
                     country_code = '', 
                     phone_number = '', 
                     email_address = '', ),
-                billing_info = openapi_client.models.get_postal_details_result.GetPostalDetailsResult(
+                billing_info = royal_mail_click_and_drop.models.get_postal_details_result.GetPostalDetailsResult(
                     title = '', 
                     first_name = '', 
                     last_name = '', 
@@ -106,7 +106,7 @@ class TestGetOrderDetailsResource(unittest.TestCase):
                     phone_number = '', 
                     email_address = '', ),
                 order_lines = [
-                    openapi_client.models.get_order_line_result.GetOrderLineResult(
+                    royal_mail_click_and_drop.models.get_order_line_result.GetOrderLineResult(
                         sku = '', 
                         name = '', 
                         quantity = 56, 
@@ -115,7 +115,7 @@ class TestGetOrderDetailsResource(unittest.TestCase):
                         customs_code = '', )
                     ],
                 tags = [
-                    openapi_client.models.get_tag_details_result.GetTagDetailsResult(
+                    royal_mail_click_and_drop.models.get_tag_details_result.GetTagDetailsResult(
                         key = '', 
                         value = '', )
                     ]
@@ -127,7 +127,7 @@ class TestGetOrderDetailsResource(unittest.TestCase):
                 order_discount = 1.337,
                 total = 1.337,
                 weight_in_grams = 56,
-                shipping_details = openapi_client.models.get_shipping_details_result.GetShippingDetailsResult(
+                shipping_details = royal_mail_click_and_drop.models.get_shipping_details_result.GetShippingDetailsResult(
                     shipping_cost = 1.337, 
                     tracking_number = '', 
                     shipping_tracking_status = '', 
@@ -140,7 +140,7 @@ class TestGetOrderDetailsResource(unittest.TestCase):
                     request_signature_upon_delivery = True, 
                     is_local_collect = True, 
                     shipping_update_success_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ),
-                shipping_info = openapi_client.models.get_postal_details_result.GetPostalDetailsResult(
+                shipping_info = royal_mail_click_and_drop.models.get_postal_details_result.GetPostalDetailsResult(
                     title = '', 
                     first_name = '', 
                     last_name = '', 
@@ -154,7 +154,7 @@ class TestGetOrderDetailsResource(unittest.TestCase):
                     country_code = '', 
                     phone_number = '', 
                     email_address = '', ),
-                billing_info = openapi_client.models.get_postal_details_result.GetPostalDetailsResult(
+                billing_info = royal_mail_click_and_drop.models.get_postal_details_result.GetPostalDetailsResult(
                     title = '', 
                     first_name = '', 
                     last_name = '', 
@@ -169,7 +169,7 @@ class TestGetOrderDetailsResource(unittest.TestCase):
                     phone_number = '', 
                     email_address = '', ),
                 order_lines = [
-                    openapi_client.models.get_order_line_result.GetOrderLineResult(
+                    royal_mail_click_and_drop.models.get_order_line_result.GetOrderLineResult(
                         sku = '', 
                         name = '', 
                         quantity = 56, 

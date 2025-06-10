@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.importer import Importer
+from royal_mail_click_and_drop import Importer
 
 class TestImporter(unittest.TestCase):
     """Importer unit test stubs"""

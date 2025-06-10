@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.get_version_resource import GetVersionResource
+from royal_mail_click_and_drop import GetVersionResource
 
 class TestGetVersionResource(unittest.TestCase):
     """GetVersionResource unit test stubs"""

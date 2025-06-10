@@ -14,24 +14,22 @@ Get API version details.
 
 ### Example
 
-
 ```python
-import openapi_client
-from openapi_client.models.get_version_resource import GetVersionResource
-from openapi_client.rest import ApiException
+import royal_mail_click_and_drop
+from royal_mail_click_and_drop import GetVersionResource
+from royal_mail_click_and_drop import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
-    host = "/api/v1"
+configuration = royal_mail_click_and_drop.Configuration(
+    host="/api/v1"
 )
 
-
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with royal_mail_click_and_drop.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.VersionApi(api_client)
+    api_instance = royal_mail_click_and_drop.VersionApi(api_client)
 
     try:
         # Get API version details.

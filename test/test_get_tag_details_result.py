@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.get_tag_details_result import GetTagDetailsResult
+from royal_mail_click_and_drop import GetTagDetailsResult
 
 class TestGetTagDetailsResult(unittest.TestCase):
     """GetTagDetailsResult unit test stubs"""

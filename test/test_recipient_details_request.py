@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.recipient_details_request import RecipientDetailsRequest
+from royal_mail_click_and_drop import RecipientDetailsRequest
 
 class TestRecipientDetailsRequest(unittest.TestCase):
     """RecipientDetailsRequest unit test stubs"""
@@ -35,7 +35,7 @@ class TestRecipientDetailsRequest(unittest.TestCase):
         model = RecipientDetailsRequest()
         if include_optional:
             return RecipientDetailsRequest(
-                address = openapi_client.models.address_request.AddressRequest(
+                address = royal_mail_click_and_drop.models.address_request.AddressRequest(
                     full_name = '', 
                     company_name = '', 
                     address_line1 = '', 

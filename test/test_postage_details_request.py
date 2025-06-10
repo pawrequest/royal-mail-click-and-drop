@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.postage_details_request import PostageDetailsRequest
+from royal_mail_click_and_drop.models.postage_details_request import PostageDetailsRequest
 
 class TestPostageDetailsRequest(unittest.TestCase):
     """PostageDetailsRequest unit test stubs"""

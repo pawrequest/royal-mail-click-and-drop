@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.api.manifests_api import ManifestsApi
+from royal_mail_click_and_drop import ManifestsApi
 
 
 class TestManifestsApi(unittest.TestCase):

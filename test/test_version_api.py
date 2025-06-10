@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.api.version_api import VersionApi
+from royal_mail_click_and_drop import VersionApi
 
 
 class TestVersionApi(unittest.TestCase):

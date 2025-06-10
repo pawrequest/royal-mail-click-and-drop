@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.shipment_package_request import ShipmentPackageRequest
+from royal_mail_click_and_drop import ShipmentPackageRequest
 
 class TestShipmentPackageRequest(unittest.TestCase):
     """ShipmentPackageRequest unit test stubs"""
@@ -38,12 +38,12 @@ class TestShipmentPackageRequest(unittest.TestCase):
                 weight_in_grams = 1,
                 package_format_identifier = '',
                 custom_package_format_identifier = '',
-                dimensions = openapi_client.models.dimensions_request.DimensionsRequest(
+                dimensions = royal_mail_click_and_drop.models.dimensions_request.DimensionsRequest(
                     height_in_mms = 56, 
                     width_in_mms = 56, 
                     depth_in_mms = 56, ),
                 contents = [
-                    openapi_client.models.product_item_request.ProductItemRequest(
+                    royal_mail_click_and_drop.models.product_item_request.ProductItemRequest(
                         name = '', 
                         sku = '', 
                         quantity = 1, 

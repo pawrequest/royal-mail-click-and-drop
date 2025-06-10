@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.manifest_orders_response import ManifestOrdersResponse
+from royal_mail_click_and_drop import ManifestOrdersResponse
 
 class TestManifestOrdersResponse(unittest.TestCase):
     """ManifestOrdersResponse unit test stubs"""

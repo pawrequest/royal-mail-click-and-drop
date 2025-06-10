@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.manifest_errors_response import ManifestErrorsResponse
+from royal_mail_click_and_drop import ManifestErrorsResponse
 
 class TestManifestErrorsResponse(unittest.TestCase):
     """ManifestErrorsResponse unit test stubs"""
@@ -36,7 +36,7 @@ class TestManifestErrorsResponse(unittest.TestCase):
         if include_optional:
             return ManifestErrorsResponse(
                 errors = [
-                    openapi_client.models.manifest_errors_error_details_response.ManifestErrorsErrorDetailsResponse(
+                    royal_mail_click_and_drop.models.manifest_errors_error_details_response.ManifestErrorsErrorDetailsResponse(
                         code = '', 
                         description = '', )
                     ]

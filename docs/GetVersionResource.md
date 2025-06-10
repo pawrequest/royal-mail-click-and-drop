@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.get_version_resource import GetVersionResource
+from royal_mail_click_and_drop import GetVersionResource
 
 # TODO update the JSON string below
 json = "{}"

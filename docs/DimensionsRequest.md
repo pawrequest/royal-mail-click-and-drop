@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.dimensions_request import DimensionsRequest
+from royal_mail_click_and_drop import DimensionsRequest
 
 # TODO update the JSON string below
 json = "{}"

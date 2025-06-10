@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.api.orders_api import OrdersApi
+from royal_mail_click_and_drop.api.orders_api import OrdersApi
 
 
 class TestOrdersApi(unittest.TestCase):

@@ -18,12 +18,12 @@ from typing_extensions import Annotated
 
 from pydantic import Field, StrictInt
 from typing_extensions import Annotated
-from openapi_client.models.manifest_details_response import ManifestDetailsResponse
-from openapi_client.models.manifest_orders_response import ManifestOrdersResponse
+from royal_mail_click_and_drop.models.manifest_details_response import ManifestDetailsResponse
+from royal_mail_click_and_drop.models.manifest_orders_response import ManifestOrdersResponse
 
-from openapi_client.api_client import ApiClient, RequestSerialized
-from openapi_client.api_response import ApiResponse
-from openapi_client.rest import RESTResponseType
+from royal_mail_click_and_drop.api_client import ApiClient, RequestSerialized
+from royal_mail_click_and_drop.api_response import ApiResponse
+from royal_mail_click_and_drop.rest import RESTResponseType
 
 
 class ManifestsApi:

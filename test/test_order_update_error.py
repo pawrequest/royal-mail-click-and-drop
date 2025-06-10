@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.order_update_error import OrderUpdateError
+from royal_mail_click_and_drop import OrderUpdateError
 
 class TestOrderUpdateError(unittest.TestCase):
     """OrderUpdateError unit test stubs"""

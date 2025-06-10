@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.order_update_error import OrderUpdateError
+from royal_mail_click_and_drop import OrderUpdateError
 
 # TODO update the JSON string below
 json = "{}"

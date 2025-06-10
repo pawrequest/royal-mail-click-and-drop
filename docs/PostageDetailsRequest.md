@@ -27,7 +27,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.postage_details_request import PostageDetailsRequest
+from royal_mail_click_and_drop.models.postage_details_request import PostageDetailsRequest
 
 # TODO update the JSON string below
 json = "{}"

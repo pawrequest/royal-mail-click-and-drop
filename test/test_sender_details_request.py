@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.sender_details_request import SenderDetailsRequest
+from royal_mail_click_and_drop import SenderDetailsRequest
 
 class TestSenderDetailsRequest(unittest.TestCase):
     """SenderDetailsRequest unit test stubs"""

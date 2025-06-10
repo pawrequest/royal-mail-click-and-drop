@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.dimensions_request import DimensionsRequest
+from royal_mail_click_and_drop import DimensionsRequest
 
 class TestDimensionsRequest(unittest.TestCase):
     """DimensionsRequest unit test stubs"""

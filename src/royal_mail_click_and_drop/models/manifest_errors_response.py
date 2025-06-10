@@ -17,20 +17,18 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List, Optional
-from openapi_client.models.deleted_order_info import DeletedOrderInfo
-from openapi_client.models.order_error_info import OrderErrorInfo
+from royal_mail_click_and_drop.models.manifest_errors_error_details_response import ManifestErrorsErrorDetailsResponse
 from typing import Optional, Set
 from typing_extensions import Self
 
-class DeleteOrdersResource(BaseModel):
+class ManifestErrorsResponse(BaseModel):
     """
-    DeleteOrdersResource
+    ManifestErrorsResponse
     """ # noqa: E501
-    deleted_orders: Optional[List[DeletedOrderInfo]] = Field(default=None, alias="deletedOrders")
-    errors: Optional[List[OrderErrorInfo]] = None
-    __properties: ClassVar[List[str]] = ["deletedOrders", "errors"]
+    errors: Optional[List[ManifestErrorsErrorDetailsResponse]] = None
+    __properties: ClassVar[List[str]] = ["errors"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -50,7 +48,7 @@ class DeleteOrdersResource(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of DeleteOrdersResource from a JSON string"""
+        """Create an instance of ManifestErrorsResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -71,13 +69,6 @@ class DeleteOrdersResource(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in deleted_orders (list)
-        _items = []
-        if self.deleted_orders:
-            for _item_deleted_orders in self.deleted_orders:
-                if _item_deleted_orders:
-                    _items.append(_item_deleted_orders.to_dict())
-            _dict['deletedOrders'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in errors (list)
         _items = []
         if self.errors:
@@ -89,7 +80,7 @@ class DeleteOrdersResource(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of DeleteOrdersResource from a dict"""
+        """Create an instance of ManifestErrorsResponse from a dict"""
         if obj is None:
             return None
 
@@ -97,8 +88,7 @@ class DeleteOrdersResource(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "deletedOrders": [DeletedOrderInfo.from_dict(_item) for _item in obj["deletedOrders"]] if obj.get("deletedOrders") is not None else None,
-            "errors": [OrderErrorInfo.from_dict(_item) for _item in obj["errors"]] if obj.get("errors") is not None else None
+            "errors": [ManifestErrorsErrorDetailsResponse.from_dict(_item) for _item in obj["errors"]] if obj.get("errors") is not None else None
         })
         return _obj
 

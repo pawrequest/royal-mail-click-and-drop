@@ -17,21 +17,19 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
-from openapi_client.models.address_request import AddressRequest
+from royal_mail_click_and_drop.models.get_order_info_resource import GetOrderInfoResource
 from typing import Optional, Set
 from typing_extensions import Self
 
-class BillingDetailsRequest(BaseModel):
+class GetOrdersResponse(BaseModel):
     """
-    <b>Billing</b> along with <b>billing.address</b> objects are required in specific case when 'Use shipping address for billing address' setting is set to 'false' and 'Recipient.AddressBookReference' is provided.
+    GetOrdersResponse
     """ # noqa: E501
-    address: Optional[AddressRequest] = None
-    phone_number: Optional[Annotated[str, Field(strict=True, max_length=25)]] = Field(default=None, alias="phoneNumber")
-    email_address: Optional[Annotated[str, Field(strict=True, max_length=254)]] = Field(default=None, alias="emailAddress")
-    __properties: ClassVar[List[str]] = ["address", "phoneNumber", "emailAddress"]
+    orders: Optional[List[GetOrderInfoResource]] = None
+    continuation_token: Optional[StrictStr] = Field(default=None, alias="continuationToken")
+    __properties: ClassVar[List[str]] = ["orders", "continuationToken"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -51,7 +49,7 @@ class BillingDetailsRequest(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of BillingDetailsRequest from a JSON string"""
+        """Create an instance of GetOrdersResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -72,14 +70,18 @@ class BillingDetailsRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of address
-        if self.address:
-            _dict['address'] = self.address.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in orders (list)
+        _items = []
+        if self.orders:
+            for _item_orders in self.orders:
+                if _item_orders:
+                    _items.append(_item_orders.to_dict())
+            _dict['orders'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of BillingDetailsRequest from a dict"""
+        """Create an instance of GetOrdersResponse from a dict"""
         if obj is None:
             return None
 
@@ -87,9 +89,8 @@ class BillingDetailsRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "address": AddressRequest.from_dict(obj["address"]) if obj.get("address") is not None else None,
-            "phoneNumber": obj.get("phoneNumber"),
-            "emailAddress": obj.get("emailAddress")
+            "orders": [GetOrderInfoResource.from_dict(_item) for _item in obj["orders"]] if obj.get("orders") is not None else None,
+            "continuationToken": obj.get("continuationToken")
         })
         return _obj
 

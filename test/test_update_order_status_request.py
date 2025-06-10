@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.update_order_status_request import UpdateOrderStatusRequest
+from royal_mail_click_and_drop import UpdateOrderStatusRequest
 
 class TestUpdateOrderStatusRequest(unittest.TestCase):
     """UpdateOrderStatusRequest unit test stubs"""

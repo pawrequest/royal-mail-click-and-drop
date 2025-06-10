@@ -17,20 +17,20 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from openapi_client.models.create_order_error_response import CreateOrderErrorResponse
-from openapi_client.models.create_order_request import CreateOrderRequest
+from royal_mail_click_and_drop.models.order_field_response import OrderFieldResponse
 from typing import Optional, Set
 from typing_extensions import Self
 
-class FailedOrderResponse(BaseModel):
+class CreateOrderErrorResponse(BaseModel):
     """
-    FailedOrderResponse
+    CreateOrderErrorResponse
     """ # noqa: E501
-    order: Optional[CreateOrderRequest] = None
-    errors: Optional[List[CreateOrderErrorResponse]] = None
-    __properties: ClassVar[List[str]] = ["order", "errors"]
+    error_code: Optional[StrictInt] = Field(default=None, alias="errorCode")
+    error_message: Optional[StrictStr] = Field(default=None, alias="errorMessage")
+    fields: Optional[List[OrderFieldResponse]] = None
+    __properties: ClassVar[List[str]] = ["errorCode", "errorMessage", "fields"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -50,7 +50,7 @@ class FailedOrderResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of FailedOrderResponse from a JSON string"""
+        """Create an instance of CreateOrderErrorResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -71,21 +71,18 @@ class FailedOrderResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of order
-        if self.order:
-            _dict['order'] = self.order.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of each item in errors (list)
+        # override the default output from pydantic by calling `to_dict()` of each item in fields (list)
         _items = []
-        if self.errors:
-            for _item_errors in self.errors:
-                if _item_errors:
-                    _items.append(_item_errors.to_dict())
-            _dict['errors'] = _items
+        if self.fields:
+            for _item_fields in self.fields:
+                if _item_fields:
+                    _items.append(_item_fields.to_dict())
+            _dict['fields'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of FailedOrderResponse from a dict"""
+        """Create an instance of CreateOrderErrorResponse from a dict"""
         if obj is None:
             return None
 
@@ -93,8 +90,9 @@ class FailedOrderResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "order": CreateOrderRequest.from_dict(obj["order"]) if obj.get("order") is not None else None,
-            "errors": [CreateOrderErrorResponse.from_dict(_item) for _item in obj["errors"]] if obj.get("errors") is not None else None
+            "errorCode": obj.get("errorCode"),
+            "errorMessage": obj.get("errorMessage"),
+            "fields": [OrderFieldResponse.from_dict(_item) for _item in obj["fields"]] if obj.get("fields") is not None else None
         })
         return _obj
 

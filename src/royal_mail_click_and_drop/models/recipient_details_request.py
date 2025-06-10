@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
-from openapi_client.models.address_request import AddressRequest
+from royal_mail_click_and_drop.models.address_request import AddressRequest
 from typing import Optional, Set
 from typing_extensions import Self
 

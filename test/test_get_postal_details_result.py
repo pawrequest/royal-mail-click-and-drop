@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.get_postal_details_result import GetPostalDetailsResult
+from royal_mail_click_and_drop import GetPostalDetailsResult
 
 class TestGetPostalDetailsResult(unittest.TestCase):
     """GetPostalDetailsResult unit test stubs"""

@@ -21,15 +21,15 @@ Retrieve manifest paperwork for a previously successful ‘Manifest eligible ord
 * Api Key Authentication (Bearer):
 
 ```python
-import openapi_client
-from openapi_client.models.manifest_details_response import ManifestDetailsResponse
-from openapi_client.rest import ApiException
+import royal_mail_click_and_drop
+from royal_mail_click_and_drop import ManifestDetailsResponse
+from royal_mail_click_and_drop import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
-    host = "/api/v1"
+configuration = royal_mail_click_and_drop.Configuration(
+    host="/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -44,10 +44,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with royal_mail_click_and_drop.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.ManifestsApi(api_client)
-    manifest_identifier = 12345 # int | The manifest number returned from the initial ‘Manifest eligible orders’ endpoint call
+    api_instance = royal_mail_click_and_drop.ManifestsApi(api_client)
+    manifest_identifier = 12345  # int | The manifest number returned from the initial ‘Manifest eligible orders’ endpoint call
 
     try:
         # Get manifest
@@ -105,15 +105,15 @@ Manifest all orders in 'Label Generated' and 'Despatched' statuses and return ma
 * Api Key Authentication (Bearer):
 
 ```python
-import openapi_client
-from openapi_client.models.manifest_orders_response import ManifestOrdersResponse
-from openapi_client.rest import ApiException
+import royal_mail_click_and_drop
+from royal_mail_click_and_drop import ManifestOrdersResponse
+from royal_mail_click_and_drop import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
-    host = "/api/v1"
+configuration = royal_mail_click_and_drop.Configuration(
+    host="/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -128,9 +128,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with royal_mail_click_and_drop.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.ManifestsApi(api_client)
+    api_instance = royal_mail_click_and_drop.ManifestsApi(api_client)
 
     try:
         # Manifest eligible orders
@@ -187,15 +187,15 @@ Retry a manifest operation if the eligible orders were not able to be successful
 * Api Key Authentication (Bearer):
 
 ```python
-import openapi_client
-from openapi_client.models.manifest_orders_response import ManifestOrdersResponse
-from openapi_client.rest import ApiException
+import royal_mail_click_and_drop
+from royal_mail_click_and_drop import ManifestOrdersResponse
+from royal_mail_click_and_drop import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /api/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
-    host = "/api/v1"
+configuration = royal_mail_click_and_drop.Configuration(
+    host="/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -210,10 +210,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with royal_mail_click_and_drop.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.ManifestsApi(api_client)
-    manifest_identifier = 12345 # int | The manifest number returned from the initial ‘Manifest eligible orders’ endpoint call
+    api_instance = royal_mail_click_and_drop.ManifestsApi(api_client)
+    manifest_identifier = 12345  # int | The manifest number returned from the initial ‘Manifest eligible orders’ endpoint call
 
     try:
         # Retry manifest

@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.delete_orders_resource import DeleteOrdersResource
+from royal_mail_click_and_drop import DeleteOrdersResource
 
 class TestDeleteOrdersResource(unittest.TestCase):
     """DeleteOrdersResource unit test stubs"""
@@ -36,13 +36,13 @@ class TestDeleteOrdersResource(unittest.TestCase):
         if include_optional:
             return DeleteOrdersResource(
                 deleted_orders = [
-                    openapi_client.models.deleted_order_info.DeletedOrderInfo(
+                    royal_mail_click_and_drop.models.deleted_order_info.DeletedOrderInfo(
                         order_identifier = 56, 
                         order_reference = '', 
                         order_info = '', )
                     ],
                 errors = [
-                    openapi_client.models.order_error_info.OrderErrorInfo(
+                    royal_mail_click_and_drop.models.order_error_info.OrderErrorInfo(
                         order_identifier = 56, 
                         order_reference = '', 
                         code = '', 

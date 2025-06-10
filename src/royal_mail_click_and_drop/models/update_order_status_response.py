@@ -17,20 +17,20 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
-from openapi_client.models.order_field_response import OrderFieldResponse
+from royal_mail_click_and_drop.models.order_update_error import OrderUpdateError
+from royal_mail_click_and_drop.models.updated_order_info import UpdatedOrderInfo
 from typing import Optional, Set
 from typing_extensions import Self
 
-class CreateOrderErrorResponse(BaseModel):
+class UpdateOrderStatusResponse(BaseModel):
     """
-    CreateOrderErrorResponse
+    UpdateOrderStatusResponse
     """ # noqa: E501
-    error_code: Optional[StrictInt] = Field(default=None, alias="errorCode")
-    error_message: Optional[StrictStr] = Field(default=None, alias="errorMessage")
-    fields: Optional[List[OrderFieldResponse]] = None
-    __properties: ClassVar[List[str]] = ["errorCode", "errorMessage", "fields"]
+    updated_orders: Optional[List[UpdatedOrderInfo]] = Field(default=None, alias="updatedOrders")
+    errors: Optional[List[OrderUpdateError]] = None
+    __properties: ClassVar[List[str]] = ["updatedOrders", "errors"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -50,7 +50,7 @@ class CreateOrderErrorResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of CreateOrderErrorResponse from a JSON string"""
+        """Create an instance of UpdateOrderStatusResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -71,18 +71,25 @@ class CreateOrderErrorResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in fields (list)
+        # override the default output from pydantic by calling `to_dict()` of each item in updated_orders (list)
         _items = []
-        if self.fields:
-            for _item_fields in self.fields:
-                if _item_fields:
-                    _items.append(_item_fields.to_dict())
-            _dict['fields'] = _items
+        if self.updated_orders:
+            for _item_updated_orders in self.updated_orders:
+                if _item_updated_orders:
+                    _items.append(_item_updated_orders.to_dict())
+            _dict['updatedOrders'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in errors (list)
+        _items = []
+        if self.errors:
+            for _item_errors in self.errors:
+                if _item_errors:
+                    _items.append(_item_errors.to_dict())
+            _dict['errors'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of CreateOrderErrorResponse from a dict"""
+        """Create an instance of UpdateOrderStatusResponse from a dict"""
         if obj is None:
             return None
 
@@ -90,9 +97,8 @@ class CreateOrderErrorResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "errorCode": obj.get("errorCode"),
-            "errorMessage": obj.get("errorMessage"),
-            "fields": [OrderFieldResponse.from_dict(_item) for _item in obj["fields"]] if obj.get("fields") is not None else None
+            "updatedOrders": [UpdatedOrderInfo.from_dict(_item) for _item in obj["updatedOrders"]] if obj.get("updatedOrders") is not None else None,
+            "errors": [OrderUpdateError.from_dict(_item) for _item in obj["errors"]] if obj.get("errors") is not None else None
         })
         return _obj
 

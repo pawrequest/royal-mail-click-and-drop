@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.tag_request import TagRequest
+from royal_mail_click_and_drop import TagRequest
 
 class TestTagRequest(unittest.TestCase):
     """TagRequest unit test stubs"""

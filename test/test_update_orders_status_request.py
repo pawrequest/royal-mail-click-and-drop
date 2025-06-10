@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.update_orders_status_request import UpdateOrdersStatusRequest
+from royal_mail_click_and_drop import UpdateOrdersStatusRequest
 
 class TestUpdateOrdersStatusRequest(unittest.TestCase):
     """UpdateOrdersStatusRequest unit test stubs"""
@@ -36,7 +36,7 @@ class TestUpdateOrdersStatusRequest(unittest.TestCase):
         if include_optional:
             return UpdateOrdersStatusRequest(
                 items = [
-                    openapi_client.models.update_order_status_request.UpdateOrderStatusRequest(
+                    royal_mail_click_and_drop.models.update_order_status_request.UpdateOrderStatusRequest(
                         order_identifier = 56, 
                         order_reference = '', 
                         status = 'new', 
