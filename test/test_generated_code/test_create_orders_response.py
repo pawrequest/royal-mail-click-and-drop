@@ -61,8 +61,8 @@ class TestCreateOrdersResponse(unittest.TestCase):
                         order = royal-mail-click-and-drop.models.create_order_request.CreateOrderRequest(
                             order_reference = '', 
                             is_recipient_a_business = True, 
-                            recipient = royal-mail-click-and-drop.models.recipient_details_request.RecipientDetailsRequest(
-                                address = royal-mail-click-and-drop.models.address_request.AddressRequest(
+                            recipient = royal-mail-click-and-drop.models.recipient_details_request.FullContact(
+                                address = royal-mail-click-and-drop.models.address_request.Address(
                                     full_name = '', 
                                     company_name = '', 
                                     address_line1 = '', 

@@ -17,14 +17,14 @@ from royal_mail_click_and_drop import RecipientDetailsRequest
 
 # TODO update the JSON string below
 json = "{}"
-# create an instance of RecipientDetailsRequest from a JSON string
+# create an instance of FullContact from a JSON string
 recipient_details_request_instance = RecipientDetailsRequest.from_json(json)
 # print the JSON string representation of the object
 print(RecipientDetailsRequest.to_json())
 
 # convert the object into a dict
 recipient_details_request_dict = recipient_details_request_instance.to_dict()
-# create an instance of RecipientDetailsRequest from a dict
+# create an instance of FullContact from a dict
 recipient_details_request_from_dict = RecipientDetailsRequest.from_dict(recipient_details_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

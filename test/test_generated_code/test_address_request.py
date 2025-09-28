@@ -14,10 +14,11 @@
 
 import unittest
 
-from royal_mail_click_and_drop import AddressRequest
+from royal_mail_click_and_drop.v2.address import Address
+
 
 class TestAddressRequest(unittest.TestCase):
-    """AddressRequest unit test stubs"""
+    """Address unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,16 +26,16 @@ class TestAddressRequest(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> AddressRequest:
-        """Test AddressRequest
+    def make_instance(self, include_optional) -> Address:
+        """Test Address
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `AddressRequest`
+        # uncomment below to create an instance of `Address`
         """
-        model = AddressRequest()
+        model = Address()
         if include_optional:
-            return AddressRequest(
+            return Address(
                 full_name = '',
                 company_name = '',
                 address_line1 = '',
@@ -46,7 +47,7 @@ class TestAddressRequest(unittest.TestCase):
                 country_code = ''
             )
         else:
-            return AddressRequest(
+            return Address(
                 address_line1 = '',
                 city = '',
                 country_code = '',
@@ -54,7 +55,7 @@ class TestAddressRequest(unittest.TestCase):
         """
 
     def testAddressRequest(self):
-        """Test AddressRequest"""
+        """Test Address"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

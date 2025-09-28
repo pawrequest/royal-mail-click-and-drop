@@ -14,10 +14,10 @@
 
 import unittest
 
-from royal_mail_click_and_drop import BillingDetailsRequest
+from royal_mail_click_and_drop import RecipientDetailsRequest
 
-class TestBillingDetailsRequest(unittest.TestCase):
-    """BillingDetailsRequest unit test stubs"""
+class TestRecipientDetailsRequest(unittest.TestCase):
+    """FullContact unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,17 +25,17 @@ class TestBillingDetailsRequest(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> BillingDetailsRequest:
-        """Test BillingDetailsRequest
+    def make_instance(self, include_optional) -> RecipientDetailsRequest:
+        """Test FullContact
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `BillingDetailsRequest`
+        # uncomment below to create an instance of `FullContact`
         """
-        model = BillingDetailsRequest()
+        model = FullContact()
         if include_optional:
-            return BillingDetailsRequest(
-                address = royal-mail-click-and-drop.models.address_request.AddressRequest(
+            return FullContact(
+                address = royal-mail-click-and-drop.models.address_request.Address(
                     full_name = '', 
                     company_name = '', 
                     address_line1 = '', 
@@ -46,15 +46,16 @@ class TestBillingDetailsRequest(unittest.TestCase):
                     postcode = '', 
                     country_code = '', ),
                 phone_number = '',
-                email_address = ''
+                email_address = '',
+                address_book_reference = ''
             )
         else:
-            return BillingDetailsRequest(
+            return FullContact(
         )
         """
 
-    def testBillingDetailsRequest(self):
-        """Test BillingDetailsRequest"""
+    def testRecipientDetailsRequest(self):
+        """Test FullContact"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

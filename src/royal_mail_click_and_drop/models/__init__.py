@@ -14,11 +14,11 @@
 
 
 # import models into model package
-from royal_mail_click_and_drop.models.address_request import AddressRequest
+from royal_mail_click_and_drop.models.address import Address as Address
 from royal_mail_click_and_drop.models.billing_details_request import BillingDetailsRequest
 from royal_mail_click_and_drop.models.create_order_error_response import CreateOrderErrorResponse
 from royal_mail_click_and_drop.models.create_order_label_error_response import CreateOrderLabelErrorResponse
-from royal_mail_click_and_drop.models.create_order_request import CreateOrderRequest
+from royal_mail_click_and_drop.models.create_orders_request import CreateOrderRequest
 from royal_mail_click_and_drop.models.create_order_response import CreateOrderResponse
 from royal_mail_click_and_drop.models.create_orders_request import CreateOrdersRequest
 from royal_mail_click_and_drop.models.create_orders_response import CreateOrdersResponse
