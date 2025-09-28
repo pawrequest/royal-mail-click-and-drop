@@ -7,7 +7,7 @@ from typing_extensions import Annotated
 from royal_mail_click_and_drop.models.base import RMBaseModel
 
 
-class Address(RMBaseModel):
+class AddressRequest(RMBaseModel):
     full_name: str_length_const(210) = None
     company_name: str_length_const(100) | None = None
     address_line1: str_length_const(100)
@@ -19,8 +19,8 @@ class Address(RMBaseModel):
     country_code: str_length_const(3) = 'GB'
 
 
-class Contact(RMBaseModel):
-    address: Address | None = None
+class RecipientDetailsRequest(RMBaseModel):
+    address: AddressRequest
     phone_number: Annotated[str, Field(strict=True, max_length=25)] | None = None
     email_address: Annotated[str, Field(strict=True, max_length=254)] | None = None
     address_book_reference: Annotated[str, Field(strict=True, max_length=100)] | None = Field(

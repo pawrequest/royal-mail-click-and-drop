@@ -1,13 +1,12 @@
 from __future__ import annotations
 
 from datetime import datetime
-# from datetime import datetime
 from typing import ClassVar, List, Optional, Union
 
 from pydantic import Field, StrictBool, StrictFloat, StrictInt
 from typing_extensions import Annotated
 
-from royal_mail_click_and_drop.models.address import Contact
+from royal_mail_click_and_drop.models.address import RecipientDetailsRequest
 from royal_mail_click_and_drop.models.base import RMBaseModel
 from royal_mail_click_and_drop.models.billing_details_request import BillingDetailsRequest
 from royal_mail_click_and_drop.models.importer import Importer
@@ -21,7 +20,7 @@ from royal_mail_click_and_drop.models.tag_request import TagRequest
 class CreateOrderRequest(RMBaseModel):
     order_reference: Optional[Annotated[str, Field(strict=True, max_length=40)]] = None
     is_recipient_a_business: Optional[StrictBool] = Field(default=None, description="Indicates if the recipient is a business or not. Mandatory for Business senders on orders shipping from Great Britain to Northern Ireland, which require additional information for B2B shipments. (Business senders are OBA accounts and OLP accounts declaring themselves as a Business sender).")
-    recipient: Contact
+    recipient: RecipientDetailsRequest
     sender: Optional[SenderDetailsRequest] = None
     billing: Optional[BillingDetailsRequest] = None
     packages: Optional[List[ShipmentPackageRequest]] = None

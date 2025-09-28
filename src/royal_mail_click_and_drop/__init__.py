@@ -34,7 +34,7 @@ from royal_mail_click_and_drop.exceptions import ApiAttributeError
 from royal_mail_click_and_drop.exceptions import ApiException
 
 # import models into sdk package
-from royal_mail_click_and_drop.models.address import Address as AddressRequest
+from royal_mail_click_and_drop.models.address import AddressRequest as AddressRequest
 from royal_mail_click_and_drop.models.billing_details_request import BillingDetailsRequest
 from royal_mail_click_and_drop.models.create_order_error_response import CreateOrderErrorResponse
 from royal_mail_click_and_drop.models.create_order_label_error_response import CreateOrderLabelErrorResponse

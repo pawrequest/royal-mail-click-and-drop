@@ -1,6 +1,9 @@
 import os
 from functools import lru_cache
 from pathlib import Path
+from typing import Self
+
+from pydantic import model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 from royal_mail_click_and_drop import Configuration
@@ -17,11 +20,14 @@ def load_royal_mail_settings_env():
 class Settings(BaseSettings):
     api_key: str
     base_url: str = r'https://api.parcel.royalmail.com/api/v1'
+    config: Configuration | None = None
 
-    def configuration(self) -> Configuration:
-        configuration = Configuration(host=self.base_url)
-        configuration.api_key['Bearer'] = self.api_key
-        return configuration
+    @model_validator(mode='after')
+    def configuration(self) -> Self:
+        if self.config is None:
+            self.config = Configuration(host=self.base_url)
+            self.config.api_key['Bearer'] = self.api_key
+        return self
 
     model_config = SettingsConfigDict(env_file=load_royal_mail_settings_env())
 

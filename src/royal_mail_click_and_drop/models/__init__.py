@@ -14,7 +14,7 @@
 
 
 # import models into model package
-from royal_mail_click_and_drop.models.address import Address as Address
+from royal_mail_click_and_drop.models.address import AddressRequest as Address
 from royal_mail_click_and_drop.models.billing_details_request import BillingDetailsRequest
 from royal_mail_click_and_drop.models.create_order_error_response import CreateOrderErrorResponse
 from royal_mail_click_and_drop.models.create_order_label_error_response import CreateOrderLabelErrorResponse
