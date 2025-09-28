@@ -15,6 +15,7 @@ from royal_mail_click_and_drop import (
     VersionApi,
 )
 
+
 def failed_order_errors(response):
     errors = [
         f'Error in {error.fields}: {error.error_code} - {error.error_message}'
@@ -45,7 +46,7 @@ def cancel_shipment(order_ident: str, config: Configuration) -> DeleteOrdersReso
             raise
 
 
-def fetch_orders(config: Configuration):
+def fetch_orders(config: Configuration) -> GetOrdersResponse:
     with ApiClient(config) as rm:
         client = OrdersApi(rm)
         try:
@@ -57,7 +58,13 @@ def fetch_orders(config: Configuration):
             raise
 
 
-def get_label(order_idents: str, outpath, config: Configuration):
+def save_label(order_idents: str, outpath, config: Configuration):
+    response = get_label_data(order_idents, config)
+    with open(outpath, 'wb') as f:
+        f.write(response)
+
+
+def get_label_data(order_idents: str, config: Configuration):
     with ApiClient(config) as rm:
         client = LabelsApi(rm)
         try:
@@ -67,12 +74,10 @@ def get_label(order_idents: str, outpath, config: Configuration):
                 include_returns_label=False,
                 include_cn=False,
             )
-            with open(outpath, 'wb') as f:
-                f.write(response)
+            return response
         except ApiException as e:
             print(f'Exception when calling LabelsApi->get_orders_label_async: {e}\n')
-            # raise
-        pprint(str(response), indent=4, width=120)
+            raise
 
 
 def do_manifest(config: Configuration):

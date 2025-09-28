@@ -1,7 +1,9 @@
 import os
 from datetime import datetime
+from typing import Generator
 
 import pytest
+
 os.environ['ROYAL_MAIL_ENV'] = r'C:\prdev\envs\sandbox\royal_mail.env'
 
 from royal_mail_click_and_drop.models import CreateOrderRequest
@@ -104,6 +106,17 @@ def orders(order):
         items=[order],
     )
 
+
 @pytest.fixture
-def client() -> RoyalMailClient:
-    return RoyalMailClient()
+def client() -> Generator[RoyalMailClient, None, None]:
+    client = RoyalMailClient()
+    orders_og = client.fetch_orders()
+
+    yield client
+
+    orders_after = client.fetch_orders()
+    if orders_after != orders_og:
+        for o in orders_after.orders:
+            if o not in orders_og.orders:
+                res = client.cancel_shipment(order_ident=o.order_identifier)
+                assert o.order_identifier in [_.order_identifier for _ in res.deleted_orders]

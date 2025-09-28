@@ -14,7 +14,7 @@ from royal_mail_click_and_drop.v2.actions import (
     do_manifest,
     fetch_orders,
     fetch_version,
-    get_label,
+    save_label,
 )
 
 
@@ -25,14 +25,14 @@ class RoyalMailClient(RMBaseModel):
     def book_shipment(self, orders: CreateOrdersRequest) -> CreateOrdersResponse:
         return book_shipment(orders, self.config)
 
-    def cancel_shipment(self, order_ident: str) -> DeleteOrdersResource:
-        return cancel_shipment(order_ident, self.config)
+    def cancel_shipment(self, order_ident: str | int) -> DeleteOrdersResource:
+        return cancel_shipment(str(order_ident), self.config)
 
     def fetch_orders(self):
         return fetch_orders(self.config)
 
     def get_label(self, order_idents: str, outpath):
-        return get_label(order_idents, outpath, self.config)
+        return save_label(order_idents, outpath, self.config)
 
     def do_manifest(self):
         return do_manifest(self.config)
