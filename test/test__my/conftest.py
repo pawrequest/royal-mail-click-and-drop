@@ -19,6 +19,7 @@ from royal_mail_click_and_drop import (
     ShipmentPackageRequest,
     CreateOrdersRequest,
     BillingDetailsRequest,
+    GetOrdersResponse,
 )
 
 CONFIGURATION = Configuration(host=SETTINGS.base_url, api_key={'Bearer': SETTINGS.api_key})
@@ -110,11 +111,11 @@ def orders(order):
 @pytest.fixture
 def client() -> Generator[RoyalMailClient, None, None]:
     client = RoyalMailClient()
-    orders_og = client.fetch_orders()
+    orders_og: GetOrdersResponse = client.fetch_orders()
 
     yield client
 
-    orders_after = client.fetch_orders()
+    orders_after: GetOrdersResponse = client.fetch_orders()
     if orders_after != orders_og:
         for o in orders_after.orders:
             if o not in orders_og.orders:
