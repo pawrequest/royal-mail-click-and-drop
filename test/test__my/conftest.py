@@ -4,16 +4,12 @@ from typing import Generator
 
 import pytest
 
-os.environ['ROYAL_MAIL_ENV'] = r'C:\prdev\envs\sandbox\royal_mail.env'
-
 from royal_mail_click_and_drop.models import CreateOrderRequest
 from royal_mail_click_and_drop.v2.client import RoyalMailClient
 
-from royal_mail_click_and_drop.config import royal_mail_settings
+from royal_mail_click_and_drop.config import RoyalMailSettings
 
-SETTINGS = royal_mail_settings()
 from royal_mail_click_and_drop import (
-    Configuration,
     AddressRequest,
     RecipientDetailsRequest,
     ShipmentPackageRequest,
@@ -22,12 +18,15 @@ from royal_mail_click_and_drop import (
     GetOrdersResponse,
 )
 
-CONFIGURATION = Configuration(host=SETTINGS.base_url, api_key={'Bearer': SETTINGS.api_key})
+
+# @pytest.fixture
+# def config() -> Configuration:
+#     return CONFIGURATION
 
 
 @pytest.fixture
-def config() -> Configuration:
-    return CONFIGURATION
+def sample_settings():
+    return RoyalMailSettings.from_env('ROYAL_MAIL_ENV')
 
 
 @pytest.fixture
@@ -109,15 +108,15 @@ def orders(order):
 
 
 @pytest.fixture
-def client() -> Generator[RoyalMailClient, None, None]:
-    client = RoyalMailClient()
-    orders_og: GetOrdersResponse = client.fetch_orders()
+def sample_client(sample_settings) -> Generator[RoyalMailClient, None, None]:
+    """Test client - automatically removes orders created during testing on completion"""
+    client = RoyalMailClient(settings=sample_settings)
+    orders_before: GetOrdersResponse = client.fetch_orders()
 
     yield client
 
     orders_after: GetOrdersResponse = client.fetch_orders()
-    if orders_after != orders_og:
-        for o in orders_after.orders:
-            if o not in orders_og.orders:
-                res = client.cancel_shipment(order_ident=o.order_identifier)
-                assert o.order_identifier in [_.order_identifier for _ in res.deleted_orders]
+    for o in orders_after.orders:
+        if o not in orders_before.orders:
+            res = client.cancel_shipment(order_ident=o.order_identifier)
+            assert o.order_identifier in [_.order_identifier for _ in res.deleted_orders], 'WARNING, FAILED TO DELETE TEST ORDERS!!'
