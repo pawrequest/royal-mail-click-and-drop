@@ -6,3 +6,4 @@ However the generated code is verbose and not very user friendly, so this packag
 
 See [Generated README](README_AUTO.md)
 
+NOTE: This package is in early development and the API is subject to change.
