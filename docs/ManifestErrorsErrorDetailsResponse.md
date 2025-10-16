@@ -27,6 +27,6 @@ manifest_errors_error_details_response_from_dict = ManifestErrorsErrorDetailsRes
     manifest_errors_error_details_response_dict
 )
 ```
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[[Back to Model list]](../README_AUTO.md#documentation-for-models) [[Back to API list]](../README_AUTO.md#documentation-for-api-endpoints) [[Back to README]](../README_AUTO.md)
 
 

@@ -32,6 +32,6 @@ address_request_dict = address_request_instance.to_dict()
 # create an instance of Address from a dict
 address_request_from_dict = AddressRequest.from_dict(address_request_dict)
 ```
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[[Back to Model list]](../README_AUTO.md#documentation-for-models) [[Back to API list]](../README_AUTO.md#documentation-for-api-endpoints) [[Back to README]](../README_AUTO.md)
 
 

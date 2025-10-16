@@ -76,7 +76,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+[Bearer](../README_AUTO.md#Bearer)
 
 ### HTTP request headers
 
@@ -92,7 +92,7 @@ Name | Type | Description  | Notes
 **401** | Unauthorized |  -  |
 **500** | Internal Server Error |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README_AUTO.md#documentation-for-api-endpoints) [[Back to Model list]](../README_AUTO.md#documentation-for-models) [[Back to README]](../README_AUTO.md)
 
 # **delete_orders_async**
 > DeleteOrdersResource delete_orders_async(order_identifiers)
@@ -163,7 +163,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+[Bearer](../README_AUTO.md#Bearer)
 
 ### HTTP request headers
 
@@ -181,7 +181,7 @@ Name | Type | Description  | Notes
 **404** | Not Found |  -  |
 **500** | Internal Server Error |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README_AUTO.md#documentation-for-api-endpoints) [[Back to Model list]](../README_AUTO.md#documentation-for-models) [[Back to README]](../README_AUTO.md)
 
 # **get_orders_async**
 > GetOrdersResponse get_orders_async(page_size=page_size, start_date_time=start_date_time, end_date_time=end_date_time, continuation_token=continuation_token)
@@ -256,7 +256,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+[Bearer](../README_AUTO.md#Bearer)
 
 ### HTTP request headers
 
@@ -273,7 +273,7 @@ Name | Type | Description  | Notes
 **404** | Not Found |  -  |
 **500** | Internal Server Error |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README_AUTO.md#documentation-for-api-endpoints) [[Back to Model list]](../README_AUTO.md#documentation-for-models) [[Back to README]](../README_AUTO.md)
 
 # **get_orders_with_details_async**
 > GetOrdersDetailsResponse get_orders_with_details_async(page_size=page_size, start_date_time=start_date_time, end_date_time=end_date_time, continuation_token=continuation_token)
@@ -350,7 +350,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+[Bearer](../README_AUTO.md#Bearer)
 
 ### HTTP request headers
 
@@ -368,7 +368,7 @@ Name | Type | Description  | Notes
 **404** | Not Found |  -  |
 **500** | Internal Server Error |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README_AUTO.md#documentation-for-api-endpoints) [[Back to Model list]](../README_AUTO.md#documentation-for-models) [[Back to README]](../README_AUTO.md)
 
 # **get_specific_orders_async**
 > List[GetOrderInfoResource] get_specific_orders_async(order_identifiers)
@@ -432,7 +432,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+[Bearer](../README_AUTO.md#Bearer)
 
 ### HTTP request headers
 
@@ -449,7 +449,7 @@ Name | Type | Description  | Notes
 **404** | Not Found |  -  |
 **500** | Internal Server Error |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README_AUTO.md#documentation-for-api-endpoints) [[Back to Model list]](../README_AUTO.md#documentation-for-models) [[Back to README]](../README_AUTO.md)
 
 # **get_specific_orders_with_details_async**
 > List[GetOrderDetailsResource] get_specific_orders_with_details_async(order_identifiers)
@@ -515,7 +515,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+[Bearer](../README_AUTO.md#Bearer)
 
 ### HTTP request headers
 
@@ -533,7 +533,7 @@ Name | Type | Description  | Notes
 **404** | Not Found |  -  |
 **500** | Internal Server Error |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README_AUTO.md#documentation-for-api-endpoints) [[Back to Model list]](../README_AUTO.md#documentation-for-models) [[Back to README]](../README_AUTO.md)
 
 # **update_orders_status_async**
 > UpdateOrderStatusResponse update_orders_status_async(update_orders_status_request)
@@ -598,7 +598,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+[Bearer](../README_AUTO.md#Bearer)
 
 ### HTTP request headers
 
@@ -615,5 +615,5 @@ Name | Type | Description  | Notes
 **404** | Not Found |  -  |
 **500** | Internal Server Error |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README_AUTO.md#documentation-for-api-endpoints) [[Back to Model list]](../README_AUTO.md#documentation-for-models) [[Back to README]](../README_AUTO.md)
 

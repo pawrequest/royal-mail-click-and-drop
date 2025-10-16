@@ -57,6 +57,6 @@ get_order_details_resource_dict = get_order_details_resource_instance.to_dict()
 # create an instance of GetOrderDetailsResource from a dict
 get_order_details_resource_from_dict = GetOrderDetailsResource.from_dict(get_order_details_resource_dict)
 ```
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[[Back to Model list]](../README_AUTO.md#documentation-for-models) [[Back to API list]](../README_AUTO.md#documentation-for-api-endpoints) [[Back to README]](../README_AUTO.md)
 
 

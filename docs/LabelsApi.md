@@ -87,7 +87,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+[Bearer](../README_AUTO.md#Bearer)
 
 ### HTTP request headers
 
@@ -105,5 +105,5 @@ Name | Type | Description  | Notes
 **404** | Not Found |  -  |
 **500** | Internal Server Error |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README_AUTO.md#documentation-for-api-endpoints) [[Back to Model list]](../README_AUTO.md#documentation-for-models) [[Back to README]](../README_AUTO.md)
 

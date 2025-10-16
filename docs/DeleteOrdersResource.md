@@ -25,6 +25,6 @@ delete_orders_resource_dict = delete_orders_resource_instance.to_dict()
 # create an instance of DeleteOrdersResource from a dict
 delete_orders_resource_from_dict = DeleteOrdersResource.from_dict(delete_orders_resource_dict)
 ```
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[[Back to Model list]](../README_AUTO.md#documentation-for-models) [[Back to API list]](../README_AUTO.md#documentation-for-api-endpoints) [[Back to README]](../README_AUTO.md)
 
 

@@ -25,6 +25,6 @@ order_field_response_dict = order_field_response_instance.to_dict()
 # create an instance of OrderFieldResponse from a dict
 order_field_response_from_dict = OrderFieldResponse.from_dict(order_field_response_dict)
 ```
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[[Back to Model list]](../README_AUTO.md#documentation-for-models) [[Back to API list]](../README_AUTO.md#documentation-for-api-endpoints) [[Back to README]](../README_AUTO.md)
 
 

@@ -73,7 +73,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+[Bearer](../README_AUTO.md#Bearer)
 
 ### HTTP request headers
 
@@ -91,7 +91,7 @@ Name | Type | Description  | Notes
 **404** | Not Found |  -  |
 **500** | Internal Server Error |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README_AUTO.md#documentation-for-api-endpoints) [[Back to Model list]](../README_AUTO.md#documentation-for-models) [[Back to README]](../README_AUTO.md)
 
 # **manifest_eligible_async**
 > ManifestOrdersResponse manifest_eligible_async()
@@ -153,7 +153,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+[Bearer](../README_AUTO.md#Bearer)
 
 ### HTTP request headers
 
@@ -172,7 +172,7 @@ This endpoint does not need any parameter.
 **404** | Not Found |  -  |
 **500** | Internal Server Error |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README_AUTO.md#documentation-for-api-endpoints) [[Back to Model list]](../README_AUTO.md#documentation-for-models) [[Back to README]](../README_AUTO.md)
 
 # **retry_manifest_async**
 > ManifestOrdersResponse retry_manifest_async(manifest_identifier)
@@ -239,7 +239,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+[Bearer](../README_AUTO.md#Bearer)
 
 ### HTTP request headers
 
@@ -258,5 +258,5 @@ Name | Type | Description  | Notes
 **404** | Not Found |  -  |
 **500** | Internal Server Error |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README_AUTO.md#documentation-for-api-endpoints) [[Back to Model list]](../README_AUTO.md#documentation-for-models) [[Back to README]](../README_AUTO.md)
 

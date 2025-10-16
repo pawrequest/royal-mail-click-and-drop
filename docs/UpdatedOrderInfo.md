@@ -26,6 +26,6 @@ updated_order_info_dict = updated_order_info_instance.to_dict()
 # create an instance of UpdatedOrderInfo from a dict
 updated_order_info_from_dict = UpdatedOrderInfo.from_dict(updated_order_info_dict)
 ```
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[[Back to Model list]](../README_AUTO.md#documentation-for-models) [[Back to API list]](../README_AUTO.md#documentation-for-api-endpoints) [[Back to README]](../README_AUTO.md)
 
 
