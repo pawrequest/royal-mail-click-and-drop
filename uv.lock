@@ -449,7 +449,7 @@ wheels = [
 
 [[package]]
 name = "royal-mail-click-and-drop"
-version = "0.0.4"
+version = "0.0.5"
 source = { virtual = "." }
 dependencies = [
     { name = "loguru" },
