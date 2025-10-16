@@ -1,4 +1,3 @@
-
 from __future__ import annotations
 
 from typing import ClassVar, List
@@ -12,8 +11,9 @@ from royal_mail_click_and_drop.models.base import RMBaseModel
 class CreateOrderErrorResponse(RMBaseModel):
     """
     CreateOrderErrorResponse
-    """ # noqa: E501
+    """  # noqa: E501
+
     error_code: StrictInt | None = None
     error_message: StrictStr | None = None
     fields: List[OrderFieldResponse] | None = None
-    __properties: ClassVar[List[str]] = ["errorCode", "errorMessage", "fields"]
+    __properties: ClassVar[List[str]] = ['errorCode', 'errorMessage', 'fields']

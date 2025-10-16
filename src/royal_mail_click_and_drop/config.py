@@ -33,6 +33,8 @@ class RoyalMailSettings(BaseSettings):
     api_key: str
     base_url: str = r'https://api.parcel.royalmail.com/api/v1'
     config: Configuration | None = None
+    tracking_url_stem: str = r'https://www.royalmail.com/track-your-item#/tracking-results/'
+
 
     @classmethod
     @lru_cache
@@ -49,6 +51,12 @@ class RoyalMailSettings(BaseSettings):
             self.config = Configuration(host=self.base_url)
             self.config.api_key['Bearer'] = self.api_key
         return self
+
+    def tracking_link(self, shipment_num: str, parcel_num: str = '001') -> str:
+        stem = self.tracking_url_stem
+        tlink = f'{stem}PB{shipment_num}{parcel_num}'
+        return tlink
+
 
     model_config = SettingsConfigDict()
 

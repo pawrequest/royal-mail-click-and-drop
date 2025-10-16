@@ -3,13 +3,13 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**weight_in_grams** | **int** |  | 
-**package_format_identifier** | **str** | &lt;b&gt;If you have a ChannelShipper account, you can also pass the name of any of your custom package formats instead of the values below.&lt;/b&gt;&lt;br&gt; Enum: &#39;undefined&#39;, &#39;letter&#39;, &#39;largeLetter&#39;, &#39;smallParcel&#39;, &#39;mediumParcel&#39;, &#39;parcel&#39;, &#39;documents&#39; | 
-**custom_package_format_identifier** | **str** | This field will be deprecated in the future. Please use &#39;packageFormatIdentifier&#39; for custom package formats from ChannelShipper. | [optional] 
-**dimensions** | [**DimensionsRequest**](DimensionsRequest.md) |  | [optional] 
-**contents** | [**List[ProductItemRequest]**](ProductItemRequest.md) |  | [optional] 
+| Name                                 | Type                                                  | Description                                                                                                                                                                                                                                                                                                               | Notes      |
+|--------------------------------------|-------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------|
+| **weight_in_grams**                  | **int**                                               |                                                                                                                                                                                                                                                                                                                           |            |
+| **package_format_identifier**        | **str**                                               | &lt;b&gt;If you have a ChannelShipper account, you can also pass the name of any of your custom package formats instead of the values below.&lt;/b&gt;&lt;br&gt; Enum: &#39;undefined&#39;, &#39;letter&#39;, &#39;largeLetter&#39;, &#39;smallParcel&#39;, &#39;mediumParcel&#39;, &#39;parcel&#39;, &#39;documents&#39; |            |
+| **custom_package_format_identifier** | **str**                                               | This field will be deprecated in the future. Please use &#39;packageFormatIdentifier&#39; for custom package formats from ChannelShipper.                                                                                                                                                                                 | [optional] |
+| **dimensions**                       | [**DimensionsRequest**](DimensionsRequest.md)         |                                                                                                                                                                                                                                                                                                                           | [optional] |
+| **contents**                         | [**List[ProductItemRequest]**](ProductItemRequest.md) |                                                                                                                                                                                                                                                                                                                           | [optional] |
 
 ## Example
 

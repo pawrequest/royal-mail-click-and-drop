@@ -3,26 +3,26 @@
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**send_notifications_to** | **str** |  | [optional] 
-**service_code** | **str** |  | [optional] 
-**carrier_name** | **str** |  | [optional] 
-**service_register_code** | **str** |  | [optional] 
-**consequential_loss** | **int** |  | [optional] 
-**receive_email_notification** | **bool** |  | [optional] 
-**receive_sms_notification** | **bool** |  | [optional] 
-**guaranteed_saturday_delivery** | **bool** | This field has been deprecated | [optional] 
-**request_signature_upon_delivery** | **bool** |  | [optional] 
-**is_local_collect** | **bool** |  | [optional] 
-**safe_place** | **str** |  | [optional] 
-**department** | **str** |  | [optional] 
-**air_number** | **str** | For B2B orders shipping from Great Britain to Northern Ireland, this field can be used to provide the Recipient UKIMs number. | [optional] 
-**ioss_number** | **str** |  | [optional] 
-**requires_export_license** | **bool** |  | [optional] 
-**commercial_invoice_number** | **str** |  | [optional] 
-**commercial_invoice_date** | **datetime** |  | [optional] 
-**recipient_eori_number** | **str** |  | [optional] 
+| Name                                | Type         | Description                                                                                                                   | Notes      |
+|-------------------------------------|--------------|-------------------------------------------------------------------------------------------------------------------------------|------------|
+| **send_notifications_to**           | **str**      |                                                                                                                               | [optional] |
+| **service_code**                    | **str**      |                                                                                                                               | [optional] |
+| **carrier_name**                    | **str**      |                                                                                                                               | [optional] |
+| **service_register_code**           | **str**      |                                                                                                                               | [optional] |
+| **consequential_loss**              | **int**      |                                                                                                                               | [optional] |
+| **receive_email_notification**      | **bool**     |                                                                                                                               | [optional] |
+| **receive_sms_notification**        | **bool**     |                                                                                                                               | [optional] |
+| **guaranteed_saturday_delivery**    | **bool**     | This field has been deprecated                                                                                                | [optional] |
+| **request_signature_upon_delivery** | **bool**     |                                                                                                                               | [optional] |
+| **is_local_collect**                | **bool**     |                                                                                                                               | [optional] |
+| **safe_place**                      | **str**      |                                                                                                                               | [optional] |
+| **department**                      | **str**      |                                                                                                                               | [optional] |
+| **air_number**                      | **str**      | For B2B orders shipping from Great Britain to Northern Ireland, this field can be used to provide the Recipient UKIMs number. | [optional] |
+| **ioss_number**                     | **str**      |                                                                                                                               | [optional] |
+| **requires_export_license**         | **bool**     |                                                                                                                               | [optional] |
+| **commercial_invoice_number**       | **str**      |                                                                                                                               | [optional] |
+| **commercial_invoice_date**         | **datetime** |                                                                                                                               | [optional] |
+| **recipient_eori_number**           | **str**      |                                                                                                                               | [optional] |
 
 ## Example
 

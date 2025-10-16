@@ -1,3 +1,5 @@
+from enum import StrEnum
+
 from pydantic import ConfigDict
 
 from royal_mail_click_and_drop import (
@@ -14,8 +16,13 @@ from royal_mail_click_and_drop.v2.actions import (
     do_manifest,
     fetch_orders,
     fetch_version,
+    get_label_data,
     save_label,
 )
+
+
+class RoyalMailServiceCode(StrEnum):
+    PARCEL = 'parcel'
 
 
 class RoyalMailClient(RMBaseModel):
@@ -38,7 +45,10 @@ class RoyalMailClient(RMBaseModel):
     def fetch_orders(self):
         return fetch_orders(self.config)
 
-    def get_label(self, order_idents: str, outpath):
+    def get_label_content(self, order_idents: str):
+        return get_label_data(order_idents, self.config)
+
+    def save_label(self, order_idents: str, outpath):
         return save_label(order_idents, outpath, self.config)
 
     def do_manifest(self):

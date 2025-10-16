@@ -11,12 +11,14 @@ from royal_mail_click_and_drop.config import RoyalMailSettings
 
 from royal_mail_click_and_drop import (
     AddressRequest,
+    PostageDetailsRequest,
     RecipientDetailsRequest,
     ShipmentPackageRequest,
     CreateOrdersRequest,
     BillingDetailsRequest,
     GetOrdersResponse,
 )
+from royal_mail_click_and_drop.v2.consts import SendNotifcationsTo
 
 
 # @pytest.fixture
@@ -86,6 +88,16 @@ def packages_():
         )
     ]
 
+#
+# @pytest.fixture
+# def sample_postage_details():
+#     res = PostageDetailsRequest(
+#         # send_notifications_to=SendNotifcationsTo.SENDER,
+#         service_code='RM24',
+#         receive_email_notification=True,
+#     )
+#     return res.model_validate(res)
+
 
 @pytest.fixture
 def order(recipient, packages_, billing_):
@@ -97,6 +109,7 @@ def order(recipient, packages_, billing_):
         total=0,
         packages=packages_,
         billing=billing_,
+        # postage_details=sample_postage_details,
     )
 
 
