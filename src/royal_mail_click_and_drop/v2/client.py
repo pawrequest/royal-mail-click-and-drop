@@ -1,4 +1,4 @@
-from pydantic import ConfigDict, Field
+from pydantic import ConfigDict
 
 from royal_mail_click_and_drop import (
     Configuration,
@@ -6,7 +6,7 @@ from royal_mail_click_and_drop import (
     CreateOrdersResponse,
     DeleteOrdersResource,
 )
-from royal_mail_click_and_drop.config import royal_mail_settings
+from royal_mail_click_and_drop.config import RoyalMailSettings
 from royal_mail_click_and_drop.models.base import RMBaseModel
 from royal_mail_click_and_drop.v2.actions import (
     book_shipment,
@@ -20,7 +20,14 @@ from royal_mail_click_and_drop.v2.actions import (
 
 class RoyalMailClient(RMBaseModel):
     model_config = ConfigDict(arbitrary_types_allowed=True)
-    config: Configuration = Field(default_factory=lambda: royal_mail_settings().config)
+    settings: RoyalMailSettings
+    _config: Configuration | None = None
+
+    @property
+    def config(self):
+        if self._config is None:
+            self._config = self.settings.config
+        return self._config
 
     def book_shipment(self, orders: CreateOrdersRequest) -> CreateOrdersResponse:
         return book_shipment(orders, self.config)
@@ -40,10 +47,12 @@ class RoyalMailClient(RMBaseModel):
     def fetch_version(self):
         return fetch_version(self.config)
 
-    def cancel_all_orders(self, really=False):
+    def cancel_all_orders(self, really=False) -> DeleteOrdersResource:
+        """Cancels ALL orders on the system - use with care / must pass really-True to work"""
+        if not really:
+            raise ValueError('Not cancelling orders, pass really=True to cancel')
         res = self.fetch_orders()
-        if res.order_ident_string and really:
+        if res.order_ident_string:
             response = self.cancel_shipment(res.order_ident_string)
             return response
-        print('Not cancelling orders, pass really=True to cancel')
-        return None
+        raise ValueError('No order idents in response')
