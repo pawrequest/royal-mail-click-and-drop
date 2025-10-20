@@ -1,10 +1,10 @@
 from __future__ import annotations
 
 from datetime import datetime
-from typing import ClassVar, List
+from typing import ClassVar
 
 from pydantic import Field, StrictBool, StrictStr, field_validator
-from typing_extensions import Annotated
+from typing import Annotated
 
 from royal_mail_click_and_drop.models.base import RMBaseModel
 
@@ -12,7 +12,7 @@ from royal_mail_click_and_drop.models.base import RMBaseModel
 class PostageDetailsRequest(RMBaseModel):
     """
     PostageDetailsRequest
-    """  # noqa: E501
+    """
 
     service_code: Annotated[str, Field(strict=True, max_length=10)] | None = None
     send_notifications_to: StrictStr | None = None
@@ -36,7 +36,7 @@ class PostageDetailsRequest(RMBaseModel):
     commercial_invoice_number: Annotated[str, Field(strict=True, max_length=35)] | None = None
     commercial_invoice_date: datetime | None = None
     recipient_eori_number: StrictStr | None = None
-    __properties: ClassVar[List[str]] = [
+    __properties: ClassVar[list[str]] = [
         'sendNotificationsTo',
         'serviceCode',
         'carrierName',

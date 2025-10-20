@@ -1,8 +1,8 @@
-from typing import Any, Dict, List, Optional, Tuple, Union
+from typing import Any
 from datetime import datetime
 
 from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
-from typing_extensions import Annotated
+from typing import Annotated
 
 from royal_mail_click_and_drop.models.create_orders_response import CreateOrdersResponse
 from royal_mail_click_and_drop.models.delete_orders_resource import DeleteOrdersResource
@@ -28,14 +28,10 @@ class OrdersApi:
     def create_orders_async(
         self,
         create_orders_request: CreateOrdersRequest,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _request_timeout: None | Annotated[StrictFloat, Field(gt=0)] | tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]] = None,
+        _request_auth: dict[StrictStr, Any] | None = None,
+        _content_type: StrictStr | None = None,
+        _headers: dict[StrictStr, Any] | None = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> CreateOrdersResponse:
         """Create orders
@@ -63,7 +59,7 @@ class OrdersApi:
                             in the spec for a single request.
         :type _host_index: int, optional
         :return: Returns the result object.
-        """  # noqa: E501
+        """
 
         _param = self._create_orders_async_serialize(
             create_orders_request=create_orders_request,
@@ -73,7 +69,7 @@ class OrdersApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
+        _response_types_map: dict[str, str | None] = {
             '200': 'CreateOrdersResponse',
             '400': 'ErrorResponse',
             '401': None,
@@ -90,14 +86,10 @@ class OrdersApi:
     def create_orders_async_with_http_info(
         self,
         create_orders_request: CreateOrdersRequest,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _request_timeout: None | Annotated[StrictFloat, Field(gt=0)] | tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]] = None,
+        _request_auth: dict[StrictStr, Any] | None = None,
+        _content_type: StrictStr | None = None,
+        _headers: dict[StrictStr, Any] | None = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[CreateOrdersResponse]:
         """Create orders
@@ -125,7 +117,7 @@ class OrdersApi:
                             in the spec for a single request.
         :type _host_index: int, optional
         :return: Returns the result object.
-        """  # noqa: E501
+        """
 
         _param = self._create_orders_async_serialize(
             create_orders_request=create_orders_request.model_dump(by_alias=True, mode='json'),
@@ -135,7 +127,7 @@ class OrdersApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
+        _response_types_map: dict[str, str | None] = {
             '200': 'CreateOrdersResponse',
             '400': 'ErrorResponse',
             '401': None,
@@ -152,14 +144,10 @@ class OrdersApi:
     def create_orders_async_without_preload_content(
         self,
         create_orders_request: CreateOrdersRequest,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _request_timeout: None | Annotated[StrictFloat, Field(gt=0)] | tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]] = None,
+        _request_auth: dict[StrictStr, Any] | None = None,
+        _content_type: StrictStr | None = None,
+        _headers: dict[StrictStr, Any] | None = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
         """Create orders
@@ -187,7 +175,7 @@ class OrdersApi:
                             in the spec for a single request.
         :type _host_index: int, optional
         :return: Returns the result object.
-        """  # noqa: E501
+        """
 
         _param = self._create_orders_async_serialize(
             create_orders_request=create_orders_request,
@@ -197,7 +185,7 @@ class OrdersApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
+        _response_types_map: dict[str, str | None] = {
             '200': 'CreateOrdersResponse',
             '400': 'ErrorResponse',
             '401': None,
@@ -216,14 +204,14 @@ class OrdersApi:
     ) -> RequestSerialized:
         _host = None
 
-        _collection_formats: Dict[str, str] = {}
+        _collection_formats: dict[str, str] = {}
 
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]] = {}
-        _body_params: Optional[bytes] = None
+        _path_params: dict[str, str] = {}
+        _query_params: list[tuple[str, str]] = []
+        _header_params: dict[str, str | None] = _headers or {}
+        _form_params: list[tuple[str, str]] = []
+        _files: dict[str, str | bytes | list[str] | list[bytes] | list[tuple[str, bytes]]] = {}
+        _body_params: bytes | None = None
 
         # process the path parameters
         # process the query parameters
@@ -246,7 +234,7 @@ class OrdersApi:
                 _header_params['Content-Type'] = _default_content_type
 
         # authentication setting
-        _auth_settings: List[str] = ['Bearer']
+        _auth_settings: list[str] = ['Bearer']
 
         return self.api_client.param_serialize(
             method='POST',
@@ -272,14 +260,10 @@ class OrdersApi:
                 description='One or several Order Identifiers or Order References separated by semicolon. Order Identifiers are integer numbers. Order References are strings - each must be percent-encoded and surrounded by double quotation marks. The maximum number of identifiers is 100.'
             ),
         ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _request_timeout: None | Annotated[StrictFloat, Field(gt=0)] | tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]] = None,
+        _request_auth: dict[StrictStr, Any] | None = None,
+        _content_type: StrictStr | None = None,
+        _headers: dict[StrictStr, Any] | None = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> DeleteOrdersResource:
         """Delete orders
@@ -308,7 +292,7 @@ class OrdersApi:
                             in the spec for a single request.
         :type _host_index: int, optional
         :return: Returns the result object.
-        """  # noqa: E501
+        """
 
         _param = self._delete_orders_async_serialize(
             order_identifiers=order_identifiers,
@@ -318,7 +302,7 @@ class OrdersApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
+        _response_types_map: dict[str, str | None] = {
             '200': 'DeleteOrdersResource',
             '400': 'List[OrderErrorInfo]',
             '401': None,
@@ -342,14 +326,10 @@ class OrdersApi:
                 description='One or several Order Identifiers or Order References separated by semicolon. Order Identifiers are integer numbers. Order References are strings - each must be percent-encoded and surrounded by double quotation marks. The maximum number of identifiers is 100.'
             ),
         ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _request_timeout: None | Annotated[StrictFloat, Field(gt=0)] | tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]] = None,
+        _request_auth: dict[StrictStr, Any] | None = None,
+        _content_type: StrictStr | None = None,
+        _headers: dict[StrictStr, Any] | None = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[DeleteOrdersResource]:
         """Delete orders
@@ -378,7 +358,7 @@ class OrdersApi:
                             in the spec for a single request.
         :type _host_index: int, optional
         :return: Returns the result object.
-        """  # noqa: E501
+        """
 
         _param = self._delete_orders_async_serialize(
             order_identifiers=order_identifiers,
@@ -388,7 +368,7 @@ class OrdersApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
+        _response_types_map: dict[str, str | None] = {
             '200': 'DeleteOrdersResource',
             '400': 'List[OrderErrorInfo]',
             '401': None,
@@ -412,14 +392,10 @@ class OrdersApi:
                 description='One or several Order Identifiers or Order References separated by semicolon. Order Identifiers are integer numbers. Order References are strings - each must be percent-encoded and surrounded by double quotation marks. The maximum number of identifiers is 100.'
             ),
         ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _request_timeout: None | Annotated[StrictFloat, Field(gt=0)] | tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]] = None,
+        _request_auth: dict[StrictStr, Any] | None = None,
+        _content_type: StrictStr | None = None,
+        _headers: dict[StrictStr, Any] | None = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
         """Delete orders
@@ -448,7 +424,7 @@ class OrdersApi:
                             in the spec for a single request.
         :type _host_index: int, optional
         :return: Returns the result object.
-        """  # noqa: E501
+        """
 
         _param = self._delete_orders_async_serialize(
             order_identifiers=order_identifiers,
@@ -458,7 +434,7 @@ class OrdersApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
+        _response_types_map: dict[str, str | None] = {
             '200': 'DeleteOrdersResource',
             '400': 'List[OrderErrorInfo]',
             '401': None,
@@ -479,11 +455,11 @@ class OrdersApi:
     ) -> RequestSerialized:
         _host = None
 
-        _collection_formats: Dict[str, str] = {}
+        _collection_formats: dict[str, str] = {}
 
-        _path_params: Dict[str, str] = {}
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _body_params: Optional[bytes] = None
+        _path_params: dict[str, str] = {}
+        _header_params: dict[str, str | None] = _headers or {}
+        _body_params: bytes | None = None
 
         # process the path parameters
         if order_identifiers is not None:
@@ -494,7 +470,7 @@ class OrdersApi:
             _header_params['Accept'] = self.api_client.select_header_accept(['application/json'])
 
         # authentication setting
-        _auth_settings: List[str] = ['Bearer']
+        _auth_settings: list[str] = ['Bearer']
 
         return self.api_client.param_serialize(
             method='DELETE',
@@ -512,27 +488,23 @@ class OrdersApi:
     def get_orders_async(
         self,
         page_size: Annotated[
-            Optional[Annotated[int, Field(le=100, strict=True, ge=1)]],
+            Annotated[int, Field(le=100, strict=True, ge=1)] | None,
             Field(description='The number of items to return'),
         ] = None,
         start_date_time: Annotated[
-            Optional[datetime], Field(description='Date and time lower bound for items filtering')
+            datetime | None, Field(description='Date and time lower bound for items filtering')
         ] = None,
         end_date_time: Annotated[
-            Optional[datetime], Field(description='Date and time upper bound for items filtering')
+            datetime | None, Field(description='Date and time upper bound for items filtering')
         ] = None,
         continuation_token: Annotated[
-            Optional[StrictStr],
+            StrictStr | None,
             Field(description='The token for retrieving the next page of items'),
         ] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _request_timeout: None | Annotated[StrictFloat, Field(gt=0)] | tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]] = None,
+        _request_auth: dict[StrictStr, Any] | None = None,
+        _content_type: StrictStr | None = None,
+        _headers: dict[StrictStr, Any] | None = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> GetOrdersResponse:
         """Retrieve pageable list of orders
@@ -566,7 +538,7 @@ class OrdersApi:
                             in the spec for a single request.
         :type _host_index: int, optional
         :return: Returns the result object.
-        """  # noqa: E501
+        """
 
         _param = self._get_orders_async_serialize(
             page_size=page_size,
@@ -579,7 +551,7 @@ class OrdersApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
+        _response_types_map: dict[str, str | None] = {
             '200': 'GetOrdersResponse',
             '400': 'ErrorResponse',
             '401': None,
@@ -597,27 +569,23 @@ class OrdersApi:
     def get_orders_async_with_http_info(
         self,
         page_size: Annotated[
-            Optional[Annotated[int, Field(le=100, strict=True, ge=1)]],
+            Annotated[int, Field(le=100, strict=True, ge=1)] | None,
             Field(description='The number of items to return'),
         ] = None,
         start_date_time: Annotated[
-            Optional[datetime], Field(description='Date and time lower bound for items filtering')
+            datetime | None, Field(description='Date and time lower bound for items filtering')
         ] = None,
         end_date_time: Annotated[
-            Optional[datetime], Field(description='Date and time upper bound for items filtering')
+            datetime | None, Field(description='Date and time upper bound for items filtering')
         ] = None,
         continuation_token: Annotated[
-            Optional[StrictStr],
+            StrictStr | None,
             Field(description='The token for retrieving the next page of items'),
         ] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _request_timeout: None | Annotated[StrictFloat, Field(gt=0)] | tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]] = None,
+        _request_auth: dict[StrictStr, Any] | None = None,
+        _content_type: StrictStr | None = None,
+        _headers: dict[StrictStr, Any] | None = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[GetOrdersResponse]:
         """Retrieve pageable list of orders
@@ -651,7 +619,7 @@ class OrdersApi:
                             in the spec for a single request.
         :type _host_index: int, optional
         :return: Returns the result object.
-        """  # noqa: E501
+        """
 
         _param = self._get_orders_async_serialize(
             page_size=page_size,
@@ -664,7 +632,7 @@ class OrdersApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
+        _response_types_map: dict[str, str | None] = {
             '200': 'GetOrdersResponse',
             '400': 'ErrorResponse',
             '401': None,
@@ -682,27 +650,23 @@ class OrdersApi:
     def get_orders_async_without_preload_content(
         self,
         page_size: Annotated[
-            Optional[Annotated[int, Field(le=100, strict=True, ge=1)]],
+            Annotated[int, Field(le=100, strict=True, ge=1)] | None,
             Field(description='The number of items to return'),
         ] = None,
         start_date_time: Annotated[
-            Optional[datetime], Field(description='Date and time lower bound for items filtering')
+            datetime | None, Field(description='Date and time lower bound for items filtering')
         ] = None,
         end_date_time: Annotated[
-            Optional[datetime], Field(description='Date and time upper bound for items filtering')
+            datetime | None, Field(description='Date and time upper bound for items filtering')
         ] = None,
         continuation_token: Annotated[
-            Optional[StrictStr],
+            StrictStr | None,
             Field(description='The token for retrieving the next page of items'),
         ] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _request_timeout: None | Annotated[StrictFloat, Field(gt=0)] | tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]] = None,
+        _request_auth: dict[StrictStr, Any] | None = None,
+        _content_type: StrictStr | None = None,
+        _headers: dict[StrictStr, Any] | None = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
         """Retrieve pageable list of orders
@@ -736,7 +700,7 @@ class OrdersApi:
                             in the spec for a single request.
         :type _host_index: int, optional
         :return: Returns the result object.
-        """  # noqa: E501
+        """
 
         _param = self._get_orders_async_serialize(
             page_size=page_size,
@@ -749,7 +713,7 @@ class OrdersApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
+        _response_types_map: dict[str, str | None] = {
             '200': 'GetOrdersResponse',
             '400': 'ErrorResponse',
             '401': None,
@@ -772,14 +736,14 @@ class OrdersApi:
     ) -> RequestSerialized:
         _host = None
 
-        _collection_formats: Dict[str, str] = {}
+        _collection_formats: dict[str, str] = {}
 
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]] = {}
-        _body_params: Optional[bytes] = None
+        _path_params: dict[str, str] = {}
+        _query_params: list[tuple[str, str]] = []
+        _header_params: dict[str, str | None] = _headers or {}
+        _form_params: list[tuple[str, str]] = []
+        _files: dict[str, str | bytes | list[str] | list[bytes] | list[tuple[str, bytes]]] = {}
+        _body_params: bytes | None = None
 
         # process the path parameters
         # process the query parameters
@@ -820,7 +784,7 @@ class OrdersApi:
             _header_params['Accept'] = self.api_client.select_header_accept(['application/json'])
 
         # authentication setting
-        _auth_settings: List[str] = ['Bearer']
+        _auth_settings: list[str] = ['Bearer']
 
         return self.api_client.param_serialize(
             method='GET',
@@ -841,27 +805,23 @@ class OrdersApi:
     def get_orders_with_details_async(
         self,
         page_size: Annotated[
-            Optional[Annotated[int, Field(le=100, strict=True, ge=1)]],
+            Annotated[int, Field(le=100, strict=True, ge=1)] | None,
             Field(description='The number of items to return'),
         ] = None,
         start_date_time: Annotated[
-            Optional[datetime], Field(description='Date and time lower bound for items filtering')
+            datetime | None, Field(description='Date and time lower bound for items filtering')
         ] = None,
         end_date_time: Annotated[
-            Optional[datetime], Field(description='Date and time upper bound for items filtering')
+            datetime | None, Field(description='Date and time upper bound for items filtering')
         ] = None,
         continuation_token: Annotated[
-            Optional[StrictStr],
+            StrictStr | None,
             Field(description='The token for retrieving the next page of items'),
         ] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _request_timeout: None | Annotated[StrictFloat, Field(gt=0)] | tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]] = None,
+        _request_auth: dict[StrictStr, Any] | None = None,
+        _content_type: StrictStr | None = None,
+        _headers: dict[StrictStr, Any] | None = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> GetOrdersDetailsResponse:
         """Retrieve pageable list of orders with details
@@ -896,7 +856,7 @@ class OrdersApi:
                             in the spec for a single request.
         :type _host_index: int, optional
         :return: Returns the result object.
-        """  # noqa: E501
+        """
 
         _param = self._get_orders_with_details_async_serialize(
             page_size=page_size,
@@ -909,7 +869,7 @@ class OrdersApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
+        _response_types_map: dict[str, str | None] = {
             '200': 'GetOrdersDetailsResponse',
             '400': 'ErrorResponse',
             '401': None,
@@ -928,27 +888,23 @@ class OrdersApi:
     def get_orders_with_details_async_with_http_info(
         self,
         page_size: Annotated[
-            Optional[Annotated[int, Field(le=100, strict=True, ge=1)]],
+            Annotated[int, Field(le=100, strict=True, ge=1)] | None,
             Field(description='The number of items to return'),
         ] = None,
         start_date_time: Annotated[
-            Optional[datetime], Field(description='Date and time lower bound for items filtering')
+            datetime | None, Field(description='Date and time lower bound for items filtering')
         ] = None,
         end_date_time: Annotated[
-            Optional[datetime], Field(description='Date and time upper bound for items filtering')
+            datetime | None, Field(description='Date and time upper bound for items filtering')
         ] = None,
         continuation_token: Annotated[
-            Optional[StrictStr],
+            StrictStr | None,
             Field(description='The token for retrieving the next page of items'),
         ] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _request_timeout: None | Annotated[StrictFloat, Field(gt=0)] | tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]] = None,
+        _request_auth: dict[StrictStr, Any] | None = None,
+        _content_type: StrictStr | None = None,
+        _headers: dict[StrictStr, Any] | None = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[GetOrdersDetailsResponse]:
         """Retrieve pageable list of orders with details
@@ -983,7 +939,7 @@ class OrdersApi:
                             in the spec for a single request.
         :type _host_index: int, optional
         :return: Returns the result object.
-        """  # noqa: E501
+        """
 
         _param = self._get_orders_with_details_async_serialize(
             page_size=page_size,
@@ -996,7 +952,7 @@ class OrdersApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
+        _response_types_map: dict[str, str | None] = {
             '200': 'GetOrdersDetailsResponse',
             '400': 'ErrorResponse',
             '401': None,
@@ -1015,27 +971,23 @@ class OrdersApi:
     def get_orders_with_details_async_without_preload_content(
         self,
         page_size: Annotated[
-            Optional[Annotated[int, Field(le=100, strict=True, ge=1)]],
+            Annotated[int, Field(le=100, strict=True, ge=1)] | None,
             Field(description='The number of items to return'),
         ] = None,
         start_date_time: Annotated[
-            Optional[datetime], Field(description='Date and time lower bound for items filtering')
+            datetime | None, Field(description='Date and time lower bound for items filtering')
         ] = None,
         end_date_time: Annotated[
-            Optional[datetime], Field(description='Date and time upper bound for items filtering')
+            datetime | None, Field(description='Date and time upper bound for items filtering')
         ] = None,
         continuation_token: Annotated[
-            Optional[StrictStr],
+            StrictStr | None,
             Field(description='The token for retrieving the next page of items'),
         ] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _request_timeout: None | Annotated[StrictFloat, Field(gt=0)] | tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]] = None,
+        _request_auth: dict[StrictStr, Any] | None = None,
+        _content_type: StrictStr | None = None,
+        _headers: dict[StrictStr, Any] | None = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
         """Retrieve pageable list of orders with details
@@ -1070,7 +1022,7 @@ class OrdersApi:
                             in the spec for a single request.
         :type _host_index: int, optional
         :return: Returns the result object.
-        """  # noqa: E501
+        """
 
         _param = self._get_orders_with_details_async_serialize(
             page_size=page_size,
@@ -1083,7 +1035,7 @@ class OrdersApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
+        _response_types_map: dict[str, str | None] = {
             '200': 'GetOrdersDetailsResponse',
             '400': 'ErrorResponse',
             '401': None,
@@ -1107,14 +1059,14 @@ class OrdersApi:
     ) -> RequestSerialized:
         _host = None
 
-        _collection_formats: Dict[str, str] = {}
+        _collection_formats: dict[str, str] = {}
 
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]] = {}
-        _body_params: Optional[bytes] = None
+        _path_params: dict[str, str] = {}
+        _query_params: list[tuple[str, str]] = []
+        _header_params: dict[str, str | None] = _headers or {}
+        _form_params: list[tuple[str, str]] = []
+        _files: dict[str, str | bytes | list[str] | list[bytes] | list[tuple[str, bytes]]] = {}
+        _body_params: bytes | None = None
 
         # process the path parameters
         # process the query parameters
@@ -1155,7 +1107,7 @@ class OrdersApi:
             _header_params['Accept'] = self.api_client.select_header_accept(['application/json'])
 
         # authentication setting
-        _auth_settings: List[str] = ['Bearer']
+        _auth_settings: list[str] = ['Bearer']
 
         return self.api_client.param_serialize(
             method='GET',
@@ -1181,16 +1133,12 @@ class OrdersApi:
                 description='One or several Order Identifiers or Order References separated by semicolon. Order Identifiers are integer numbers. Order References are strings - each must be percent-encoded and surrounded by double quotation marks. The maximum number of identifiers is 100.'
             ),
         ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _request_timeout: None | Annotated[StrictFloat, Field(gt=0)] | tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]] = None,
+        _request_auth: dict[StrictStr, Any] | None = None,
+        _content_type: StrictStr | None = None,
+        _headers: dict[StrictStr, Any] | None = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> List[GetOrderInfoResource]:
+    ) -> list[GetOrderInfoResource]:
         """Retrieve specific orders
 
 
@@ -1216,7 +1164,7 @@ class OrdersApi:
                             in the spec for a single request.
         :type _host_index: int, optional
         :return: Returns the result object.
-        """  # noqa: E501
+        """
 
         _param = self._get_specific_orders_async_serialize(
             order_identifiers=order_identifiers,
@@ -1226,7 +1174,7 @@ class OrdersApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
+        _response_types_map: dict[str, str | None] = {
             '200': 'List[GetOrderInfoResource]',
             '400': 'List[OrderErrorResponse]',
             '401': None,
@@ -1249,16 +1197,12 @@ class OrdersApi:
                 description='One or several Order Identifiers or Order References separated by semicolon. Order Identifiers are integer numbers. Order References are strings - each must be percent-encoded and surrounded by double quotation marks. The maximum number of identifiers is 100.'
             ),
         ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _request_timeout: None | Annotated[StrictFloat, Field(gt=0)] | tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]] = None,
+        _request_auth: dict[StrictStr, Any] | None = None,
+        _content_type: StrictStr | None = None,
+        _headers: dict[StrictStr, Any] | None = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[List[GetOrderInfoResource]]:
+    ) -> ApiResponse[list[GetOrderInfoResource]]:
         """Retrieve specific orders
 
 
@@ -1284,7 +1228,7 @@ class OrdersApi:
                             in the spec for a single request.
         :type _host_index: int, optional
         :return: Returns the result object.
-        """  # noqa: E501
+        """
 
         _param = self._get_specific_orders_async_serialize(
             order_identifiers=order_identifiers,
@@ -1294,7 +1238,7 @@ class OrdersApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
+        _response_types_map: dict[str, str | None] = {
             '200': 'List[GetOrderInfoResource]',
             '400': 'List[OrderErrorResponse]',
             '401': None,
@@ -1317,14 +1261,10 @@ class OrdersApi:
                 description='One or several Order Identifiers or Order References separated by semicolon. Order Identifiers are integer numbers. Order References are strings - each must be percent-encoded and surrounded by double quotation marks. The maximum number of identifiers is 100.'
             ),
         ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _request_timeout: None | Annotated[StrictFloat, Field(gt=0)] | tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]] = None,
+        _request_auth: dict[StrictStr, Any] | None = None,
+        _content_type: StrictStr | None = None,
+        _headers: dict[StrictStr, Any] | None = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
         """Retrieve specific orders
@@ -1352,7 +1292,7 @@ class OrdersApi:
                             in the spec for a single request.
         :type _host_index: int, optional
         :return: Returns the result object.
-        """  # noqa: E501
+        """
 
         _param = self._get_specific_orders_async_serialize(
             order_identifiers=order_identifiers,
@@ -1362,7 +1302,7 @@ class OrdersApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
+        _response_types_map: dict[str, str | None] = {
             '200': 'List[GetOrderInfoResource]',
             '400': 'List[OrderErrorResponse]',
             '401': None,
@@ -1382,14 +1322,14 @@ class OrdersApi:
     ) -> RequestSerialized:
         _host = None
 
-        _collection_formats: Dict[str, str] = {}
+        _collection_formats: dict[str, str] = {}
 
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]] = {}
-        _body_params: Optional[bytes] = None
+        _path_params: dict[str, str] = {}
+        _query_params: list[tuple[str, str]] = []
+        _header_params: dict[str, str | None] = _headers or {}
+        _form_params: list[tuple[str, str]] = []
+        _files: dict[str, str | bytes | list[str] | list[bytes] | list[tuple[str, bytes]]] = {}
+        _body_params: bytes | None = None
 
         # process the path parameters
         if order_identifiers is not None:
@@ -1404,7 +1344,7 @@ class OrdersApi:
             _header_params['Accept'] = self.api_client.select_header_accept(['application/json'])
 
         # authentication setting
-        _auth_settings: List[str] = ['Bearer']
+        _auth_settings: list[str] = ['Bearer']
 
         return self.api_client.param_serialize(
             method='GET',
@@ -1430,16 +1370,12 @@ class OrdersApi:
                 description='One or several Order Identifiers or Order References separated by semicolon. Order Identifiers are integer numbers. Order References are strings - each must be percent-encoded and surrounded by double quotation marks. The maximum number of identifiers is 100.'
             ),
         ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _request_timeout: None | Annotated[StrictFloat, Field(gt=0)] | tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]] = None,
+        _request_auth: dict[StrictStr, Any] | None = None,
+        _content_type: StrictStr | None = None,
+        _headers: dict[StrictStr, Any] | None = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> List[GetOrderDetailsResource]:
+    ) -> list[GetOrderDetailsResource]:
         """Retrieve details of the specific orders
 
         <b>Reserved for ChannelShipper customers only - please visit <a href=\"https://channelshipper.com/\" target=\"_self\">ChannelShipper.com</a> for more information</b>
@@ -1466,7 +1402,7 @@ class OrdersApi:
                             in the spec for a single request.
         :type _host_index: int, optional
         :return: Returns the result object.
-        """  # noqa: E501
+        """
 
         _param = self._get_specific_orders_with_details_async_serialize(
             order_identifiers=order_identifiers,
@@ -1476,7 +1412,7 @@ class OrdersApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
+        _response_types_map: dict[str, str | None] = {
             '200': 'List[GetOrderDetailsResource]',
             '400': 'List[OrderErrorResponse]',
             '401': None,
@@ -1500,16 +1436,12 @@ class OrdersApi:
                 description='One or several Order Identifiers or Order References separated by semicolon. Order Identifiers are integer numbers. Order References are strings - each must be percent-encoded and surrounded by double quotation marks. The maximum number of identifiers is 100.'
             ),
         ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _request_timeout: None | Annotated[StrictFloat, Field(gt=0)] | tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]] = None,
+        _request_auth: dict[StrictStr, Any] | None = None,
+        _content_type: StrictStr | None = None,
+        _headers: dict[StrictStr, Any] | None = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[List[GetOrderDetailsResource]]:
+    ) -> ApiResponse[list[GetOrderDetailsResource]]:
         """Retrieve details of the specific orders
 
         <b>Reserved for ChannelShipper customers only - please visit <a href=\"https://channelshipper.com/\" target=\"_self\">ChannelShipper.com</a> for more information</b>
@@ -1536,7 +1468,7 @@ class OrdersApi:
                             in the spec for a single request.
         :type _host_index: int, optional
         :return: Returns the result object.
-        """  # noqa: E501
+        """
 
         _param = self._get_specific_orders_with_details_async_serialize(
             order_identifiers=order_identifiers,
@@ -1546,7 +1478,7 @@ class OrdersApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
+        _response_types_map: dict[str, str | None] = {
             '200': 'List[GetOrderDetailsResource]',
             '400': 'List[OrderErrorResponse]',
             '401': None,
@@ -1570,14 +1502,10 @@ class OrdersApi:
                 description='One or several Order Identifiers or Order References separated by semicolon. Order Identifiers are integer numbers. Order References are strings - each must be percent-encoded and surrounded by double quotation marks. The maximum number of identifiers is 100.'
             ),
         ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _request_timeout: None | Annotated[StrictFloat, Field(gt=0)] | tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]] = None,
+        _request_auth: dict[StrictStr, Any] | None = None,
+        _content_type: StrictStr | None = None,
+        _headers: dict[StrictStr, Any] | None = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
         """Retrieve details of the specific orders
@@ -1606,7 +1534,7 @@ class OrdersApi:
                             in the spec for a single request.
         :type _host_index: int, optional
         :return: Returns the result object.
-        """  # noqa: E501
+        """
 
         _param = self._get_specific_orders_with_details_async_serialize(
             order_identifiers=order_identifiers,
@@ -1616,7 +1544,7 @@ class OrdersApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
+        _response_types_map: dict[str, str | None] = {
             '200': 'List[GetOrderDetailsResource]',
             '400': 'List[OrderErrorResponse]',
             '401': None,
@@ -1637,14 +1565,14 @@ class OrdersApi:
     ) -> RequestSerialized:
         _host = None
 
-        _collection_formats: Dict[str, str] = {}
+        _collection_formats: dict[str, str] = {}
 
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]] = {}
-        _body_params: Optional[bytes] = None
+        _path_params: dict[str, str] = {}
+        _query_params: list[tuple[str, str]] = []
+        _header_params: dict[str, str | None] = _headers or {}
+        _form_params: list[tuple[str, str]] = []
+        _files: dict[str, str | bytes | list[str] | list[bytes] | list[tuple[str, bytes]]] = {}
+        _body_params: bytes | None = None
 
         # process the path parameters
         if order_identifiers is not None:
@@ -1659,7 +1587,7 @@ class OrdersApi:
             _header_params['Accept'] = self.api_client.select_header_accept(['application/json'])
 
         # authentication setting
-        _auth_settings: List[str] = ['Bearer']
+        _auth_settings: list[str] = ['Bearer']
 
         return self.api_client.param_serialize(
             method='GET',
@@ -1685,14 +1613,10 @@ class OrdersApi:
                 description="At least one of 'orderIdentifier' and 'orderReference' is required. Providing both is disallowed to avoid ambiguity.  When the status is set to 'despatchedByOtherCourier', if the optional parameter 'trackingNumber' is provided then the parameters 'despatchDate', 'shippingCarrier' and 'shippingService' are also required. The maximum collection length is 100. "
             ),
         ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _request_timeout: None | Annotated[StrictFloat, Field(gt=0)] | tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]] = None,
+        _request_auth: dict[StrictStr, Any] | None = None,
+        _content_type: StrictStr | None = None,
+        _headers: dict[StrictStr, Any] | None = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> UpdateOrderStatusResponse:
         """Set order status
@@ -1720,7 +1644,7 @@ class OrdersApi:
                             in the spec for a single request.
         :type _host_index: int, optional
         :return: Returns the result object.
-        """  # noqa: E501
+        """
 
         _param = self._update_orders_status_async_serialize(
             update_orders_status_request=update_orders_status_request,
@@ -1730,7 +1654,7 @@ class OrdersApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
+        _response_types_map: dict[str, str | None] = {
             '200': 'UpdateOrderStatusResponse',
             '400': 'List[OrderUpdateError]',
             '401': None,
@@ -1753,14 +1677,10 @@ class OrdersApi:
                 description="At least one of 'orderIdentifier' and 'orderReference' is required. Providing both is disallowed to avoid ambiguity.  When the status is set to 'despatchedByOtherCourier', if the optional parameter 'trackingNumber' is provided then the parameters 'despatchDate', 'shippingCarrier' and 'shippingService' are also required. The maximum collection length is 100. "
             ),
         ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _request_timeout: None | Annotated[StrictFloat, Field(gt=0)] | tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]] = None,
+        _request_auth: dict[StrictStr, Any] | None = None,
+        _content_type: StrictStr | None = None,
+        _headers: dict[StrictStr, Any] | None = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[UpdateOrderStatusResponse]:
         """Set order status
@@ -1788,7 +1708,7 @@ class OrdersApi:
                             in the spec for a single request.
         :type _host_index: int, optional
         :return: Returns the result object.
-        """  # noqa: E501
+        """
 
         _param = self._update_orders_status_async_serialize(
             update_orders_status_request=update_orders_status_request,
@@ -1798,7 +1718,7 @@ class OrdersApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
+        _response_types_map: dict[str, str | None] = {
             '200': 'UpdateOrderStatusResponse',
             '400': 'List[OrderUpdateError]',
             '401': None,
@@ -1821,14 +1741,10 @@ class OrdersApi:
                 description="At least one of 'orderIdentifier' and 'orderReference' is required. Providing both is disallowed to avoid ambiguity.  When the status is set to 'despatchedByOtherCourier', if the optional parameter 'trackingNumber' is provided then the parameters 'despatchDate', 'shippingCarrier' and 'shippingService' are also required. The maximum collection length is 100. "
             ),
         ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _request_timeout: None | Annotated[StrictFloat, Field(gt=0)] | tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]] = None,
+        _request_auth: dict[StrictStr, Any] | None = None,
+        _content_type: StrictStr | None = None,
+        _headers: dict[StrictStr, Any] | None = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
         """Set order status
@@ -1856,7 +1772,7 @@ class OrdersApi:
                             in the spec for a single request.
         :type _host_index: int, optional
         :return: Returns the result object.
-        """  # noqa: E501
+        """
 
         _param = self._update_orders_status_async_serialize(
             update_orders_status_request=update_orders_status_request,
@@ -1866,7 +1782,7 @@ class OrdersApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
+        _response_types_map: dict[str, str | None] = {
             '200': 'UpdateOrderStatusResponse',
             '400': 'List[OrderUpdateError]',
             '401': None,
@@ -1886,16 +1802,16 @@ class OrdersApi:
     ) -> RequestSerialized:
         _host = None
 
-        _collection_formats: Dict[str, str] = {}
+        _collection_formats: dict[str, str] = {}
 
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[
-            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        _path_params: dict[str, str] = {}
+        _query_params: list[tuple[str, str]] = []
+        _header_params: dict[str, str | None] = _headers or {}
+        _form_params: list[tuple[str, str]] = []
+        _files: dict[
+            str, str | bytes | list[str] | list[bytes] | list[tuple[str, bytes]]
         ] = {}
-        _body_params: Optional[bytes] = None
+        _body_params: bytes | None = None
 
         # process the path parameters
         # process the query parameters
@@ -1929,7 +1845,7 @@ class OrdersApi:
                 _header_params['Content-Type'] = _default_content_type
 
         # authentication setting
-        _auth_settings: List[str] = [
+        _auth_settings: list[str] = [
             'Bearer'
         ]
 

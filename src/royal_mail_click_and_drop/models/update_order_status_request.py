@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from datetime import datetime
-from typing import ClassVar, List
+from typing import ClassVar
 
 from pydantic import Field, StrictInt, StrictStr, field_validator
 
@@ -19,7 +19,7 @@ class UpdateOrderStatusRequest(RMBaseModel):
     despatch_date: datetime | None = None
     shipping_carrier: StrictStr | None = None
     shipping_service: StrictStr | None = None
-    __properties: ClassVar[List[str]] = [
+    __properties: ClassVar[list[str]] = [
         'orderIdentifier',
         'orderReference',
         'status',

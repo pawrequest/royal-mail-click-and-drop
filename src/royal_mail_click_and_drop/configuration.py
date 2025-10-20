@@ -4,8 +4,8 @@ import logging
 from logging import FileHandler
 import multiprocessing
 import sys
-from typing import Any, ClassVar, Dict, List, Literal, Optional, TypedDict, Union
-from typing_extensions import NotRequired, Self
+from typing import Any, ClassVar, Literal, TypedDict
+from typing import NotRequired, Self
 
 import urllib3
 
@@ -16,105 +16,100 @@ JSON_SCHEMA_VALIDATION_KEYWORDS = {
     'minLength', 'pattern', 'maxItems', 'minItems'
 }
 
-ServerVariablesT = Dict[str, str]
+ServerVariablesT = dict[str, str]
 
 GenericAuthSetting = TypedDict(
-    "GenericAuthSetting",
+    'GenericAuthSetting',
     {
-        "type": str,
-        "in": str,
-        "key": str,
-        "value": str,
+        'type': str,
+        'in': str,
+        'key': str,
+        'value': str,
     },
 )
 
 
 OAuth2AuthSetting = TypedDict(
-    "OAuth2AuthSetting",
+    'OAuth2AuthSetting',
     {
-        "type": Literal["oauth2"],
-        "in": Literal["header"],
-        "key": Literal["Authorization"],
-        "value": str,
+        'type': Literal['oauth2'],
+        'in': Literal['header'],
+        'key': Literal['Authorization'],
+        'value': str,
     },
 )
 
 
 APIKeyAuthSetting = TypedDict(
-    "APIKeyAuthSetting",
+    'APIKeyAuthSetting',
     {
-        "type": Literal["api_key"],
-        "in": str,
-        "key": str,
-        "value": Optional[str],
+        'type': Literal['api_key'],
+        'in': str,
+        'key': str,
+        'value': str | None,
     },
 )
 
 
 BasicAuthSetting = TypedDict(
-    "BasicAuthSetting",
+    'BasicAuthSetting',
     {
-        "type": Literal["basic"],
-        "in": Literal["header"],
-        "key": Literal["Authorization"],
-        "value": Optional[str],
+        'type': Literal['basic'],
+        'in': Literal['header'],
+        'key': Literal['Authorization'],
+        'value': str | None,
     },
 )
 
 
 BearerFormatAuthSetting = TypedDict(
-    "BearerFormatAuthSetting",
+    'BearerFormatAuthSetting',
     {
-        "type": Literal["bearer"],
-        "in": Literal["header"],
-        "format": Literal["JWT"],
-        "key": Literal["Authorization"],
-        "value": str,
+        'type': Literal['bearer'],
+        'in': Literal['header'],
+        'format': Literal['JWT'],
+        'key': Literal['Authorization'],
+        'value': str,
     },
 )
 
 
 BearerAuthSetting = TypedDict(
-    "BearerAuthSetting",
+    'BearerAuthSetting',
     {
-        "type": Literal["bearer"],
-        "in": Literal["header"],
-        "key": Literal["Authorization"],
-        "value": str,
+        'type': Literal['bearer'],
+        'in': Literal['header'],
+        'key': Literal['Authorization'],
+        'value': str,
     },
 )
 
 
 HTTPSignatureAuthSetting = TypedDict(
-    "HTTPSignatureAuthSetting",
+    'HTTPSignatureAuthSetting',
     {
-        "type": Literal["http-signature"],
-        "in": Literal["header"],
-        "key": Literal["Authorization"],
-        "value": None,
+        'type': Literal['http-signature'],
+        'in': Literal['header'],
+        'key': Literal['Authorization'],
+        'value': None,
     },
 )
 
 
-AuthSettings = TypedDict(
-    "AuthSettings",
-    {
-        "Bearer": APIKeyAuthSetting,
-    },
-    total=False,
-)
+class AuthSettings(TypedDict, total=False):
+    Bearer: APIKeyAuthSetting
 
 
 class HostSettingVariable(TypedDict):
     description: str
     default_value: str
-    enum_values: List[str]
+    enum_values: list[str]
 
 
 class HostSetting(TypedDict):
     url: str
     description: str
-    variables: NotRequired[Dict[str, HostSettingVariable]]
+    variables: NotRequired[dict[str, HostSettingVariable]]
 
 
 class Configuration:
@@ -172,30 +167,30 @@ conf = royal-mail-click-and-drop.Configuration(
        Cookie: JSESSIONID abc123
     """
 
-    _default: ClassVar[Optional[Self]] = None
+    _default: ClassVar[Self | None] = None
 
     def __init__(
         self,
-        host: Optional[str]=None,
-        api_key: Optional[Dict[str, str]]=None,
-        api_key_prefix: Optional[Dict[str, str]]=None,
-        username: Optional[str]=None,
-        password: Optional[str]=None,
-        access_token: Optional[str]=None,
-        server_index: Optional[int]=None,
-        server_variables: Optional[ServerVariablesT]=None,
-        server_operation_index: Optional[Dict[int, int]]=None,
-        server_operation_variables: Optional[Dict[int, ServerVariablesT]]=None,
+        host: str | None=None,
+        api_key: dict[str, str] | None=None,
+        api_key_prefix: dict[str, str] | None=None,
+        username: str | None=None,
+        password: str | None=None,
+        access_token: str | None=None,
+        server_index: int | None=None,
+        server_variables: ServerVariablesT | None=None,
+        server_operation_index: dict[int, int] | None=None,
+        server_operation_variables: dict[int, ServerVariablesT] | None=None,
         ignore_operation_servers: bool=False,
-        ssl_ca_cert: Optional[str]=None,
-        retries: Optional[int] = None,
-        ca_cert_data: Optional[Union[str, bytes]] = None,
+        ssl_ca_cert: str | None=None,
+        retries: int | None = None,
+        ca_cert_data: str | bytes | None = None,
         *,
-        debug: Optional[bool] = None,
+        debug: bool | None = None,
     ) -> None:
         """Constructor
         """
-        self._base_path = "/api/v1" if host is None else host
+        self._base_path = '/api/v1' if host is None else host
         """Default Base url
         """
         self.server_index = 0 if server_index is None and host is None else server_index
@@ -238,15 +233,15 @@ conf = royal-mail-click-and-drop.Configuration(
         self.logger = {}
         """Logging Settings
         """
-        self.logger["package_logger"] = logging.getLogger("royal-mail-click-and-drop")
-        self.logger["urllib3_logger"] = logging.getLogger("urllib3")
+        self.logger['package_logger'] = logging.getLogger('royal-mail-click-and-drop')
+        self.logger['urllib3_logger'] = logging.getLogger('urllib3')
         self.logger_format = '%(asctime)s %(levelname)s %(message)s'
         """Log format
         """
         self.logger_stream_handler = None
         """Log stream handler
         """
-        self.logger_file_handler: Optional[FileHandler] = None
+        self.logger_file_handler: FileHandler | None = None
         """Log file handler
         """
         self.logger_file = None
@@ -293,7 +288,7 @@ conf = royal-mail-click-and-drop.Configuration(
            cpu_count * 5 is used as default value to increase performance.
         """
 
-        self.proxy: Optional[str] = None
+        self.proxy: str | None = None
         """Proxy URL
         """
         self.proxy_headers = None
@@ -312,15 +307,15 @@ conf = royal-mail-click-and-drop.Configuration(
         """Options to pass down to the underlying urllib3 socket
         """
 
-        self.datetime_format = "%Y-%m-%dT%H:%M:%S.%f%z"
+        self.datetime_format = '%Y-%m-%dT%H:%M:%S.%f%z'
         """datetime format
         """
 
-        self.date_format = "%Y-%m-%d"
+        self.date_format = '%Y-%m-%d'
         """date format
         """
 
-    def __deepcopy__(self, memo:  Dict[int, Any]) -> Self:
+    def __deepcopy__(self, memo:  dict[int, Any]) -> Self:
         cls = self.__class__
         result = cls.__new__(cls)
         memo[id(self)] = result
@@ -338,7 +333,7 @@ conf = royal-mail-click-and-drop.Configuration(
         object.__setattr__(self, name, value)
 
     @classmethod
-    def set_default(cls, default: Optional[Self]) -> None:
+    def set_default(cls, default: Self | None) -> None:
         """Set default instance of configuration.
 
         It stores default configuration, which can be
@@ -373,7 +368,7 @@ conf = royal-mail-click-and-drop.Configuration(
         return cls._default
 
     @property
-    def logger_file(self) -> Optional[str]:
+    def logger_file(self) -> str | None:
         """The logger file.
 
         If the logger_file is None, then add stream handler and remove file
@@ -385,7 +380,7 @@ conf = royal-mail-click-and-drop.Configuration(
         return self.__logger_file
 
     @logger_file.setter
-    def logger_file(self, value: Optional[str]) -> None:
+    def logger_file(self, value: str | None) -> None:
         """The logger file.
 
         If the logger_file is None, then add stream handler and remove file
@@ -457,7 +452,7 @@ conf = royal-mail-click-and-drop.Configuration(
         self.__logger_format = value
         self.logger_formatter = logging.Formatter(self.__logger_format)
 
-    def get_api_key_with_prefix(self, identifier: str, alias: Optional[str]=None) -> Optional[str]:
+    def get_api_key_with_prefix(self, identifier: str, alias: str | None=None) -> str | None:
         """Gets API key (with prefix if set).
 
         :param identifier: The identifier of apiKey.
@@ -470,21 +465,21 @@ conf = royal-mail-click-and-drop.Configuration(
         if key:
             prefix = self.api_key_prefix.get(identifier)
             if prefix:
-                return "%s %s" % (prefix, key)
+                return '%s %s' % (prefix, key)
             else:
                 return key
 
         return None
 
-    def get_basic_auth_token(self) -> Optional[str]:
+    def get_basic_auth_token(self) -> str | None:
         """Gets HTTP basic authentication header (string).
 
         :return: The token for basic HTTP authentication.
         """
-        username = ""
+        username = ''
         if self.username is not None:
             username = self.username
-        password = ""
+        password = ''
         if self.password is not None:
             password = self.password
         return urllib3.util.make_headers(
@@ -513,30 +508,29 @@ conf = royal-mail-click-and-drop.Configuration(
 
         :return: The report for debugging.
         """
-        return "Python SDK Debug Report:\n"\
-               "OS: {env}\n"\
-               "Python Version: {pyversion}\n"\
-               "Version of the API: 1.0.0\n"\
-               "SDK Package Version: 1.0.0".\
-               format(env=sys.platform, pyversion=sys.version)
+        return 'Python SDK Debug Report:\n'\
+               f'OS: {sys.platform}\n'\
+               f'Python Version: {sys.version}\n'\
+               'Version of the API: 1.0.0\n'\
+               'SDK Package Version: 1.0.0'
 
-    def get_host_settings(self) -> List[HostSetting]:
+    def get_host_settings(self) -> list[HostSetting]:
         """Gets an array of host settings
 
         :return: An array of host settings
         """
         return [
             {
-                'url': "/api/v1",
-                'description': "No description provided",
+                'url': '/api/v1',
+                'description': 'No description provided',
             }
         ]
 
     def get_host_from_settings(
         self,
-        index: Optional[int],
-        variables: Optional[ServerVariablesT]=None,
-        servers: Optional[List[HostSetting]]=None,
+        index: int | None,
+        variables: ServerVariablesT | None=None,
+        servers: list[HostSetting] | None=None,
     ) -> str:
         """Gets host URL based on the index and variables
         :param index: array index of the host settings
@@ -554,8 +548,8 @@ conf = royal-mail-click-and-drop.Configuration(
             server = servers[index]
         except IndexError:
             raise ValueError(
-                "Invalid index {0} when selecting the host settings. "
-                "Must be less than {1}".format(index, len(servers)))
+                f'Invalid index {index} when selecting the host settings. '
+                f'Must be less than {len(servers)}')
 
         url = server['url']
 
@@ -567,12 +561,12 @@ conf = royal-mail-click-and-drop.Configuration(
             if 'enum_values' in variable \
                     and used_value not in variable['enum_values']:
                 raise ValueError(
-                    "The variable `{0}` in the host URL has invalid value "
-                    "{1}. Must be {2}.".format(
+                    'The variable `{0}` in the host URL has invalid value '
+                    '{1}. Must be {2}.'.format(
                         variable_name, variables[variable_name],
                         variable['enum_values']))
 
-            url = url.replace("{" + variable_name + "}", used_value)
+            url = url.replace('{' + variable_name + '}', used_value)
 
         return url
 

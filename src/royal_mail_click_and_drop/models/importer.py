@@ -1,10 +1,10 @@
 
 from __future__ import annotations
 
-from typing import ClassVar, List
+from typing import ClassVar
 
 from pydantic import Field
-from typing_extensions import Annotated
+from typing import Annotated
 
 from royal_mail_click_and_drop.models.base import RMBaseModel
 
@@ -12,7 +12,7 @@ from royal_mail_click_and_drop.models.base import RMBaseModel
 class Importer(RMBaseModel):
     """
     Importer
-    """ # noqa: E501
+    """
     company_name: Annotated[str, Field(strict=True, max_length=100)] | None = None
     address_line1: Annotated[str, Field(strict=True, max_length=100)] | None = None
     address_line2: Annotated[str, Field(strict=True, max_length=100)] | None = None
@@ -27,4 +27,4 @@ class Importer(RMBaseModel):
     vat_number: Annotated[str, Field(strict=True, max_length=15)] | None = None
     tax_code: Annotated[str, Field(strict=True, max_length=25)] | None = None
     eori_number: Annotated[str, Field(strict=True, max_length=18)] | None = None
-    __properties: ClassVar[List[str]] = ["companyName", "addressLine1", "addressLine2", "addressLine3", "city", "postcode", "country", "businessName", "contactName", "phoneNumber", "emailAddress", "vatNumber", "taxCode", "eoriNumber"]
+    __properties: ClassVar[list[str]] = ['companyName', 'addressLine1', 'addressLine2', 'addressLine3', 'city', 'postcode', 'country', 'businessName', 'contactName', 'phoneNumber', 'emailAddress', 'vatNumber', 'taxCode', 'eoriNumber']

@@ -1,7 +1,7 @@
-from typing import Any, Dict, List, Optional, Tuple, Union
+from typing import Any
 
 from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
-from typing_extensions import Annotated
+from typing import Annotated
 
 from royal_mail_click_and_drop.models.manifest_details_response import ManifestDetailsResponse
 from royal_mail_click_and_drop.models.manifest_orders_response import ManifestOrdersResponse
@@ -25,14 +25,10 @@ class ManifestsApi:
                 description='The manifest number returned from the initial ‘Manifest eligible orders’ endpoint call'
             ),
         ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _request_timeout: None | Annotated[StrictFloat, Field(gt=0)] | tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]] = None,
+        _request_auth: dict[StrictStr, Any] | None = None,
+        _content_type: StrictStr | None = None,
+        _headers: dict[StrictStr, Any] | None = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ManifestDetailsResponse:
         """Get manifest
@@ -61,7 +57,7 @@ class ManifestsApi:
                             in the spec for a single request.
         :type _host_index: int, optional
         :return: Returns the result object.
-        """  # noqa: E501
+        """
 
         _param = self._get_manifest_async_serialize(
             manifest_identifier=manifest_identifier,
@@ -71,7 +67,7 @@ class ManifestsApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
+        _response_types_map: dict[str, str | None] = {
             '200': 'ManifestDetailsResponse',
             '400': 'ManifestErrorsResponse',
             '401': None,
@@ -95,14 +91,10 @@ class ManifestsApi:
                 description='The manifest number returned from the initial ‘Manifest eligible orders’ endpoint call'
             ),
         ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _request_timeout: None | Annotated[StrictFloat, Field(gt=0)] | tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]] = None,
+        _request_auth: dict[StrictStr, Any] | None = None,
+        _content_type: StrictStr | None = None,
+        _headers: dict[StrictStr, Any] | None = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[ManifestDetailsResponse]:
         """Get manifest
@@ -131,7 +123,7 @@ class ManifestsApi:
                             in the spec for a single request.
         :type _host_index: int, optional
         :return: Returns the result object.
-        """  # noqa: E501
+        """
 
         _param = self._get_manifest_async_serialize(
             manifest_identifier=manifest_identifier,
@@ -141,7 +133,7 @@ class ManifestsApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
+        _response_types_map: dict[str, str | None] = {
             '200': 'ManifestDetailsResponse',
             '400': 'ManifestErrorsResponse',
             '401': None,
@@ -165,14 +157,10 @@ class ManifestsApi:
                 description='The manifest number returned from the initial ‘Manifest eligible orders’ endpoint call'
             ),
         ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _request_timeout: None | Annotated[StrictFloat, Field(gt=0)] | tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]] = None,
+        _request_auth: dict[StrictStr, Any] | None = None,
+        _content_type: StrictStr | None = None,
+        _headers: dict[StrictStr, Any] | None = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
         """Get manifest
@@ -201,7 +189,7 @@ class ManifestsApi:
                             in the spec for a single request.
         :type _host_index: int, optional
         :return: Returns the result object.
-        """  # noqa: E501
+        """
 
         _param = self._get_manifest_async_serialize(
             manifest_identifier=manifest_identifier,
@@ -211,7 +199,7 @@ class ManifestsApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
+        _response_types_map: dict[str, str | None] = {
             '200': 'ManifestDetailsResponse',
             '400': 'ManifestErrorsResponse',
             '401': None,
@@ -265,20 +253,16 @@ class ManifestsApi:
         if 'Accept' not in _header_params:
             _header_params['Accept'] = self.api_client.select_header_accept(['application/json'])
         # authentication setting
-        _auth_settings: List[str] = ['Bearer']
+        _auth_settings: list[str] = ['Bearer']
         return _auth_settings, _body_params, _collection_formats, _files, _form_params, _header_params, _host, _path_params, _query_params
 
     @validate_call
     def manifest_eligible_async(
         self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _request_timeout: None | Annotated[StrictFloat, Field(gt=0)] | tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]] = None,
+        _request_auth: dict[StrictStr, Any] | None = None,
+        _content_type: StrictStr | None = None,
+        _headers: dict[StrictStr, Any] | None = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ManifestOrdersResponse:
         """Manifest eligible orders
@@ -305,7 +289,7 @@ class ManifestsApi:
                             in the spec for a single request.
         :type _host_index: int, optional
         :return: Returns the result object.
-        """  # noqa: E501
+        """
 
         _param = self._manifest_eligible_async_serialize(
             _request_auth=_request_auth,
@@ -314,7 +298,7 @@ class ManifestsApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
+        _response_types_map: dict[str, str | None] = {
             '201': 'ManifestOrdersResponse',
             '202': 'ManifestOrdersResponse',
             '400': 'ManifestErrorsResponse',
@@ -333,14 +317,10 @@ class ManifestsApi:
     @validate_call
     def manifest_eligible_async_with_http_info(
         self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _request_timeout: None | Annotated[StrictFloat, Field(gt=0)] | tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]] = None,
+        _request_auth: dict[StrictStr, Any] | None = None,
+        _content_type: StrictStr | None = None,
+        _headers: dict[StrictStr, Any] | None = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[ManifestOrdersResponse]:
         """Manifest eligible orders
@@ -367,7 +347,7 @@ class ManifestsApi:
                             in the spec for a single request.
         :type _host_index: int, optional
         :return: Returns the result object.
-        """  # noqa: E501
+        """
 
         _param = self._manifest_eligible_async_serialize(
             _request_auth=_request_auth,
@@ -376,7 +356,7 @@ class ManifestsApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
+        _response_types_map: dict[str, str | None] = {
             '201': 'ManifestOrdersResponse',
             '202': 'ManifestOrdersResponse',
             '400': 'ManifestErrorsResponse',
@@ -395,14 +375,10 @@ class ManifestsApi:
     @validate_call
     def manifest_eligible_async_without_preload_content(
         self,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _request_timeout: None | Annotated[StrictFloat, Field(gt=0)] | tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]] = None,
+        _request_auth: dict[StrictStr, Any] | None = None,
+        _content_type: StrictStr | None = None,
+        _headers: dict[StrictStr, Any] | None = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
         """Manifest eligible orders
@@ -429,7 +405,7 @@ class ManifestsApi:
                             in the spec for a single request.
         :type _host_index: int, optional
         :return: Returns the result object.
-        """  # noqa: E501
+        """
 
         _param = self._manifest_eligible_async_serialize(
             _request_auth=_request_auth,
@@ -438,7 +414,7 @@ class ManifestsApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
+        _response_types_map: dict[str, str | None] = {
             '201': 'ManifestOrdersResponse',
             '202': 'ManifestOrdersResponse',
             '400': 'ManifestErrorsResponse',
@@ -462,7 +438,7 @@ class ManifestsApi:
         )
         if 'Accept' not in _header_params:
             _header_params['Accept'] = self.api_client.select_header_accept(['application/json'])
-        _auth_settings: List[str] = ['Bearer']
+        _auth_settings: list[str] = ['Bearer']
 
         return self.api_client.param_serialize(
             method='POST',
@@ -481,13 +457,13 @@ class ManifestsApi:
 
     def manifest_get3(self, _headers):
         _host = self.manifest_get()
-        _collection_formats: Dict[str, str] = {}
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]] = {}
-        _body_params: Optional[bytes] = None
+        _collection_formats: dict[str, str] = {}
+        _path_params: dict[str, str] = {}
+        _query_params: list[tuple[str, str]] = []
+        _header_params: dict[str, str | None] = _headers or {}
+        _form_params: list[tuple[str, str]] = []
+        _files: dict[str, str | bytes | list[str] | list[bytes] | list[tuple[str, bytes]]] = {}
+        _body_params: bytes | None = None
         return _body_params, _collection_formats, _files, _form_params, _header_params, _host, _path_params, _query_params
 
     def manifest_get(self):
@@ -503,14 +479,10 @@ class ManifestsApi:
                 description='The manifest number returned from the initial ‘Manifest eligible orders’ endpoint call'
             ),
         ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _request_timeout: None | Annotated[StrictFloat, Field(gt=0)] | tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]] = None,
+        _request_auth: dict[StrictStr, Any] | None = None,
+        _content_type: StrictStr | None = None,
+        _headers: dict[StrictStr, Any] | None = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ManifestOrdersResponse:
         """Retry manifest
@@ -539,7 +511,7 @@ class ManifestsApi:
                             in the spec for a single request.
         :type _host_index: int, optional
         :return: Returns the result object.
-        """  # noqa: E501
+        """
 
         _param = self._retry_manifest_async_serialize(
             manifest_identifier=manifest_identifier,
@@ -549,7 +521,7 @@ class ManifestsApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
+        _response_types_map: dict[str, str | None] = {
             '201': 'ManifestOrdersResponse',
             '202': 'ManifestOrdersResponse',
             '400': 'ManifestErrorsResponse',
@@ -574,14 +546,10 @@ class ManifestsApi:
                 description='The manifest number returned from the initial ‘Manifest eligible orders’ endpoint call'
             ),
         ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _request_timeout: None | Annotated[StrictFloat, Field(gt=0)] | tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]] = None,
+        _request_auth: dict[StrictStr, Any] | None = None,
+        _content_type: StrictStr | None = None,
+        _headers: dict[StrictStr, Any] | None = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[ManifestOrdersResponse]:
         """Retry manifest
@@ -610,7 +578,7 @@ class ManifestsApi:
                             in the spec for a single request.
         :type _host_index: int, optional
         :return: Returns the result object.
-        """  # noqa: E501
+        """
 
         _param = self._retry_manifest_async_serialize(
             manifest_identifier=manifest_identifier,
@@ -620,7 +588,7 @@ class ManifestsApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
+        _response_types_map: dict[str, str | None] = {
             '201': 'ManifestOrdersResponse',
             '202': 'ManifestOrdersResponse',
             '400': 'ManifestErrorsResponse',
@@ -645,14 +613,10 @@ class ManifestsApi:
                 description='The manifest number returned from the initial ‘Manifest eligible orders’ endpoint call'
             ),
         ],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _request_timeout: None | Annotated[StrictFloat, Field(gt=0)] | tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]] = None,
+        _request_auth: dict[StrictStr, Any] | None = None,
+        _content_type: StrictStr | None = None,
+        _headers: dict[StrictStr, Any] | None = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
         """Retry manifest
@@ -681,7 +645,7 @@ class ManifestsApi:
                             in the spec for a single request.
         :type _host_index: int, optional
         :return: Returns the result object.
-        """  # noqa: E501
+        """
 
         _param = self._retry_manifest_async_serialize(
             manifest_identifier=manifest_identifier,
@@ -691,7 +655,7 @@ class ManifestsApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
+        _response_types_map: dict[str, str | None] = {
             '201': 'ManifestOrdersResponse',
             '202': 'ManifestOrdersResponse',
             '400': 'ManifestErrorsResponse',

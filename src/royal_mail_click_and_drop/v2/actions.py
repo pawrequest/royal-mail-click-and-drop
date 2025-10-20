@@ -96,7 +96,7 @@ def fetch_version(config: Configuration):
             response = client.get_version_async_with_http_info()
             pprint(response.model_dump(), indent=4)
             return response
-        except ApiException as e:
+        except ApiException:
             print('ERROR')
 
 

@@ -2,10 +2,10 @@
 from __future__ import annotations
 
 from datetime import datetime
-from typing import ClassVar, List, Union
+from typing import ClassVar
 
 from pydantic import Field, StrictBool, StrictFloat, StrictInt, StrictStr
-from typing_extensions import Annotated
+from typing import Annotated
 
 from royal_mail_click_and_drop.models.get_order_line_result import GetOrderLineResult
 from royal_mail_click_and_drop.models.get_postal_details_result import GetPostalDetailsResult
@@ -17,7 +17,7 @@ from royal_mail_click_and_drop.models.base import RMBaseModel
 class GetOrderDetailsResource(RMBaseModel):
     """
     GetOrderDetailsResource
-    """ # noqa: E501
+    """
     order_identifier: StrictInt | None = None
     order_status: StrictStr | None = None
     created_on: datetime | None = None
@@ -39,10 +39,10 @@ class GetOrderDetailsResource(RMBaseModel):
     channel_shipping_method: StrictStr | None = None
     special_instructions: StrictStr | None = None
     picker_special_instructions: StrictStr | None = None
-    subtotal: Union[StrictFloat, StrictInt] = Field(description="The total value of all the goods in the order, excluding tax")
-    shipping_cost_charged: Union[StrictFloat, StrictInt] = Field(description="The shipping costs you charged to your customer")
-    order_discount: Union[StrictFloat, StrictInt]
-    total: Union[StrictFloat, StrictInt] = Field(description="The sum of order subtotal, tax and retail shipping costs")
+    subtotal: StrictFloat | StrictInt = Field(description='The total value of all the goods in the order, excluding tax')
+    shipping_cost_charged: StrictFloat | StrictInt = Field(description='The shipping costs you charged to your customer')
+    order_discount: StrictFloat | StrictInt
+    total: StrictFloat | StrictInt = Field(description='The sum of order subtotal, tax and retail shipping costs')
     weight_in_grams: StrictInt
     package_size: StrictStr | None = None
     account_batch_number: StrictStr | None = None
@@ -50,6 +50,6 @@ class GetOrderDetailsResource(RMBaseModel):
     shipping_details: GetShippingDetailsResult
     shipping_info: GetPostalDetailsResult
     billing_info: GetPostalDetailsResult
-    order_lines: List[GetOrderLineResult]
-    tags: List[GetTagDetailsResult] | None = None
-    __properties: ClassVar[List[str]] = ["orderIdentifier", "orderStatus", "createdOn", "printedOn", "shippedOn", "postageAppliedOn", "manifestedOn", "orderDate", "despatchedByOtherCourierOn", "tradingName", "channel", "marketplaceTypeName", "department", "AIRNumber", "requiresExportLicense", "commercialInvoiceNumber", "commercialInvoiceDate", "orderReference", "channelShippingMethod", "specialInstructions", "pickerSpecialInstructions", "subtotal", "shippingCostCharged", "orderDiscount", "total", "weightInGrams", "packageSize", "accountBatchNumber", "currencyCode", "shippingDetails", "shippingInfo", "billingInfo", "orderLines", "tags"]
+    order_lines: list[GetOrderLineResult]
+    tags: list[GetTagDetailsResult] | None = None
+    __properties: ClassVar[list[str]] = ['orderIdentifier', 'orderStatus', 'createdOn', 'printedOn', 'shippedOn', 'postageAppliedOn', 'manifestedOn', 'orderDate', 'despatchedByOtherCourierOn', 'tradingName', 'channel', 'marketplaceTypeName', 'department', 'AIRNumber', 'requiresExportLicense', 'commercialInvoiceNumber', 'commercialInvoiceDate', 'orderReference', 'channelShippingMethod', 'specialInstructions', 'pickerSpecialInstructions', 'subtotal', 'shippingCostCharged', 'orderDiscount', 'total', 'weightInGrams', 'packageSize', 'accountBatchNumber', 'currencyCode', 'shippingDetails', 'shippingInfo', 'billingInfo', 'orderLines', 'tags']

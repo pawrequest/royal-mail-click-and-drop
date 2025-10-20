@@ -1,9 +1,9 @@
 from __future__ import annotations
 
-from typing import ClassVar, List
+from typing import ClassVar
 
 from pydantic import Field, StrictStr
-from typing_extensions import Annotated
+from typing import Annotated
 
 from royal_mail_click_and_drop.models.dimensions_request import DimensionsRequest
 from royal_mail_click_and_drop.models.product_item_request import ProductItemRequest
@@ -20,8 +20,8 @@ class ShipmentPackageRequest(RMBaseModel):
         description="This field will be deprecated in the future. Please use 'packageFormatIdentifier' for custom package formats from ChannelShipper.",
     )
     dimensions: DimensionsRequest | None = None
-    contents: List[ProductItemRequest] | None = None
-    __properties: ClassVar[List[str]] = [
+    contents: list[ProductItemRequest] | None = None
+    __properties: ClassVar[list[str]] = [
         'weightInGrams',
         'packageFormatIdentifier',
         'customPackageFormatIdentifier',

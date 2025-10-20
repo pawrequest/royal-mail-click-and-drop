@@ -3,7 +3,7 @@ import pprint
 from typing import Self, Any
 
 from pydantic import BaseModel, ConfigDict, AliasGenerator
-from pydantic.alias_generators import to_pascal, to_camel
+from pydantic.alias_generators import to_camel
 
 
 class RMBaseModel(BaseModel):

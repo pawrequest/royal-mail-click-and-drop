@@ -1,10 +1,10 @@
 
 from __future__ import annotations
 
-from typing import ClassVar, List
+from typing import ClassVar
 
 from pydantic import Field
-from typing_extensions import Annotated
+from typing import Annotated
 
 from royal_mail_click_and_drop.models.base import RMBaseModel
 
@@ -12,7 +12,7 @@ from royal_mail_click_and_drop.models.base import RMBaseModel
 class GetTagDetailsResult(RMBaseModel):
     """
     GetTagDetailsResult
-    """ # noqa: E501
+    """
     key: Annotated[str, Field(strict=True, max_length=100)] | None = None
     value: Annotated[str, Field(strict=True, max_length=100)] | None = None
-    __properties: ClassVar[List[str]] = ["key", "value"]
+    __properties: ClassVar[list[str]] = ['key', 'value']

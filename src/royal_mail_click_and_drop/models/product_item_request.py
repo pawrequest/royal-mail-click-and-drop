@@ -1,9 +1,9 @@
 from __future__ import annotations
 
-from typing import ClassVar, List, Optional, Union
+from typing import ClassVar
 
 from pydantic import Field, StrictBool, StrictStr, field_validator
-from typing_extensions import Annotated
+from typing import Annotated
 
 from royal_mail_click_and_drop.models.base import RMBaseModel
 
@@ -18,12 +18,7 @@ class ProductItemRequest(RMBaseModel):
     quantity: Annotated[int, Field(le=999999, strict=True, ge=1)] = Field(
         description='The number of units in a given line'
     )
-    unit_value: Optional[
-        Union[
-            Annotated[float, Field(multiple_of=0.01, le=999999, strict=True, ge=0)],
-            Annotated[int, Field(le=999999, strict=True, ge=0)],
-        ]
-    ] = Field(
+    unit_value: Annotated[float, Field(multiple_of=0.01, le=999999, strict=True, ge=0)] | Annotated[int, Field(le=999999, strict=True, ge=0)] | None = Field(
         default=None, description='The price of a single unit excluding tax'
     )
     unit_weight_in_grams: Annotated[int, Field(le=999999, strict=True, ge=0)] | None = Field(
@@ -60,7 +55,7 @@ class ProductItemRequest(RMBaseModel):
     certificate_number: Annotated[str, Field(strict=True, max_length=41)] | None = Field(
         default=None
     )
-    __properties: ClassVar[List[str]] = [
+    __properties: ClassVar[list[str]] = [
         'name',
         'SKU',
         'quantity',

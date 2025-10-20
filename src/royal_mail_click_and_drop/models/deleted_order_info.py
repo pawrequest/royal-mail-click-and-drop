@@ -1,7 +1,7 @@
 
 from __future__ import annotations
 
-from typing import ClassVar, List
+from typing import ClassVar
 
 from pydantic import StrictInt, StrictStr
 
@@ -12,4 +12,4 @@ class DeletedOrderInfo(RMBaseModel):
     order_identifier: StrictInt | None = None
     order_reference: StrictStr | None = None
     order_info: StrictStr | None = None
-    __properties: ClassVar[List[str]] = ["orderIdentifier", "orderReference", "orderInfo"]
+    __properties: ClassVar[list[str]] = ['orderIdentifier', 'orderReference', 'orderInfo']

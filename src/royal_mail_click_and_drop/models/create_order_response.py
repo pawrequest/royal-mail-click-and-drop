@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 from datetime import datetime
-from typing import ClassVar, List
+from typing import ClassVar
 
 from pydantic import Field, StrictInt, StrictStr
 
@@ -19,7 +19,7 @@ class CreateOrderResponse(RMBaseModel):
     manifested_on: datetime | None = None
     shipped_on: datetime | None = None
     tracking_number: StrictStr | None = None
-    label: StrictStr | None = Field(default=None, description="label in format base64 string")
-    label_errors: List[CreateOrderLabelErrorResponse] | None = None
-    generated_documents: List[StrictStr] | None = None
-    __properties: ClassVar[List[str]] = ["orderIdentifier", "orderReference", "createdOn", "orderDate", "printedOn", "manifestedOn", "shippedOn", "trackingNumber", "label", "labelErrors", "generatedDocuments"]
+    label: StrictStr | None = Field(default=None, description='label in format base64 string')
+    label_errors: list[CreateOrderLabelErrorResponse] | None = None
+    generated_documents: list[StrictStr] | None = None
+    __properties: ClassVar[list[str]] = ['orderIdentifier', 'orderReference', 'createdOn', 'orderDate', 'printedOn', 'manifestedOn', 'shippedOn', 'trackingNumber', 'label', 'labelErrors', 'generatedDocuments']

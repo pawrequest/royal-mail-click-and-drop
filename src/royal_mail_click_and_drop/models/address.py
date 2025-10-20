@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from pawdantic.paw_types import str_length_const
 from pydantic import Field
-from typing_extensions import Annotated
+from typing import Annotated
 
 from royal_mail_click_and_drop.models.base import RMBaseModel
 

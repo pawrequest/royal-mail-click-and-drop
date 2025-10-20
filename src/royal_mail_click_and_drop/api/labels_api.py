@@ -1,7 +1,7 @@
-from typing import Any, Dict, List, Optional, Tuple, Union
+from typing import Any
 
 from pydantic import Field, StrictBool, StrictFloat, StrictInt, StrictStr, validate_call
-from typing_extensions import Annotated
+from typing import Annotated
 
 from royal_mail_click_and_drop.api_client import ApiClient, RequestSerialized
 from royal_mail_click_and_drop.api_response import ApiResponse
@@ -30,25 +30,21 @@ class LabelsApi:
             ),
         ],
         include_returns_label: Annotated[
-            Optional[StrictBool],
+            StrictBool | None,
             Field(
                 description="Include returns label. Required when documentType is set to 'postageLabel'"
             ),
         ] = None,
         include_cn: Annotated[
-            Optional[StrictBool],
+            StrictBool | None,
             Field(
                 description='Include CN22/CN23 with label. Optional parameter. If this parameter is used the setting will override the default account behaviour specified in the "Label format" setting "Generate customs declarations with orders"'
             ),
         ] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _request_timeout: None | Annotated[StrictFloat, Field(gt=0)] | tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]] = None,
+        _request_auth: dict[StrictStr, Any] | None = None,
+        _content_type: StrictStr | None = None,
+        _headers: dict[StrictStr, Any] | None = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> bytearray:
         """Return a single PDF file with generated label and/or associated document(s)
@@ -95,7 +91,7 @@ class LabelsApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
+        _response_types_map: dict[str, str | None] = {
             '200': 'bytearray',
             '400': 'List[OrderErrorResponse]',
             '401': None,
@@ -126,25 +122,21 @@ class LabelsApi:
             ),
         ],
         include_returns_label: Annotated[
-            Optional[StrictBool],
+            StrictBool | None,
             Field(
                 description="Include returns label. Required when documentType is set to 'postageLabel'"
             ),
         ] = None,
         include_cn: Annotated[
-            Optional[StrictBool],
+            StrictBool | None,
             Field(
                 description='Include CN22/CN23 with label. Optional parameter. If this parameter is used the setting will override the default account behaviour specified in the "Label format" setting "Generate customs declarations with orders"'
             ),
         ] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _request_timeout: None | Annotated[StrictFloat, Field(gt=0)] | tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]] = None,
+        _request_auth: dict[StrictStr, Any] | None = None,
+        _content_type: StrictStr | None = None,
+        _headers: dict[StrictStr, Any] | None = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[bytearray]:
         """Return a single PDF file with generated label and/or associated document(s)
@@ -179,7 +171,7 @@ class LabelsApi:
                             in the spec for a single request.
         :type _host_index: int, optional
         :return: Returns the result object.
-        """  # noqa: E501
+        """
 
         _param = self._get_orders_label_async_serialize(
             order_identifiers=order_identifiers,
@@ -192,7 +184,7 @@ class LabelsApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
+        _response_types_map: dict[str, str | None] = {
             '200': 'bytearray',
             '400': 'List[OrderErrorResponse]',
             '401': None,
@@ -223,25 +215,21 @@ class LabelsApi:
             ),
         ],
         include_returns_label: Annotated[
-            Optional[StrictBool],
+            StrictBool | None,
             Field(
                 description="Include returns label. Required when documentType is set to 'postageLabel'"
             ),
         ] = None,
         include_cn: Annotated[
-            Optional[StrictBool],
+            StrictBool | None,
             Field(
                 description='Include CN22/CN23 with label. Optional parameter. If this parameter is used the setting will override the default account behaviour specified in the "Label format" setting "Generate customs declarations with orders"'
             ),
         ] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]],
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _request_timeout: None | Annotated[StrictFloat, Field(gt=0)] | tuple[Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]] = None,
+        _request_auth: dict[StrictStr, Any] | None = None,
+        _content_type: StrictStr | None = None,
+        _headers: dict[StrictStr, Any] | None = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
         """Return a single PDF file with generated label and/or associated document(s)
@@ -276,7 +264,7 @@ class LabelsApi:
                             in the spec for a single request.
         :type _host_index: int, optional
         :return: Returns the result object.
-        """  # noqa: E501
+        """
 
         _param = self._get_orders_label_async_serialize(
             order_identifiers=order_identifiers,
@@ -289,7 +277,7 @@ class LabelsApi:
             _host_index=_host_index,
         )
 
-        _response_types_map: Dict[str, Optional[str]] = {
+        _response_types_map: dict[str, str | None] = {
             '200': 'bytearray',
             '400': 'List[OrderErrorResponse]',
             '401': None,
@@ -313,14 +301,14 @@ class LabelsApi:
     ) -> RequestSerialized:
         _host = None
 
-        _collection_formats: Dict[str, str] = {}
+        _collection_formats: dict[str, str] = {}
 
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]] = {}
-        _body_params: Optional[bytes] = None
+        _path_params: dict[str, str] = {}
+        _query_params: list[tuple[str, str]] = []
+        _header_params: dict[str, str | None] = _headers or {}
+        _form_params: list[tuple[str, str]] = []
+        _files: dict[str, str | bytes | list[str] | list[bytes] | list[tuple[str, bytes]]] = {}
+        _body_params: bytes | None = None
 
         # process the path parameters
         if order_identifiers is not None:
@@ -346,7 +334,7 @@ class LabelsApi:
             )
 
         # authentication setting
-        _auth_settings: List[str] = ['Bearer']
+        _auth_settings: list[str] = ['Bearer']
 
         return self.api_client.param_serialize(
             method='GET',
