@@ -1,10 +1,10 @@
 from __future__ import annotations
 
-from pawdantic.paw_types import str_length_const
 from pydantic import Field
 from typing import Annotated
 
 from royal_mail_click_and_drop.models.base import RMBaseModel
+from royal_mail_click_and_drop.v2.consts import str_length_const
 
 
 class AddressRequest(RMBaseModel):

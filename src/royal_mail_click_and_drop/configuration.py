@@ -465,7 +465,8 @@ conf = royal-mail-click-and-drop.Configuration(
         if key:
             prefix = self.api_key_prefix.get(identifier)
             if prefix:
-                return '%s %s' % (prefix, key)
+                # return '%s %s' % (prefix, key)
+                return f'{prefix} {key}'
             else:
                 return key
 
@@ -548,8 +549,8 @@ conf = royal-mail-click-and-drop.Configuration(
             server = servers[index]
         except IndexError:
             raise ValueError(
-                f'Invalid index {index} when selecting the host settings. '
-                f'Must be less than {len(servers)}')
+                f'Invalid index {index} when selecting the host settings. Must be less than {len(servers)}'
+            )
 
         url = server['url']
 
@@ -561,12 +562,21 @@ conf = royal-mail-click-and-drop.Configuration(
             if 'enum_values' in variable \
                     and used_value not in variable['enum_values']:
                 raise ValueError(
-                    'The variable `{0}` in the host URL has invalid value '
-                    '{1}. Must be {2}.'.format(
-                        variable_name, variables[variable_name],
-                        variable['enum_values']))
+                    f'The variable `{variable_name}` in the host URL has invalid value '
+                    f'{variables[variable_name]}. Must be {variable["enum_values"]}.'
+                )
 
             url = url.replace('{' + variable_name + '}', used_value)
+            #
+            # if 'enum_values' in variable \
+            #         and used_value not in variable['enum_values']:
+            #     raise ValueError(
+            #         'The variable `{0}` in the host URL has invalid value '
+            #         '{1}. Must be {2}.'.format(
+            #             variable_name, variables[variable_name],
+            #             variable['enum_values']))
+            #
+            # url = url.replace('{' + variable_name + '}', used_value)
 
         return url
 

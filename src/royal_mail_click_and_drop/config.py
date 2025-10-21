@@ -35,7 +35,6 @@ class RoyalMailSettings(BaseSettings):
     config: Configuration | None = None
     tracking_url_stem: str = r'https://www.royalmail.com/track-your-item#/tracking-results/'
 
-
     @classmethod
     @lru_cache
     def from_env(cls, env_name='ROYAL_MAIL_ENV') -> Self:
@@ -56,7 +55,6 @@ class RoyalMailSettings(BaseSettings):
         stem = self.tracking_url_stem
         tlink = f'{stem}PB{shipment_num}{parcel_num}'
         return tlink
-
 
     model_config = SettingsConfigDict()
 

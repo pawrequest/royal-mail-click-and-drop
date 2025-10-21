@@ -1,10 +1,11 @@
-import os
 from datetime import datetime
-from typing import Generator
+from pprint import pprint
+from collections.abc import Generator
 
 import pytest
 
 from royal_mail_click_and_drop.models import CreateOrderRequest
+from royal_mail_click_and_drop.models.shipment_package_request import PackageFormat
 from royal_mail_click_and_drop.v2.client import RoyalMailClient
 
 from royal_mail_click_and_drop.config import RoyalMailSettings
@@ -19,6 +20,7 @@ from royal_mail_click_and_drop import (
     GetOrdersResponse,
 )
 from royal_mail_click_and_drop.v2.consts import SendNotifcationsTo
+from royal_mail_click_and_drop.v2.services import RoyalMailServiceCode
 
 
 # @pytest.fixture
@@ -26,12 +28,12 @@ from royal_mail_click_and_drop.v2.consts import SendNotifcationsTo
 #     return CONFIGURATION
 
 
-@pytest.fixture
+@pytest.fixture(scope='session')
 def sample_settings():
     return RoyalMailSettings.from_env('ROYAL_MAIL_ENV')
 
 
-@pytest.fixture
+@pytest.fixture(scope='session')
 def recip_address():
     return AddressRequest(
         full_name='Testy Testson',
@@ -46,7 +48,7 @@ def recip_address():
     )
 
 
-@pytest.fixture()
+@pytest.fixture(scope='session')
 def sender_address():
     return AddressRequest(
         full_name='MY SENDER NAME',
@@ -61,7 +63,7 @@ def sender_address():
     )
 
 
-@pytest.fixture
+@pytest.fixture(scope='session')
 def recipient(recip_address):
     return RecipientDetailsRequest(
         address=recip_address,
@@ -70,8 +72,8 @@ def recipient(recip_address):
     )
 
 
-@pytest.fixture
-def billing_(sender_address):
+@pytest.fixture(scope='session')
+def sample_billing(sender_address):
     return BillingDetailsRequest(
         address=sender_address,
         phone_number='07888888888',
@@ -79,57 +81,64 @@ def billing_(sender_address):
     )
 
 
-@pytest.fixture
-def packages_():
+@pytest.fixture(scope='session')
+def sample_packages():
     return [
         ShipmentPackageRequest(
             weight_in_grams=100,
-            package_format_identifier='smallParcel',
+            package_format_identifier=PackageFormat.PARCEL,
         )
     ]
 
+
 #
-# @pytest.fixture
-# def sample_postage_details():
-#     res = PostageDetailsRequest(
-#         # send_notifications_to=SendNotifcationsTo.SENDER,
-#         service_code='RM24',
-#         receive_email_notification=True,
-#     )
-#     return res.model_validate(res)
+@pytest.fixture(scope='session')
+def sample_postage_details() -> PostageDetailsRequest:
+    return PostageDetailsRequest(
+        send_notifications_to=SendNotifcationsTo.BILLING,
+        service_code=RoyalMailServiceCode.NEXT_DAY,
+        receive_email_notification=True,
+        receive_sms_notification=True,
+    )
 
 
-@pytest.fixture
-def order(recipient, packages_, billing_):
+@pytest.fixture(scope='session')
+def _sample_order(recipient, sample_packages, sample_billing, sample_postage_details):
     return CreateOrderRequest(
         recipient=recipient.model_dump(),
         order_date=datetime.now(),
         subtotal=0,
         shipping_cost_charged=0,
         total=0,
-        packages=packages_,
-        billing=billing_,
-        # postage_details=sample_postage_details,
+        packages=sample_packages,
+        billing=sample_billing,  # should be unnecessary with webportal settings
+        postage_details=sample_postage_details,
     )
 
 
-@pytest.fixture
-def orders(order):
+@pytest.fixture(scope='session')
+def sample_orders(_sample_order):
     return CreateOrdersRequest(
-        items=[order],
+        items=[_sample_order],
     )
 
 
-@pytest.fixture
+@pytest.fixture(scope='session')
 def sample_client(sample_settings) -> Generator[RoyalMailClient, None, None]:
     """Test client - automatically removes orders created during testing on completion"""
     client = RoyalMailClient(settings=sample_settings)
     orders_before: GetOrdersResponse = client.fetch_orders()
+    pprint(orders_before.model_dump())
 
     yield client
+
+    print('Deleting Test Orders')
 
     orders_after: GetOrdersResponse = client.fetch_orders()
     for o in orders_after.orders:
         if o not in orders_before.orders:
             res = client.cancel_shipment(order_ident=o.order_identifier)
-            assert o.order_identifier in [_.order_identifier for _ in res.deleted_orders], 'WARNING, FAILED TO DELETE TEST ORDERS!!'
+            assert o.order_identifier in [_.order_identifier for _ in res.deleted_orders], (
+                'WARNING, FAILED TO DELETE TEST ORDERS!!'
+            )
+            print('Deleted Test Orders')

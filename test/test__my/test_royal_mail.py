@@ -7,13 +7,21 @@ sample_client should delete test orders but best to check [online portal](http:/
 
 """
 
+import pytest
+
 from royal_mail_click_and_drop.models.create_orders_response import CreateOrdersResponse
 
 
-def test_lots(sample_client, tmp_path, orders):
-    order_response: CreateOrdersResponse = sample_client.book_shipment(orders)
-    order_identifier = order_response.created_orders[0].order_identifier
+@pytest.fixture(scope='session')
+def sample_booking_response(sample_client, sample_orders) -> CreateOrdersResponse:
+    return sample_client.book_shipment(sample_orders)
+
+
+def test_lots(sample_booking_response, tmp_path):
+    order_identifier = sample_booking_response.created_orders[0].order_identifier
+    order_ident2 = sample_booking_response.created_orders_idents
     assert order_identifier
+    assert order_ident2 == str(order_identifier)
 
     # manifest orders
     # res = do_manifest(config)

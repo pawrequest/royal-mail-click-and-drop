@@ -1,4 +1,3 @@
-
 """
 ChannelShipper & Royal Mail Public API
 
@@ -62,9 +61,7 @@ class ApiClient:
     }
     _pool = None
 
-    def __init__(
-        self, configuration=None, header_name=None, header_value=None, cookie=None
-    ) -> None:
+    def __init__(self, configuration=None, header_name=None, header_value=None, cookie=None) -> None:
         # use default configuration if none is provided
         if configuration is None:
             configuration = Configuration.get_default()
@@ -177,9 +174,10 @@ class ApiClient:
             path_params = self.parameters_to_tuples(path_params, collection_formats)
             for k, v in path_params:
                 # specified safe chars, encode everything
-                resource_path = resource_path.replace(
-                    '{%s}' % k, quote(str(v), safe=config.safe_chars_for_path_param)
-                )
+                # resource_path = resource_path.replace(
+                #     '{%s}' % k, quote(str(v), safe=config.safe_chars_for_path_param)
+                # )
+                resource_path = resource_path.replace(f'{{{k}}}', quote(str(v), safe=config.safe_chars_for_path_param))
 
         # post parameters
         if post_params or files:
@@ -268,11 +266,7 @@ class ApiClient:
         assert response_data.data is not None, msg
 
         response_type = response_types_map.get(str(response_data.status), None)
-        if (
-            not response_type
-            and isinstance(response_data.status, int)
-            and 100 <= response_data.status <= 599
-        ):
+        if not response_type and isinstance(response_data.status, int) and 100 <= response_data.status <= 599:
             # if not found, look for '1XX', '2XX', etc.
             response_type = response_types_map.get(str(response_data.status)[0] + 'XX', None)
 
@@ -371,9 +365,7 @@ class ApiClient:
                 data = json.loads(response_text)
             except ValueError:
                 data = response_text
-        elif re.match(
-            r'^application/(json|[\w!#$&.+-^_]+\+json)\s*(;|$)', content_type, re.IGNORECASE
-        ):
+        elif re.match(r'^application/(json|[\w!#$&.+-^_]+\+json)\s*(;|$)', content_type, re.IGNORECASE):
             if response_text == '':
                 data = ''
             else:
@@ -381,9 +373,7 @@ class ApiClient:
         elif re.match(r'^text\/[a-z.+-]+\s*(;|$)', content_type, re.IGNORECASE):
             data = response_text
         else:
-            raise ApiException(
-                status=0, reason=f'Unsupported content type: {content_type}'
-            )
+            raise ApiException(status=0, reason=f'Unsupported content type: {content_type}')
 
         return self.__deserialize(data, response_type)
 
@@ -419,13 +409,13 @@ class ApiClient:
 
         if klass in self.PRIMITIVE_TYPES:
             return self.__deserialize_primitive(data, klass)
-        elif klass == object:
+        elif klass is object:
             return self.__deserialize_object(data)
-        elif klass == datetime.date:
+        elif klass is datetime.date:
             return self.__deserialize_date(data)
-        elif klass == datetime.datetime:
+        elif klass is datetime.datetime:
             return self.__deserialize_datetime(data)
-        elif klass == decimal.Decimal:
+        elif klass is decimal.Decimal:
             return decimal.Decimal(data)
         elif issubclass(klass, Enum):
             return self.__deserialize_enum(data, klass)
@@ -582,13 +572,9 @@ class ApiClient:
             for auth in auth_settings:
                 auth_setting = self.configuration.auth_settings().get(auth)
                 if auth_setting:
-                    self._apply_auth_params(
-                        headers, queries, resource_path, method, body, auth_setting
-                    )
+                    self._apply_auth_params(headers, queries, resource_path, method, body, auth_setting)
 
-    def _apply_auth_params(
-        self, headers, queries, resource_path, method, body, auth_setting
-    ) -> None:
+    def _apply_auth_params(self, headers, queries, resource_path, method, body, auth_setting) -> None:
         """Updates the request parameters based on a single auth_setting
 
         :param headers: Header parameters dict to be updated.
@@ -670,9 +656,7 @@ class ApiClient:
         except ImportError:
             return string
         except ValueError:
-            raise rest.ApiException(
-                status=0, reason=f'Failed to parse `{string}` as date object'
-            )
+            raise rest.ApiException(status=0, reason=f'Failed to parse `{string}` as date object')
 
     def __deserialize_datetime(self, string):
         """Deserializes string to datetime.
@@ -687,9 +671,7 @@ class ApiClient:
         except ImportError:
             return string
         except ValueError:
-            raise rest.ApiException(
-                status=0, reason=(f'Failed to parse `{string}` as datetime object')
-            )
+            raise rest.ApiException(status=0, reason=(f'Failed to parse `{string}` as datetime object'))
 
     def __deserialize_enum(self, data, klass):
         """Deserializes primitive type to enum.

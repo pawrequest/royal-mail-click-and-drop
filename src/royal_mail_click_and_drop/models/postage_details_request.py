@@ -7,6 +7,8 @@ from pydantic import Field, StrictBool, StrictStr, field_validator
 from typing import Annotated
 
 from royal_mail_click_and_drop.models.base import RMBaseModel
+from royal_mail_click_and_drop.v2.consts import SendNotifcationsTo
+from royal_mail_click_and_drop.v2.services import RoyalMailServiceCode
 
 
 class PostageDetailsRequest(RMBaseModel):
@@ -14,8 +16,8 @@ class PostageDetailsRequest(RMBaseModel):
     PostageDetailsRequest
     """
 
-    service_code: Annotated[str, Field(strict=True, max_length=10)] | None = None
-    send_notifications_to: StrictStr | None = None
+    service_code: RoyalMailServiceCode | None = None
+    send_notifications_to: SendNotifcationsTo | None = None
 
     carrier_name: Annotated[str, Field(strict=True, max_length=50)] | None = None
     service_register_code: Annotated[str, Field(strict=True, max_length=2)] | None = None

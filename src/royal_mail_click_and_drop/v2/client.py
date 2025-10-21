@@ -21,7 +21,7 @@ from royal_mail_click_and_drop.v2.actions import (
 )
 
 
-class RoyalMailServiceCode(StrEnum):
+class RoyalMailPackageFormat(StrEnum):
     PARCEL = 'parcel'
 
 

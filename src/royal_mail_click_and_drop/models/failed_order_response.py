@@ -14,4 +14,4 @@ class FailedOrderResponse(RMBaseModel):
     __properties: ClassVar[list[str]] = ['order', 'errors']
 
     def get_errors_str(self):
-        return ', '.join([_.error_message for _ in self.errors])
+        return ', '.join(_.error_message for _ in self.errors)

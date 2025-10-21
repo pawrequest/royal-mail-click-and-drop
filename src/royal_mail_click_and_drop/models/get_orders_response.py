@@ -19,5 +19,5 @@ class GetOrdersResponse(RMBaseModel):
 
     @property
     def order_ident_string(self):
-        return ';'.join([str(_.order_identifier) for _ in self.orders])
+        return ';'.join(str(_.order_identifier) for _ in self.orders)
 

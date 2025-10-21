@@ -1,4 +1,3 @@
-
 from __future__ import annotations
 
 from typing import ClassVar
@@ -15,4 +14,9 @@ class CreateOrdersResponse(RMBaseModel):
     errors_count: StrictInt | None = None
     created_orders: list[CreateOrderResponse] | None = None
     failed_orders: list[FailedOrderResponse] | None = None
+
+    @property
+    def created_orders_idents(self) -> str:
+        return ','.join(str(_.order_identifier) for _ in self.created_orders)
+
     __properties: ClassVar[list[str]] = ['successCount', 'errorsCount', 'createdOrders', 'failedOrders']
