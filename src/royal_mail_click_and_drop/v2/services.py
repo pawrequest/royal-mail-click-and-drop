@@ -9,3 +9,23 @@ class RoyalMailServiceCode(StrEnum):
     EXPRESS_24_PRE_10 = 'PFE10'
 
 
+class RoyalMailServiceCodeFull(StrEnum):
+    InternationalEconomy = 'IEOLP'
+    InternationalSigned = 'ISIOLP'
+    InternationalSignedDuplicate = 'ISIOLP'
+    InternationalStandard = 'ISOLP'
+    InternationalTrackedHeavier = 'ITHCOLP'
+    InternationalTrackedHeavierDuplicate = 'ITHCOLP'
+    InternationalTrackedSignedHeavier = 'ITHOLPSF'
+    InternationalTrackedSignedHeavierDuplicate = 'ITHOLPSF'
+    InternationalTracked = 'ITROLP'
+    InternationalTrackedDuplicate = 'ITROLP'
+    InternationalTrackedSigned = 'ITSOLP'
+    InternationalTrackedSignedDuplicate = 'ITSOLP'
+    RoyalMail1stClass = 'OLP1'
+    RoyalMailSignedFor1stClass = 'OLP1SF'
+    RoyalMail2ndClass = 'OLP2'
+    RoyalMailSignedFor2ndClass = 'OLP2SF'
+    express10 = 'PFE10'
+    express10Comp1 = 'PFE10'
+    express10Comp2 = 'PFE10'
