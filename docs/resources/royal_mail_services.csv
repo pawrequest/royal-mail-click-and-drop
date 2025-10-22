@@ -1,0 +1,20 @@
+Service code,Carrier,Service name,Compensation
+IEOLP,International Economy,Royal Mail OLP,20.00
+ISIOLP,International Signed,Royal Mail OLP,250.00
+ISIOLP,International Signed,Royal Mail OLP,50.00
+ISOLP,International Standard,Royal Mail OLP,20.00
+ITHCOLP,International Tracked Heavier,Royal Mail OLP,250.00
+ITHCOLP,International Tracked Heavier,Royal Mail OLP,50.00
+ITHOLPSF,International Tracked & Signed Heavier,Royal Mail OLP,250.00
+ITHOLPSF,International Tracked & Signed Heavier,Royal Mail OLP,50.00
+ITROLP,International Tracked,Royal Mail OLP,250.00
+ITROLP,International Tracked,Royal Mail OLP,50.00
+ITSOLP,International Tracked & Signed,Royal Mail OLP,250.00
+ITSOLP,International Tracked & Signed,Royal Mail OLP,50.00
+OLP1,Royal Mail 1st Class,Royal Mail OLP,20.00
+OLP1SF,Royal Mail Signed For 1st Class,Royal Mail OLP,20.00
+OLP2,Royal Mail 2nd Class,Royal Mail OLP,20.00
+OLP2SF,Royal Mail Signed For 2nd Class,Royal Mail OLP,20.00
+PFE10,express10,Royal Mail OLP,150.00
+PFE10,express10 Comp 1,Royal Mail OLP,750.00
+PFE10,express10 Comp 2,Royal Mail OLP,"1,000.00"

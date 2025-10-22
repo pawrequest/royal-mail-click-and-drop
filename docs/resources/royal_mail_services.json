@@ -1,0 +1,116 @@
+[
+    {
+        "Service code":"IEOLP",
+        "Carrier":"International Economy",
+        "Service name":"Royal Mail OLP",
+        "Compensation":"20.00"
+    },
+    {
+        "Service code":"ISIOLP",
+        "Carrier":"International Signed",
+        "Service name":"Royal Mail OLP",
+        "Compensation":"250.00"
+    },
+    {
+        "Service code":"ISIOLP",
+        "Carrier":"International Signed",
+        "Service name":"Royal Mail OLP",
+        "Compensation":"50.00"
+    },
+    {
+        "Service code":"ISOLP",
+        "Carrier":"International Standard",
+        "Service name":"Royal Mail OLP",
+        "Compensation":"20.00"
+    },
+    {
+        "Service code":"ITHCOLP",
+        "Carrier":"International Tracked Heavier",
+        "Service name":"Royal Mail OLP",
+        "Compensation":"250.00"
+    },
+    {
+        "Service code":"ITHCOLP",
+        "Carrier":"International Tracked Heavier",
+        "Service name":"Royal Mail OLP",
+        "Compensation":"50.00"
+    },
+    {
+        "Service code":"ITHOLPSF",
+        "Carrier":"International Tracked & Signed Heavier",
+        "Service name":"Royal Mail OLP",
+        "Compensation":"250.00"
+    },
+    {
+        "Service code":"ITHOLPSF",
+        "Carrier":"International Tracked & Signed Heavier",
+        "Service name":"Royal Mail OLP",
+        "Compensation":"50.00"
+    },
+    {
+        "Service code":"ITROLP",
+        "Carrier":"International Tracked",
+        "Service name":"Royal Mail OLP",
+        "Compensation":"250.00"
+    },
+    {
+        "Service code":"ITROLP",
+        "Carrier":"International Tracked",
+        "Service name":"Royal Mail OLP",
+        "Compensation":"50.00"
+    },
+    {
+        "Service code":"ITSOLP",
+        "Carrier":"International Tracked & Signed",
+        "Service name":"Royal Mail OLP",
+        "Compensation":"250.00"
+    },
+    {
+        "Service code":"ITSOLP",
+        "Carrier":"International Tracked & Signed",
+        "Service name":"Royal Mail OLP",
+        "Compensation":"50.00"
+    },
+    {
+        "Service code":"OLP1",
+        "Carrier":"Royal Mail 1st Class",
+        "Service name":"Royal Mail OLP",
+        "Compensation":"20.00"
+    },
+    {
+        "Service code":"OLP1SF",
+        "Carrier":"Royal Mail Signed For 1st Class",
+        "Service name":"Royal Mail OLP",
+        "Compensation":"20.00"
+    },
+    {
+        "Service code":"OLP2",
+        "Carrier":"Royal Mail 2nd Class",
+        "Service name":"Royal Mail OLP",
+        "Compensation":"20.00"
+    },
+    {
+        "Service code":"OLP2SF",
+        "Carrier":"Royal Mail Signed For 2nd Class",
+        "Service name":"Royal Mail OLP",
+        "Compensation":"20.00"
+    },
+    {
+        "Service code":"PFE10",
+        "Carrier":"express10",
+        "Service name":"Royal Mail OLP",
+        "Compensation":"150.00"
+    },
+    {
+        "Service code":"PFE10",
+        "Carrier":"express10 Comp 1",
+        "Service name":"Royal Mail OLP",
+        "Compensation":"750.00"
+    },
+    {
+        "Service code":"PFE10",
+        "Carrier":"express10 Comp 2",
+        "Service name":"Royal Mail OLP",
+        "Compensation":"1,000.00"
+    }
+]
