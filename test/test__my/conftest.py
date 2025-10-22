@@ -81,9 +81,10 @@ def sample_billing(sender_address):
 def sample_packages():
     return [
         ShipmentPackageRequest(
-            weight_in_grams=100,
+            weight_in_grams=10000,
             package_format_identifier=PackageFormat.PARCEL,
         )
+        for _ in range(2)
     ]
 
 
@@ -91,9 +92,10 @@ def sample_packages():
 def sample_postage_details() -> PostageDetailsRequest:
     return PostageDetailsRequest(
         send_notifications_to=SendNotifcationsTo.RECIPIENT,
-        service_code=RoyalMailServiceCode.EXPRESS_24,
+        service_code=RoyalMailServiceCode.TRACKED_24,
         receive_email_notification=True,
         receive_sms_notification=True,
+        # is_local_collect=True,
     )
 
 
