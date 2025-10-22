@@ -16,7 +16,11 @@ class CreateOrdersResponse(RMBaseModel):
     failed_orders: list[FailedOrderResponse] | None = None
 
     @property
-    def created_orders_idents(self) -> str:
-        return ','.join(str(_.order_identifier) for _ in self.created_orders)
+    def created_orders_idents(self) -> list[int]:
+        return [_.order_identifier for _ in self.created_orders]
+
+    @property
+    def created_orders_idents_str(self) -> str:
+        return ','.join(str(_) for _ in self.created_orders_idents)
 
     __properties: ClassVar[list[str]] = ['successCount', 'errorsCount', 'createdOrders', 'failedOrders']

@@ -12,7 +12,11 @@ class DeleteOrdersResource(RMBaseModel):
     errors: list[OrderErrorInfo] | None = None
 
     @property
-    def deleted_order_idents(self):
-        return ','.join(str(_.order_identifier) for _ in self.deleted_orders)
+    def idents(self) -> list[int]:
+        return [_.order_identifier for _ in self.deleted_orders]
+
+    @property
+    def idents_str(self) -> str:
+        return ','.join(str(_) for _ in self.idents)
 
     __properties: ClassVar[list[str]] = ['deletedOrders', 'errors']
