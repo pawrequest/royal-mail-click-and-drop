@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import date, datetime, timedelta
 
 import pytest
 
@@ -18,7 +18,10 @@ from royal_mail_click_and_drop import (
 from royal_mail_click_and_drop.v2.consts import SendNotifcationsTo
 from royal_mail_click_and_drop.v2.services import RoyalMailServiceCode
 
-
+TEST_DATE = date.today() + timedelta(days=2)
+if TEST_DATE.weekday() in (5, 6):
+    TEST_DATE += timedelta(days=7 - TEST_DATE.weekday())
+TEST_DATE = datetime.combine(TEST_DATE, datetime.min.time())
 # @pytest.fixture
 # def config() -> Configuration:
 #     return CONFIGURATION
@@ -92,7 +95,7 @@ def sample_packages():
 def sample_postage_details() -> PostageDetailsRequest:
     return PostageDetailsRequest(
         send_notifications_to=SendNotifcationsTo.RECIPIENT,
-        service_code=RoyalMailServiceCode.TRACKED_24,
+        service_code=RoyalMailServiceCode.EXPRESS_24,
         receive_email_notification=True,
         receive_sms_notification=True,
         # is_local_collect=True,
@@ -110,6 +113,7 @@ def _sample_order(recipient, sample_packages, sample_billing, sample_postage_det
         packages=sample_packages,
         billing=sample_billing,  # should be unnecessary with webportal settings
         postage_details=sample_postage_details,
+        planned_despatch_date=TEST_DATE,
     )
 
 
