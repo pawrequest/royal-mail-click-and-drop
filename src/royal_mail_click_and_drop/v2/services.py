@@ -1,12 +1,21 @@
 from enum import StrEnum
 
 
-class RoyalMailServiceCode(StrEnum):
+class RoyalMailServiceCodeClickDrop(StrEnum):
     TRACKED_24 = 'TOLP24'  # no signature.
     TRACKED_24_SIGNED = 'TOLP24SF'
     SPECIAL_PRE_12 = 'SD1OLP'  # £750 comp... use 'SD2OLP' for 1,000 or 'SD3OLP' for 2,500
     EXPRESS_24 = 'PFE24'
     EXPRESS_24_PRE_10 = 'PFE10'
+
+
+class RoyalMailServiceCode(StrEnum):
+    EXPRESS_24 = 'NDA'
+    FIRST_CLASS_SIGNED = 'BPR1'
+    EXPRESS_AM = 'FEE'
+    EXPRESS_10 = 'TE1'
+    SPECIAL_1PM = 'SD1'
+    SPECIAL_9AM = 'SD4'
 
 
 class RoyalMailServiceCodeFull(StrEnum):
