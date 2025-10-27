@@ -1,7 +1,7 @@
 [project]
 name = "royal-mail-click-and-drop"
 license = "MIT"
-version = "0.0.7"
+version = "0.0.8"
 description = "Royal Mail Click and Drop Client"
 authors = [
     { name = "pawrequest", email = "royal_mail+pawrequest@users.noreply.github.com" }
