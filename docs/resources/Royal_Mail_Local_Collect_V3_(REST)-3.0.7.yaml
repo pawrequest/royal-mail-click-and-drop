@@ -1,0 +1,590 @@
+swagger: '2.0'
+info:
+  x-ibm-name: royal-mail-local-collect-v3-rest
+  version: 3.0.7
+  title: Royal Mail Local Collect V3 (REST)
+  description: Local Collect is a delivery enhancement to Royal Mail Tracked & Special Delivery Guaranteed products that enables customers to benefit from ‘Click and Collect’ options by having their parcels delivered to participating Post Offices and Royal Mail Customer Service Points. The Local Collect API allows customers to retrieve an up-to-date list of Post Offices and Royal Mail Customer Service Points, where the item can be held awaiting collection. There are no costs to customers for using the Local Collect API services, however development costs must be covered by the customer. Royal Mail will not accept any responsibility for these development, implementation and testing costs.
+schemes:
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+securityDefinitions:
+  CLIENT_ID:
+    in: header
+    name: X-IBM-Client-Id
+    type: apiKey
+security:
+  - CLIENT_ID: []
+basePath: /localcollect/v3
+paths:
+  /locations:
+    get:
+      tags:
+        - locations
+      summary: Get locations within radius of postcode/geo-coordinates ordered by distance
+      operationId: locations
+      parameters:
+        - name: correlationId
+          in: query
+          description: System assigned reference. UUID or GUID
+          required: false
+          type: string
+        - name: locType
+          in: query
+          description: LocationType and/or supplier filter to search locations
+          required: false
+          type: string
+        - name: postcode
+          in: query
+          description: Postcode around which to search locations
+          required: false
+          type: string
+        - name: latitude
+          in: query
+          description: Latitude. Value range -90 to 90. Maximum 7 decimal place digits allowed
+          required: false
+          type: number
+        - name: longitude
+          in: query
+          description: Longitude. Value range -180 to 180. Maximum 7 decimal place digits allowed
+          required: false
+          type: number
+        - name: localcollect
+          in: query
+          description: localcollect flag can be true or false
+          required: false
+          type: boolean
+          default: 'true'
+        - name: searchRadius
+          in: query
+          description: The maximum distance from postcode or geo coordinates to search locations in miles. Min value = 1, Max value = 20
+          required: false
+          type: integer
+        - name: resultsCount
+          in: query
+          description: The maximum number of locations to return. Min value= 1, Max value = 20
+          required: false
+          type: integer
+      responses:
+        '200':
+          description: Locations Response
+          schema:
+            $ref: '#/definitions/LocationResponseData'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/400_LocationResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/401'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/404'
+        '405':
+          description: Method Not Allowed
+          schema:
+            $ref: '#/definitions/405'
+        '429':
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/429'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/500'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/503'
+      security:
+        - CLIENT_ID: []
+  /locations/reference:
+    get:
+      tags:
+        - locations
+      summary: Get Products and Dimensions for all LocationTypes
+      operationId: locationsReference
+      parameters:
+        - name: correlationId
+          in: query
+          description: System assigned reference. UUID or GUID
+          required: false
+          type: string
+      responses:
+        '200':
+          description: Response for Get Reference Locations
+          schema:
+            $ref: '#/definitions/LocationReferenceData'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/400_LocationReferenceResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/401'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/404'
+        '405':
+          description: Method Not Allowed
+          schema:
+            $ref: '#/definitions/405'
+        '429':
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/429'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/500'
+        '503':
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/503'
+      security:
+        - CLIENT_ID: []
+definitions:
+  '401':
+    allOf:
+      - $ref: '#/definitions/errorResponse'
+    example:
+      httpCode: '401'
+      httpMessage: Unauthorized
+      moreInformation: Invalid client id or secret.
+    type: object
+    description: Unauthorized Error
+  '404':
+    allOf:
+      - $ref: '#/definitions/errorResponse'
+    example:
+      httpCode: '404'
+      httpMessage: Not Found
+      moreInformation: No resources match requested URI
+  '405':
+    allOf:
+      - $ref: '#/definitions/errorResponse'
+    example:
+      httpCode: '405'
+      httpMessage: Method Not Allowed
+      moreInformation: The method is not allowed for the requested URL
+  '429':
+    allOf:
+      - $ref: '#/definitions/errorResponse'
+    description: Too Many Requests
+    example:
+      httpCode: '429'
+      httpMessage: Too Many Requests
+      moreInformation: The rate limit has been exceeded for the plan or operation being used.
+    type: object
+  '500':
+    allOf:
+      - $ref: '#/definitions/errorResponse'
+    example:
+      httpCode: '500'
+      httpMessage: Internal Server Error
+      errors:
+        - code: E0000
+          description: Internal Server Error
+          cause: An internal error was identified while attempting to process your API request
+          resolution: Please try again later
+    description: Rest Client Error Response Model
+  '503':
+    allOf:
+      - $ref: '#/definitions/errorResponse'
+    example:
+      httpCode: '503'
+      httpMessage: Service Unavailable
+      errors:
+        - code: E0001
+          description: Service Unavailable
+          cause: An internal error was identified while attempting to process your API request
+          resolution: Please try again later
+  400_LocationResponse:
+    allOf:
+      - $ref: '#/definitions/errorResponse'
+    example:
+      httpCode: '400'
+      httpMessage: Bad Request
+      errors:
+        - code: E1398
+          description: postcode or (longitude & latitude) is null or empty
+          cause: Missing or empty mandatory fields.
+          resolution: Check mandatory field(s) and resubmit
+    type: object
+  400_LocationReferenceResponse:
+    allOf:
+      - $ref: '#/definitions/errorResponse'
+    example:
+      httpCode: '400'
+      httpMessage: Bad Request
+      errors:
+        - code: E1398
+          description: Some error occured
+          cause: Missing or empty mandatory fields.
+          resolution: Check mandatory field(s) and resubmit
+    type: object
+  ServiceGroup:
+    type: object
+    properties:
+      name:
+        type: string
+        example: MONEY
+      services:
+        type: array
+        items:
+          $ref: '#/definitions/Service'
+  SpecificDate:
+    type: object
+    properties:
+      date:
+        type: string
+        example: '2024-10-24'
+      times:
+        type: array
+        items:
+          $ref: '#/definitions/Times'
+  LocationReferenceData:
+    type: object
+    properties:
+      locationsData:
+        $ref: '#/definitions/LocationsData'
+  MaxDimensions:
+    required:
+      - height
+      - length
+      - width
+    type: object
+    properties:
+      height:
+        type: number
+        format: double
+        example: 5
+      width:
+        type: number
+        format: double
+        example: 10
+      length:
+        type: number
+        format: double
+        example: 20
+      weight:
+        type: number
+        format: double
+        example: 10
+  LocationsData:
+    type: object
+    properties:
+      locations:
+        type: array
+        items:
+          $ref: '#/definitions/Location'
+  BusinessDay:
+    required:
+      - businessDay
+      - openingTimes
+    type: object
+    properties:
+      businessDay:
+        type: string
+        example: MON
+      collectionTimes:
+        type: array
+        items:
+          $ref: '#/definitions/Times'
+      openingTimes:
+        type: array
+        items:
+          $ref: '#/definitions/Times'
+      lunchHours:
+        type: array
+        items:
+          $ref: '#/definitions/Times'
+  Service:
+    type: object
+    properties:
+      name:
+        type: string
+        example: MGRAM
+      value:
+        type: string
+        example: MoneyGram
+  LocationDetails:
+    required:
+      - addressLine1
+      - locationName
+      - postcode
+      - supplementCode
+      - supplierCode
+      - supplierLocationType
+      - supplierName
+    type: object
+    properties:
+      supplierLocationType:
+        type: string
+        example: QUAD Locker
+      supplierCode:
+        type: string
+        example: QUAD
+      supplierName:
+        type: string
+        example: Quadient
+      supplementCode:
+        type: string
+        example: '12'
+      locationId:
+        type: string
+        example: 2adbedad-8528-42e9-b5ad-6dfd320d8f1b
+      labelId:
+        type: string
+        example: 57959c63-e09f-4fa6-a84c-8f70a1cdb4e8
+      locationName:
+        type: string
+        example: Londons Top Nails
+      addressLine1:
+        type: string
+        example: 542 Holloway Road
+      addressLine2:
+        type: string
+        example: addressLine2
+      addressLine3:
+        type: string
+        example: addressLine3
+      addressLine4:
+        type: string
+        example: addressLine4
+      addressLine5:
+        type: string
+        example: addressLine5
+      county:
+        type: string
+        example: Essex
+      town:
+        type: string
+        example: London
+      postcode:
+        type: string
+        example: N7 6JP
+      country:
+        type: string
+        example: United Kingdom
+      telephoneNumber:
+        type: string
+        example: '+44123456789'
+  GeoDetails:
+    required:
+      - distance
+      - latitude
+      - longitude
+    type: object
+    properties:
+      latitude:
+        type: number
+        format: double
+        example: 44.6515
+      longitude:
+        type: number
+        format: double
+        example: -108.66773
+      distance:
+        type: number
+        format: double
+        example: 10
+  TplmsLocation:
+    required:
+      - geoDetails
+      - locationDetails
+    type: object
+    properties:
+      type:
+        type: string
+        example: LOK
+      locationDetails:
+        $ref: '#/definitions/LocationDetails'
+      geoDetails:
+        $ref: '#/definitions/GeoDetails'
+      serviceGroups:
+        type: array
+        items:
+          $ref: '#/definitions/ServiceGroup'
+      facilities:
+        type: array
+        items:
+          $ref: '#/definitions/Facility'
+      localCollectAvailable:
+        type: boolean
+        example: true
+      dropOffAvailable:
+        type: boolean
+        example: true
+      productVariant:
+        $ref: '#/definitions/ProductVariant'
+      schedule:
+        $ref: '#/definitions/Schedule'
+      dimensions:
+        $ref: '#/definitions/Dimensions'
+      additionalAttributes:
+        type: object
+        additionalProperties:
+          type: string
+  Times:
+    type: object
+    properties:
+      startAt:
+        type: string
+        example: '08:00'
+      endAt:
+        type: string
+        example: '10:00'
+  Facility:
+    type: object
+    properties:
+      name:
+        type: string
+        example: DISABILITY
+      value:
+        type: string
+        example: Disability access
+  LocationResponseData:
+    type: object
+    properties:
+      locations:
+        type: array
+        items:
+          $ref: '#/definitions/TplmsLocation'
+  Product:
+    type: object
+    properties:
+      code:
+        type: string
+        example: TPL
+  Dimensions:
+    type: object
+    properties:
+      rmSize:
+        type: string
+        example: Large
+      max:
+        $ref: '#/definitions/MaxDimensions'
+  Schedule:
+    required:
+      - businessDays
+    type: object
+    properties:
+      businessDays:
+        type: array
+        items:
+          $ref: '#/definitions/BusinessDay'
+      bankHolidays:
+        type: array
+        items:
+          $ref: '#/definitions/Times'
+      dates:
+        type: array
+        items:
+          $ref: '#/definitions/SpecificDate'
+  ProductVariant:
+    type: object
+    properties:
+      acceptSignature:
+        type: boolean
+      acceptNonSignature:
+        type: boolean
+  Location:
+    required:
+      - supplementCode
+      - supplierLocationType
+      - type
+    type: object
+    properties:
+      type:
+        type: string
+        example: LOK
+      supplierCode:
+        type: string
+        example: QUAD
+      supplierLocationType:
+        type: string
+        example: Q Parcel Locker
+      supplementCode:
+        type: string
+        example: LC1
+      products:
+        type: array
+        items:
+          $ref: '#/definitions/Product'
+      acceptSignature:
+        type: boolean
+      acceptNonSignature:
+        type: boolean
+      serviceGroups:
+        type: array
+        items:
+          $ref: '#/definitions/ServiceGroup'
+      facilities:
+        type: array
+        items:
+          $ref: '#/definitions/Facility'
+      dimensions:
+        $ref: '#/definitions/Dimensions'
+  errorResponse:
+    properties:
+      httpCode:
+        type: string
+        description: HTTP error code.  Please note that this will only be populated in the event of an error condition.
+        example: '500'
+      httpMessage:
+        type: string
+        description: HTTP error code description. Please note that this will only be populated in the event of an error condition.
+        example: Internal Server Error
+      moreInformation:
+        type: string
+        description: Information relating to the error condition.
+      errors:
+        type: array
+        items:
+          $ref: '#/definitions/errorsDef'
+    additionalProperties: false
+    required:
+      - httpCode
+      - httpMessage
+  errorsDef:
+    properties:
+      code:
+        type: string
+        description: Code associated with the error condition
+        example: E0000
+      description:
+        type: string
+        description: Description of the error condition
+        example: Internal exception occurred
+      cause:
+        type: string
+        description: Cause of the error (if known)
+        example: An internal error was identified while attempting to process your API request
+      resolution:
+        type: string
+        description: Description of the resolution and action required to correct the error
+        example: Please try again later
+    additionalProperties: false
+    description: Array containing error information.
+tags: []
+x-ibm-configuration:
+  enforced: true
+  testable: true
+  phase: realized
+  cors:
+    enabled: true
+  type: rest
+  servers:
+    - url: https://api.royalmail.net/localcollect/v3
+      description: Prod API Endpoint
+      type:
+        - production
+        - development
+host: api.royalmail.net
