@@ -1,4 +1,3 @@
-from enum import StrEnum
 from pprint import pprint
 
 from pydantic import ConfigDict
@@ -21,21 +20,10 @@ from royal_mail_click_and_drop.config import RoyalMailSettings
 from royal_mail_click_and_drop.models.base import RMBaseModel
 
 
-class RoyalMailPackageFormat(StrEnum):
-    PARCEL = 'parcel'
-
-
 class RoyalMailClient(RMBaseModel):
     model_config = ConfigDict(arbitrary_types_allowed=True)
     settings: RoyalMailSettings
     _config: Configuration | None = None
-    _api_client: ApiClient | None = None
-
-    @property
-    def api_client(self):
-        if self._api_client is None:
-            self._api_client = ApiClient(self.config)
-        return self._api_client
 
     @property
     def config(self):
@@ -44,10 +32,9 @@ class RoyalMailClient(RMBaseModel):
         return self._config
 
     def book_shipment(self, orders: CreateOrdersRequest) -> CreateOrdersResponse:
-        # with ApiClient(self.config) as client:
-        with self.api_client as client:
-            c = OrdersApi(client)
-            response = c.create_orders_async(create_orders_request=orders)
+        with ApiClient(self.config) as client:
+            api = OrdersApi(client)
+            response = api.create_orders_async(create_orders_request=orders)
             errors = [
                 f'Error in {error.fields}: {error.error_code} - {error.error_message}'
                 for fail in response.failed_orders
@@ -60,22 +47,20 @@ class RoyalMailClient(RMBaseModel):
 
     def cancel_shipment(self, order_ident: str | int) -> DeleteOrdersResource:
         ident = str(order_ident)
-        # with ApiClient(self.config) as rm:
-        with self.api_client as client:
-            client = OrdersApi(client)
+        with ApiClient(self.config) as client:
+            api = OrdersApi(client)
             try:
-                response = client.delete_orders_async(order_identifiers=ident)
+                response = api.delete_orders_async(order_identifiers=ident)
             except ApiException as e:
                 print(f'Exception when calling OrdersApi->delete_orders_async: {e}\n')
                 raise
         return response
 
     def fetch_orders(self):
-        # with ApiClient(self.config) as rm:
-        with self.api_client as client:
-            client = OrdersApi(client)
+        with ApiClient(self.config) as client:
+            api = OrdersApi(client)
             try:
-                response: GetOrdersResponse = client.get_orders_async()
+                response: GetOrdersResponse = api.get_orders_async()
                 pprint(response.model_dump(), indent=4, width=120)
             except ApiException as e:
                 print(f'Exception when calling OrdersApi->delete_orders_async: {e}\n')
@@ -83,11 +68,10 @@ class RoyalMailClient(RMBaseModel):
         return response
 
     def get_label_content(self, order_idents: str):
-        # with ApiClient(self.config) as rm:
-        with self.api_client as client:
-            client = LabelsApi(client)
+        with ApiClient(self.config) as client:
+            api = LabelsApi(client)
             try:
-                response: bytearray = client.get_orders_label_async(
+                response: bytearray = api.get_orders_label_async(
                     order_identifiers=order_idents,
                     document_type='postageLabel',
                     include_returns_label=False,
@@ -98,27 +82,25 @@ class RoyalMailClient(RMBaseModel):
                 raise
         return response
 
-    def save_label(self, order_idents: str, outpath):
+    def get_save_label(self, order_idents: str, outpath) -> bytearray:
         response = self.get_label_content(order_idents)
         with open(outpath, 'wb') as f:
             f.write(response)
-        return None
+        return response
 
     def do_manifest(self) -> ManifestOrdersResponse:
-        # with ApiClient(self.config) as rm:
-        with self.api_client as rm:
-            client = ManifestsApi(rm)
-            resp: ManifestOrdersResponse = client.manifest_eligible_async()
+        with ApiClient(self.config) as client:
+            api = ManifestsApi(client)
+            resp: ManifestOrdersResponse = api.manifest_eligible_async()
             mainfest_num = resp.manifest_number
             print(f'Manifested Orders, fetched Manifest Number: {mainfest_num}')
             return resp
 
     def fetch_version(self):
-        # with ApiClient(self.config) as rm:
-        with self.api_client as rm:
-            client = VersionApi(rm)
+        with ApiClient(self.config) as client:
+            api = VersionApi(client)
             try:
-                response = client.get_version_async_with_http_info()
+                response = api.get_version_async_with_http_info()
                 pprint(response.model_dump(), indent=4)
             except ApiException:
                 print('ERROR')
