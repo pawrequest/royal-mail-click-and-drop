@@ -20,7 +20,7 @@ from royal_mail_click_and_drop.v2.services import RoyalMailServiceCode
 
 TEST_DATE = date.today() + timedelta(days=2)
 if TEST_DATE.weekday() in (5, 6):
-    TEST_DATE += timedelta(days=7 - TEST_DATE.weekday())
+    TEST_DATE += timedelta(days=3)
 TEST_DATE = datetime.combine(TEST_DATE, datetime.min.time())
 # @pytest.fixture
 # def config() -> Configuration:
