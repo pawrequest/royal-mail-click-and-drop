@@ -1,24 +1,24 @@
 from enum import StrEnum
+from pprint import pprint
 
 from pydantic import ConfigDict
 
 from royal_mail_click_and_drop import (
+    ApiClient,
+    ApiException,
     Configuration,
     CreateOrdersRequest,
     CreateOrdersResponse,
     DeleteOrdersResource,
+    GetOrdersResponse,
+    LabelsApi,
+    ManifestOrdersResponse,
+    ManifestsApi,
+    OrdersApi,
+    VersionApi,
 )
 from royal_mail_click_and_drop.config import RoyalMailSettings
 from royal_mail_click_and_drop.models.base import RMBaseModel
-from royal_mail_click_and_drop.v2.actions import (
-    book_shipment,
-    cancel_shipment,
-    do_manifest,
-    fetch_orders,
-    fetch_version,
-    get_label_data,
-    save_label,
-)
 
 
 class RoyalMailPackageFormat(StrEnum):
@@ -29,6 +29,13 @@ class RoyalMailClient(RMBaseModel):
     model_config = ConfigDict(arbitrary_types_allowed=True)
     settings: RoyalMailSettings
     _config: Configuration | None = None
+    _api_client: ApiClient | None = None
+
+    @property
+    def api_client(self):
+        if self._api_client is None:
+            self._api_client = ApiClient(self.config)
+        return self._api_client
 
     @property
     def config(self):
@@ -37,25 +44,85 @@ class RoyalMailClient(RMBaseModel):
         return self._config
 
     def book_shipment(self, orders: CreateOrdersRequest) -> CreateOrdersResponse:
-        return book_shipment(orders, self.config)
+        # with ApiClient(self.config) as client:
+        with self.api_client as client:
+            c = OrdersApi(client)
+            response = c.create_orders_async(create_orders_request=orders)
+            errors = [
+                f'Error in {error.fields}: {error.error_code} - {error.error_message}'
+                for fail in response.failed_orders
+                for error in fail.errors
+            ]
+            if errors:
+                pprint(errors, indent=4, width=120)
+                raise ApiException('\n'.join(errors))
+            return response
 
     def cancel_shipment(self, order_ident: str | int) -> DeleteOrdersResource:
-        return cancel_shipment(str(order_ident), self.config)
+        ident = str(order_ident)
+        # with ApiClient(self.config) as rm:
+        with self.api_client as client:
+            client = OrdersApi(client)
+            try:
+                response = client.delete_orders_async(order_identifiers=ident)
+            except ApiException as e:
+                print(f'Exception when calling OrdersApi->delete_orders_async: {e}\n')
+                raise
+        return response
 
     def fetch_orders(self):
-        return fetch_orders(self.config)
+        # with ApiClient(self.config) as rm:
+        with self.api_client as client:
+            client = OrdersApi(client)
+            try:
+                response: GetOrdersResponse = client.get_orders_async()
+                pprint(response.model_dump(), indent=4, width=120)
+            except ApiException as e:
+                print(f'Exception when calling OrdersApi->delete_orders_async: {e}\n')
+                raise
+        return response
 
     def get_label_content(self, order_idents: str):
-        return get_label_data(order_idents, self.config)
+        # with ApiClient(self.config) as rm:
+        with self.api_client as client:
+            client = LabelsApi(client)
+            try:
+                response: bytearray = client.get_orders_label_async(
+                    order_identifiers=order_idents,
+                    document_type='postageLabel',
+                    include_returns_label=False,
+                    include_cn=False,
+                )
+            except ApiException as e:
+                print(f'Exception when calling LabelsApi->get_orders_label_async: {e}\n')
+                raise
+        return response
 
     def save_label(self, order_idents: str, outpath):
-        return save_label(order_idents, outpath, self.config)
+        response = self.get_label_content(order_idents)
+        with open(outpath, 'wb') as f:
+            f.write(response)
+        return None
 
-    def do_manifest(self):
-        return do_manifest(self.config)
+    def do_manifest(self) -> ManifestOrdersResponse:
+        # with ApiClient(self.config) as rm:
+        with self.api_client as rm:
+            client = ManifestsApi(rm)
+            resp: ManifestOrdersResponse = client.manifest_eligible_async()
+            mainfest_num = resp.manifest_number
+            print(f'Manifested Orders, fetched Manifest Number: {mainfest_num}')
+            return resp
 
     def fetch_version(self):
-        return fetch_version(self.config)
+        # with ApiClient(self.config) as rm:
+        with self.api_client as rm:
+            client = VersionApi(rm)
+            try:
+                response = client.get_version_async_with_http_info()
+                pprint(response.model_dump(), indent=4)
+            except ApiException:
+                print('ERROR')
+        return response
 
     def cancel_all_orders(self, really=False) -> DeleteOrdersResource:
         """Cancels ALL orders on the system - use with care / must pass really-True to work"""
