@@ -16,3 +16,6 @@ class SendNotifcationsTo(StrEnum):
     RECIPIENT = 'recipient'
     BILLING = 'billing'
 
+
+class RoyalMailPackageFormat(StrEnum):
+    PARCEL = 'parcel'
