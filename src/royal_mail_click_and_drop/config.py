@@ -4,7 +4,7 @@ from pathlib import Path
 from typing import Self
 
 from loguru import logger
-from pydantic import model_validator
+from pydantic import field_validator, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 from royal_mail_click_and_drop import Configuration
@@ -34,6 +34,14 @@ class RoyalMailSettings(BaseSettings):
     base_url: str = r'https://api.parcel.royalmail.com/api/v1'
     config: Configuration | None = None
     tracking_url_stem: str = r'https://www.royalmail.com/track-your-item#/tracking-results/'
+    manifests_dir: Path
+
+    @field_validator('manifests_dir')
+    def validate_manifests_dir(cls, v: Path) -> Path:
+        if not v.exists():
+            logger.info(f'Creating manifests dir at {v}')
+            v.mkdir(parents=True, exist_ok=True)
+        return v
 
     @classmethod
     @lru_cache

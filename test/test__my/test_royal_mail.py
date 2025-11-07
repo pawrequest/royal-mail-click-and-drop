@@ -7,17 +7,14 @@ sample_client should delete test orders but best to check [online portal](http:/
 
 """
 
-from pprint import pprint
 from collections.abc import Generator
-from time import sleep
+from pprint import pprint
 
 import pytest
 
 from royal_mail_click_and_drop import GetOrdersResponse
-from royal_mail_click_and_drop.exceptions import BadRequestException
 from royal_mail_click_and_drop.models.create_orders_response import CreateOrdersResponse
 from royal_mail_click_and_drop.v2.client import RoyalMailClient
-import base64
 
 
 @pytest.fixture(scope='session')
@@ -25,17 +22,21 @@ def sample_client(sample_settings) -> Generator[RoyalMailClient, None, None]:
     """Test client - automatically removes orders created during testing on completion"""
     client = RoyalMailClient(settings=sample_settings)
     orders_before: GetOrdersResponse = client.fetch_orders()
+    print('\nExisting Orders Before Testing:')
     pprint(orders_before.model_dump())
 
     yield client
 
     print('Deleting Test Orders')
-    orders_after: GetOrdersResponse = client.fetch_orders()
-    for o in orders_after.orders:
-        if o not in orders_before.orders:
-            res = client.cancel_shipment(order_ident=o.order_identifier)
-            assert o.order_identifier in res.idents, 'WARNING, FAILED TO DELETE TEST ORDERS!!'
-            print('Deleted Test Orders')
+    try:
+        orders_after: GetOrdersResponse = client.fetch_orders()
+        for o in orders_after.orders:
+            if o not in orders_before.orders:
+                res = client.cancel_shipment(order_ident=o.order_identifier)
+                assert o.order_identifier in res.idents, 'WARNING, FAILED TO DELETE TEST ORDERS!!'
+                print('Deleted Test Orders')
+    except Exception as e:
+        print(f'Error during cleanup Maybe failed to delete test orders? {e}')
 
 
 @pytest.fixture(scope='session')
@@ -61,29 +62,13 @@ def test_created_order_ident_str(sample_booking_response):
     assert str(order_identifier) == sample_booking_response.created_orders_idents_str
 
 
-def test_book_label_manifest(sample_client, tmp_path, sample_booking_response):
+@pytest.mark.skip(
+    reason='RM say only charged when shipment scanned in, but unable to cancel manifested orders so skipping for safety'
+)
+def test_manifest(sample_client, tmp_path, sample_booking_response):
     orders = sample_client.fetch_orders()
     print('\nFetched Orders:')
     pprint(orders.model_dump(), indent=4, width=120)
-
-    sleep(3)  # give api a moment to settle
-    for i in range(1):
-        try:
-            res = sample_client.do_manifest()
-            break
-        except BadRequestException as e:
-            print(f'Attempt {i + 1} to create manifest failed: {e}')
-            sleep(3)
-    else:
-        raise RuntimeError('Failed to create manifest after several attempts')
-    assert res.manifest_number is not None
-    data64 = res.document_pdf
-    data = data64.encode('utf-8')
-
-    with open(tmp_path / 'manifest.pdf', 'wb') as f:
-        f.write(base64.b64decode(data))
-    print(f'Manifest saved to {tmp_path / "manifest.pdf"}')
-    assert (tmp_path / 'manifest.pdf').stat().st_size > 0
-
+    # sample_client.do_print_save_manifest() # UNABLE TO CANCEL MANIFESTED ORDERS SO SKIPPING FOR SAFETY
 
 

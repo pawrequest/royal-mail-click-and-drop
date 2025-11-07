@@ -18,10 +18,33 @@ from royal_mail_click_and_drop import (
 from royal_mail_click_and_drop.v2.consts import SendNotifcationsTo
 from royal_mail_click_and_drop.v2.services import RoyalMailServiceCode
 
-TEST_DATE = date.today() + timedelta(days=2)
-if TEST_DATE.weekday() in (5, 6):
-    TEST_DATE += timedelta(days=3)
-TEST_DATE = datetime.combine(TEST_DATE, datetime.min.time())
+
+def no_weekends(d: date) -> date:
+    if d.weekday() in (5, 6):
+        d += timedelta(days=3)
+    return d
+
+
+def make_test_date(d: date) -> datetime:
+    _test_date = no_weekends(d)
+    return datetime.combine(_test_date, datetime.min.time())
+
+
+TWO_DAYS_FUTURE = make_test_date(date.today() + timedelta(days=2))
+TODAY = make_test_date(date.today())
+
+
+@pytest.fixture(
+    scope='session',
+    params=[
+        TODAY,
+        # TWO_DAYS_FUTURE,
+    ],
+)
+def sample_shipping_dates(request) -> datetime:
+    return request.param
+
+
 # @pytest.fixture
 # def config() -> Configuration:
 #     return CONFIGURATION
@@ -103,7 +126,7 @@ def sample_postage_details() -> PostageDetailsRequest:
 
 
 @pytest.fixture(scope='session')
-def _sample_order(recipient, sample_packages, sample_billing, sample_postage_details):
+def _sample_order(recipient, sample_packages, sample_billing, sample_postage_details, sample_shipping_dates):
     return CreateOrderRequest(
         recipient=recipient.model_dump(),
         order_date=datetime.now(),
@@ -113,7 +136,7 @@ def _sample_order(recipient, sample_packages, sample_billing, sample_postage_det
         packages=sample_packages,
         billing=sample_billing,  # should be unnecessary with webportal settings
         postage_details=sample_postage_details,
-        planned_despatch_date=TEST_DATE,
+        planned_despatch_date=sample_shipping_dates,
     )
 
 

@@ -1,5 +1,9 @@
+import base64
+from pathlib import Path
 from pprint import pprint
+from typing import Callable
 
+from loguru import logger
 from pydantic import ConfigDict
 
 from royal_mail_click_and_drop import (
@@ -82,6 +86,28 @@ class RoyalMailClient(RMBaseModel):
         print(f'Manifested Orders, fetched Manifest Number: {mainfest_num}')
         return resp
 
+    def manifest_filepath(self, manifest_num: str | int) -> Path:
+        manifest_num = str(manifest_num)
+        return self.settings.manifests_dir / f'manifest_{manifest_num}.pdf'
+
+    def save_manifest(self, response: ManifestOrdersResponse):
+        pdf_data = response.document_pdf
+        outpath = self.manifest_filepath(response.manifest_number)
+        with open(outpath, 'wb') as f:
+            f.write(base64.b64decode(pdf_data))
+        logger.info(f'Manifest saved to {outpath}')
+
+    def do_save_manifest(self) -> ManifestOrdersResponse:
+        resp = self.do_manifest()
+        self.save_manifest(resp)
+        return resp
+
+    def do_print_save_manifest(self) -> ManifestOrdersResponse:
+        resp = self.do_save_manifest()
+        outpath = self.manifest_filepath(resp.manifest_number)
+        print_file(outpath)
+        return resp
+
     def retry_do_manifest(self, manifest_ident: int) -> ManifestOrdersResponse:
         with ApiClient(self.config) as client:
             api = ManifestsApi(client)
@@ -119,3 +145,23 @@ class RoyalMailChannelShipperClient(RoyalMailClient):
         with ApiClient(self.config) as client:
             api = OrdersApi(client)
             return api.get_orders_with_details_async()
+
+
+def print_file(filepath: Path):
+    import os
+
+    os.startfile(filepath, 'print')
+
+
+def do_retry(action: Callable, *args, retries=5, **kwargs):
+    from time import sleep
+
+    for i in range(retries):
+        try:
+            res = action(args, **kwargs)
+            return res
+        except ApiException as e:
+            logger.warning(f'Attempt {i + 1} failed: {e}')
+            sleep(3)
+    else:
+        raise RuntimeError(f'Failed to complete action {action.__name__} after {retries} attempts')
