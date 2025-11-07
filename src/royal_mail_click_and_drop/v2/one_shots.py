@@ -19,3 +19,8 @@ def cancel_order(ident: str):
     res = client.cancel_shipment(ident)
     res_idents = res.idents
     print(res_idents)
+
+
+def do_save_print_manifest():
+    client = get_client()
+    client.do_print_save_manifest()
