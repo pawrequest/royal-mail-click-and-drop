@@ -2,6 +2,7 @@
 name = "royal-mail-click-and-drop"
 license = "MIT"
 version = "0.0.9"
+
 description = "Royal Mail Click and Drop Client"
 authors = [
     { name = "pawrequest", email = "royal_mail+pawrequest@users.noreply.github.com" }
@@ -26,6 +27,9 @@ dev = [
     "ruff>=0.14.1",
 ]
 
+[project.urls]
+Homepage = "https://github.com/pawrequest/royal-mail-click-and-drop"
+Repository = "https://github.com/pawrequest/royal-mail-click-and-drop"
 
 [tool.ruff]
 line-length = 120
